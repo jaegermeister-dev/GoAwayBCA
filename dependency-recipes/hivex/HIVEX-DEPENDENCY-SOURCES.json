@@ -1,0 +1,12 @@
+[
+  {
+    "file": "pkgconf-3.0.7.tar.xz",
+    "sha256": "c926ff491cbd9a331a589160811bd97ab1749b4d5198a519338f2cdfabe6940a",
+    "role": "Private source-built configure helper; not distributed in the app"
+  },
+  {
+    "file": "hivex-1.3.24.tar.gz",
+    "sha256": "a52fa45cecc9a78adb2d28605d68261e4f1fd4514a778a5473013d2ccc8a193c",
+    "role": "Offline registry library, including original upstream source, licences and test fixtures"
+  }
+]

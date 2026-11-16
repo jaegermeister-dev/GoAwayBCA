@@ -1,0 +1,5 @@
+GoAwayBCA hardware reports
+
+Use Collect Hardware Report to save the detected Mac, CPU, firmware, disk and boot information. Save the application log too. Reports can help explain compatibility or boot failures, but do not guarantee that an untested configuration will work.
+Review the files for personal information before sharing. Include the exact error and what you selected. State anything the report could not detect, including the OpenCore version if unknown and whether the same result occurs using the Option/Alt picker.
+No reports are automatically uploaded. Use https://github.com/jaegermeister-dev/GoAwayBCA/issues

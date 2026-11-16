@@ -1,0 +1,6 @@
+GoAwayBCA model guidance
+
+Confirm the actual model identifier of your Mac. Compatibility also depends on your unit's CPU features, firmware architecture, selected Windows image and destination drive. Do not substitute another model identifier.
+Windows 8.1 and Windows 10 have been tested on MacBookPro11,3, MacBookPro11,4 and MacBookPro11,5. These results do not confirm every other model or configuration. Windows 11 has not been part of that test matrix.
+Guidance for other models is based on the available compatibility information and may need correction. Read the specific warnings shown for your selected Windows version.
+T1 Macs are not officially supported by this tool; diagnostic reports may be considered without a guarantee of a fix. T2 Macs are unsupported and no T2-specific fixes are planned. Lower security settings do not guarantee compatibility.

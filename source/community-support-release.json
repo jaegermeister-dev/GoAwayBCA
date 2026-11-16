@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "version": "r35-private-test",
+  "delivery": "bundled-private-test",
+  "asset": "private-support/Windows7-Driver-Support-r35.zip",
+  "bytes": 1965119,
+  "sha256": "0ea949de88eebf9080ee122aab4c26da8d2a6d8cbcafde4f48b673c9b26f66d2",
+  "files": {
+    "BackToSeven Drivers Installer.exe": {
+      "bytes": 2447538,
+      "sha256": "d7633862c3dc64df4fdc7c0f52c0df07bf878c506e243734c4cb53f17c2343c5"
+    },
+    "READ-ME-FIRST.txt": {
+      "bytes": 250,
+      "sha256": "63d2117f4feab16e06502ae86a73690f9fdcbb1dd980da447bb4098aebe21a4c"
+    },
+    "driver-recipe.json": {
+      "bytes": 212330,
+      "sha256": "14ebf0bb28901790cdcab03bb48b4bd7fa69b2b535a41cd3f573177eb69d6e63"
+    }
+  }
+}

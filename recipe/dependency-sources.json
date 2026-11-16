@@ -1,0 +1,16 @@
+{
+  "asset": "GoAwayBCA-Beta-1-Dependency-Sources.zip",
+  "bytes": 580384970,
+  "sha256": "557f7410f5e69e757f9b49d6740b214ca170a31a4eb1b2f9b51834539b23b529",
+  "components": {
+    "ntfs-wim": 6,
+    "hivex": 5,
+    "7zip-modern": 6,
+    "inno-modern": 13,
+    "python-legacy": 12,
+    "python-modern": 172,
+    "7zip-legacy": 11,
+    "inno-portable": 14
+  },
+  "files": 302
+}

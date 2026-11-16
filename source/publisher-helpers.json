@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "profiles": [
+    {
+      "minimum": "10.7",
+      "maximum": "10.14.99",
+      "tools": {
+        "7zip": {
+          "path": "publisher-tools/macos-10.7/7zz",
+          "bytes": 3382312,
+          "sha256": "884eec7ffc628fe7c3a3a05e37a4a312a81f4d3e47e5f1cdf268ee79211ba699"
+        },
+        "inno": {
+          "path": "publisher-tools/macos-10.7/innoextract",
+          "bytes": 1175536,
+          "sha256": "a66648ae210a2adcb0080af1709f914d4c0c5a1617a4f2e581de86672a09766f"
+        }
+      }
+    },
+    {
+      "minimum": "10.15",
+      "maximum": "26.99.99",
+      "tools": {
+        "7zip": {
+          "path": "publisher-tools/macos-10.15/7zz",
+          "bytes": 3062728,
+          "sha256": "91873fcacb87b0d77bfab5aca6131c73db76f9745821a846298ac180f0740835"
+        },
+        "inno": {
+          "path": "publisher-tools/macos-10.15/innoextract",
+          "bytes": 1175808,
+          "sha256": "ad096cb8e17819e3a48a524f6d4f285255d567486b53f236266e5c8b7d05b112"
+        }
+      }
+    }
+  ]
+}

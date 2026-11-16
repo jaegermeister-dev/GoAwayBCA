@@ -1,0 +1,7 @@
+Reporting a boot or installation problem
+
+Save the application log and collect a hardware/boot diagnostic report. Review them for personal information before attaching them to a GitHub issue. Nothing is uploaded automatically.
+Include: GoAwayBCA version; macOS version used for installation; exact Windows version, edition, architecture and ISO build; Mac model; internal drive model and logical-sector size; installation method and order; existing Windows/other OS installs; selected menu entry and its exact error; whether drivers were installed; OpenCore version if used; and what changed immediately before the failure.
+Try the Mac's Option/Alt picker and OpenCore where available, recording each result. You do not need to install or modify OpenCore merely to report an issue. A successful alternative boot is useful evidence; please still report the original failure.
+If Linux is present, also include its distribution/version, bootloader/version, installation method and order, and entries visible in each picker. Linux/GRUB interaction has not been tested.
+Issue tracker: https://github.com/jaegermeister-dev/GoAwayBCA/issues

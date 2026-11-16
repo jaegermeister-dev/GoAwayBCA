@@ -1,0 +1,20 @@
+{
+  "version": "1.13",
+  "commit": "0f1b63b92f61f23fe17697d24df7164f1d13fa1f",
+  "binary_sha256": "be98c861c709fa5db0819337ea1e40e4e11ed9037f8f37497a6e4274973c2ed7",
+  "binary_bytes": 60416,
+  "binary_url": null,
+  "release_url": "https://github.com/pbatard/EfiFs/releases/tag/v1.13",
+  "source_sha256": "489830cc83a8501ffd70daf675c1e2788df36cf175acde2e6ec73b13942768b0",
+  "submodules": {
+    "gnu-efi": "3cf072ace613e4459a0308b06309f4072cf4aa36",
+    "grub": "f10ad08fa2a02dce95774c1b5caee38254b30531"
+  },
+  "build": "Local reproducible GNU-EFI build from the same pinned upstream sources; EFI1.x-compatible entry point",
+  "compiler": "clang 23.1.1 (commit6dfe1677ab8dffbc6ec13d53a1e0215d75147689) (llvm-mingw 20260908)",
+  "linker": "LLD COFF",
+  "recipe": "build_reader.py",
+  "previous_binary_sha256": "202aeb2cc078693e9c03f3c0a64e8c6c44f2c75eded8a32ada5e1589753b3317",
+  "source_changes": "Only upstream bundled GRUB fixes; generated compiler-use marker; no NTFS algorithm changes"
+}
+

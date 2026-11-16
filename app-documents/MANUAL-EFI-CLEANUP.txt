@@ -1,0 +1,5 @@
+GoAwayBCA boot-file recovery
+
+Prefer the app's Rebuild Boot Menu or experimental recovery tools where appropriate. Review the report and backup before confirming any operation. An EFI snapshot is not a backup of a Windows partition or your data.
+Only edit EFI files manually if you understand their ownership and purpose. A wrong deletion can make Windows, macOS or another OS unbootable. Do not remove OpenCore, Apple EFI files, shared Microsoft files or an unknown fallback loader.
+Use disk/partition GUIDs, installation records and saved hashes to identify exact files. Labels alone are insufficient. If ownership cannot be established, keep the files and request help with the saved report.

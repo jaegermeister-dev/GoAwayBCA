@@ -1,0 +1,516 @@
+{
+  "registry": [
+    {
+      "IORegistryEntryChildren": [
+        {}
+      ],
+      "Protocol Characteristics": {
+        "Physical Interconnect": "USB",
+        "Physical Interconnect Location": "Internal"
+      }
+    },
+    {
+      "IORegistryEntryChildren": [
+        {
+          "IORegistryEntryChildren": [
+            {
+              "BSD Name": "disk0",
+              "Content": "GUID_partition_scheme",
+              "IORegistryEntryChildren": [
+                {},
+                {
+                  "IORegistryEntryChildren": [
+                    {
+                      "BSD Name": "disk0s1",
+                      "Content": "C12A7328-F81F-11D2-BA4B-00A0C93EC93B",
+                      "IORegistryEntryChildren": [
+                        {}
+                      ],
+                      "Size": 209715200,
+                      "UUID": "5A440B4F-5C1B-48F2-9D6D-A7C70430F3F1",
+                      "Whole": false
+                    },
+                    {
+                      "BSD Name": "disk0s2",
+                      "Content": "7C3457EF-0000-11AA-AA11-00306543ECAC",
+                      "IORegistryEntryChildren": [
+                        {}
+                      ],
+                      "Size": 35825635328,
+                      "UUID": "5167BF46-1E18-47EE-96BA-8844E1994CE8",
+                      "Whole": false
+                    },
+                    {
+                      "BSD Name": "disk0s3",
+                      "Content": "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7",
+                      "IORegistryEntryChildren": [
+                        {}
+                      ],
+                      "Size": 49906974720,
+                      "UUID": "8AF778FE-4856-45E7-AD4C-D00A40997988",
+                      "Whole": false
+                    },
+                    {
+                      "BSD Name": "disk0s4",
+                      "Content": "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7",
+                      "IORegistryEntryChildren": [
+                        {}
+                      ],
+                      "Size": 50020220928,
+                      "UUID": "206E9FD4-D543-4725-815E-33243B44652D",
+                      "Whole": false
+                    },
+                    {
+                      "BSD Name": "disk0s5",
+                      "Content": "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7",
+                      "IORegistryEntryChildren": [
+                        {}
+                      ],
+                      "Size": 49975132160,
+                      "UUID": "9A5332BE-C1EA-4903-ADF2-8A700C7AF6E3",
+                      "Whole": false
+                    },
+                    {
+                      "BSD Name": "disk0s6",
+                      "Content": "48465300-0000-11AA-AA11-00306543ECAC",
+                      "IORegistryEntryChildren": [
+                        {}
+                      ],
+                      "Size": 14522281984,
+                      "UUID": "0B23D1F9-BB51-42F8-ABA2-CA0530679B76",
+                      "Whole": false
+                    },
+                    {
+                      "BSD Name": "disk0s7",
+                      "Content": "48465300-0000-11AA-AA11-00306543ECAC",
+                      "IORegistryEntryChildren": [
+                        {}
+                      ],
+                      "Size": 49865785344,
+                      "UUID": "2680587C-2704-4BA2-AA1F-904F7EFA93E1",
+                      "Whole": false
+                    }
+                  ]
+                }
+              ],
+              "Size": 251000193024,
+              "Whole": true
+            }
+          ]
+        }
+      ],
+      "Protocol Characteristics": {
+        "Physical Interconnect": "PCI",
+        "Physical Interconnect Location": "Internal"
+      }
+    }
+  ],
+  "info": {
+    "disk0": {
+      "Bootable": false,
+      "BusProtocol": "PCI",
+      "CanBeMadeBootable": false,
+      "CanBeMadeBootableRequiresDestroy": false,
+      "Content": "GUID_partition_scheme",
+      "DeviceBlockSize": 512,
+      "DeviceIdentifier": "disk0",
+      "DeviceNode": "/dev/disk0",
+      "Ejectable": false,
+      "FreeSpace": 0,
+      "GlobalPermissionsEnabled": false,
+      "IOKitSize": 251000193024,
+      "Internal": true,
+      "LowLevelFormatSupported": false,
+      "MediaType": "Generic",
+      "MountPoint": "",
+      "OS9DriversInstalled": false,
+      "ParentWholeDisk": "disk0",
+      "RAIDMaster": false,
+      "RAIDSlice": false,
+      "SMARTStatus": "Verified",
+      "SolidState": true,
+      "SupportsGlobalPermissionsDisable": false,
+      "SystemImage": false,
+      "TotalSize": 251000193024,
+      "VolumeName": "",
+      "WholeDisk": true,
+      "Writable": true,
+      "WritableMedia": true,
+      "WritableVolume": false,
+      "DeviceTreePath": "IODeviceTree:fixture"
+    },
+    "disk0s1": {
+      "Bootable": false,
+      "BusProtocol": "PCI",
+      "CanBeMadeBootable": false,
+      "CanBeMadeBootableRequiresDestroy": false,
+      "Content": "EFI",
+      "DeviceBlockSize": 512,
+      "DeviceIdentifier": "disk0s1",
+      "DeviceNode": "/dev/disk0s1",
+      "Ejectable": false,
+      "FreeSpace": 0,
+      "GlobalPermissionsEnabled": false,
+      "IOKitSize": 209715200,
+      "Internal": true,
+      "MediaType": "Generic",
+      "MountPoint": "",
+      "ParentWholeDisk": "disk0",
+      "RAIDMaster": false,
+      "RAIDSlice": false,
+      "SMARTStatus": "Verified",
+      "SolidState": true,
+      "SupportsGlobalPermissionsDisable": false,
+      "SystemImage": false,
+      "TotalSize": 209715200,
+      "VolumeName": "EFI",
+      "WholeDisk": false,
+      "Writable": true,
+      "WritableMedia": true,
+      "WritableVolume": false,
+      "DeviceTreePath": "IODeviceTree:fixture"
+    },
+    "disk0s2": {
+      "Bootable": false,
+      "BusProtocol": "PCI",
+      "CanBeMadeBootable": false,
+      "CanBeMadeBootableRequiresDestroy": false,
+      "Content": "7C3457EF-0000-11AA-AA11-00306543ECAC",
+      "DeviceBlockSize": 512,
+      "DeviceIdentifier": "disk0s2",
+      "DeviceNode": "/dev/disk0s2",
+      "Ejectable": false,
+      "FreeSpace": 0,
+      "GlobalPermissionsEnabled": false,
+      "IOKitSize": 35825635328,
+      "Internal": true,
+      "MediaType": "Generic",
+      "MountPoint": "",
+      "ParentWholeDisk": "disk0",
+      "RAIDMaster": false,
+      "RAIDSlice": false,
+      "SMARTStatus": "Verified",
+      "SolidState": true,
+      "SupportsGlobalPermissionsDisable": false,
+      "SystemImage": false,
+      "TotalSize": 35825635328,
+      "VolumeName": "",
+      "WholeDisk": false,
+      "Writable": true,
+      "WritableMedia": true,
+      "WritableVolume": false,
+      "DeviceTreePath": "IODeviceTree:fixture"
+    },
+    "disk0s3": {
+      "Bootable": true,
+      "BusProtocol": "PCI",
+      "CanBeMadeBootable": false,
+      "CanBeMadeBootableRequiresDestroy": false,
+      "Content": "Microsoft Basic Data",
+      "DeviceBlockSize": 512,
+      "DeviceIdentifier": "disk0s3",
+      "DeviceNode": "/dev/disk0s3",
+      "Ejectable": false,
+      "FilesystemName": "ExFAT",
+      "FilesystemType": "exfat",
+      "FilesystemUserVisibleName": "ExFAT",
+      "FreeSpace": 49884692480,
+      "GlobalPermissionsEnabled": false,
+      "IOKitSize": 49906974720,
+      "Internal": true,
+      "MediaType": "Generic",
+      "MountPoint": "/Volumes/Windows7",
+      "ParentWholeDisk": "disk0",
+      "RAIDMaster": false,
+      "RAIDSlice": false,
+      "SMARTStatus": "Verified",
+      "SolidState": true,
+      "SupportsGlobalPermissionsDisable": false,
+      "SystemImage": false,
+      "TotalSize": 49903828992,
+      "VolumeName": "Windows7",
+      "VolumeUUID": "444A9DE7-675F-326D-985D-7BCDBC98E09C",
+      "WholeDisk": false,
+      "Writable": true,
+      "WritableMedia": true,
+      "WritableVolume": true,
+      "DeviceTreePath": "IODeviceTree:fixture"
+    },
+    "disk0s4": {
+      "Bootable": true,
+      "BusProtocol": "PCI",
+      "CanBeMadeBootable": false,
+      "CanBeMadeBootableRequiresDestroy": false,
+      "Content": "Microsoft Basic Data",
+      "DeviceBlockSize": 512,
+      "DeviceIdentifier": "disk0s4",
+      "DeviceNode": "/dev/disk0s4",
+      "Ejectable": false,
+      "FilesystemName": "ExFAT",
+      "FilesystemType": "exfat",
+      "FilesystemUserVisibleName": "ExFAT",
+      "FreeSpace": 49997938688,
+      "GlobalPermissionsEnabled": false,
+      "IOKitSize": 50020220928,
+      "Internal": true,
+      "MediaType": "Generic",
+      "MountPoint": "/Volumes/Windows10",
+      "ParentWholeDisk": "disk0",
+      "RAIDMaster": false,
+      "RAIDSlice": false,
+      "SMARTStatus": "Verified",
+      "SolidState": true,
+      "SupportsGlobalPermissionsDisable": false,
+      "SystemImage": false,
+      "TotalSize": 50017075200,
+      "VolumeName": "Windows10",
+      "VolumeUUID": "81F2BA6D-0B17-395C-A69B-31371F67B2B6",
+      "WholeDisk": false,
+      "Writable": true,
+      "WritableMedia": true,
+      "WritableVolume": true,
+      "DeviceTreePath": "IODeviceTree:fixture"
+    },
+    "disk0s5": {
+      "Bootable": true,
+      "BusProtocol": "PCI",
+      "CanBeMadeBootable": false,
+      "CanBeMadeBootableRequiresDestroy": false,
+      "Content": "Microsoft Basic Data",
+      "DeviceBlockSize": 512,
+      "DeviceIdentifier": "disk0s5",
+      "DeviceNode": "/dev/disk0s5",
+      "Ejectable": false,
+      "FilesystemName": "ExFAT",
+      "FilesystemType": "exfat",
+      "FilesystemUserVisibleName": "ExFAT",
+      "FreeSpace": 49952849920,
+      "GlobalPermissionsEnabled": false,
+      "IOKitSize": 49975132160,
+      "Internal": true,
+      "MediaType": "Generic",
+      "MountPoint": "/Volumes/Windows81",
+      "ParentWholeDisk": "disk0",
+      "RAIDMaster": false,
+      "RAIDSlice": false,
+      "SMARTStatus": "Verified",
+      "SolidState": true,
+      "SupportsGlobalPermissionsDisable": false,
+      "SystemImage": false,
+      "TotalSize": 49971986432,
+      "VolumeName": "Windows81",
+      "VolumeUUID": "F7064D5A-CE7A-3104-9B98-744FBB245441",
+      "WholeDisk": false,
+      "Writable": true,
+      "WritableMedia": true,
+      "WritableVolume": true,
+      "DeviceTreePath": "IODeviceTree:fixture"
+    },
+    "disk0s6": {
+      "Bootable": true,
+      "BusProtocol": "PCI",
+      "CanBeMadeBootable": false,
+      "CanBeMadeBootableRequiresDestroy": false,
+      "Content": "Apple_HFS",
+      "DeviceBlockSize": 512,
+      "DeviceIdentifier": "disk0s6",
+      "DeviceNode": "/dev/disk0s6",
+      "Ejectable": false,
+      "FilesystemName": "Journaled HFS+",
+      "FilesystemType": "hfs",
+      "FilesystemUserVisibleName": "Mac OS Extended (Journaled)",
+      "FreeSpace": 1987063808,
+      "GlobalPermissionsEnabled": true,
+      "IOKitSize": 14522281984,
+      "Internal": true,
+      "JournalOffset": 454656,
+      "JournalSize": 8388608,
+      "MediaType": "Generic",
+      "MountPoint": "/Volumes/ISOs",
+      "ParentWholeDisk": "disk0",
+      "RAIDMaster": false,
+      "RAIDSlice": false,
+      "SMARTStatus": "Verified",
+      "SolidState": true,
+      "SupportsGlobalPermissionsDisable": true,
+      "SystemImage": false,
+      "TotalSize": 14522281984,
+      "VolumeName": "ISOs",
+      "VolumeUUID": "8ADA7D5B-28FE-37A9-BF89-59EF73602A5C",
+      "WholeDisk": false,
+      "Writable": true,
+      "WritableMedia": true,
+      "WritableVolume": true,
+      "DeviceTreePath": "IODeviceTree:fixture"
+    },
+    "disk0s7": {
+      "Bootable": true,
+      "BusProtocol": "PCI",
+      "CanBeMadeBootable": false,
+      "CanBeMadeBootableRequiresDestroy": false,
+      "Content": "Apple_HFS",
+      "DeviceBlockSize": 512,
+      "DeviceIdentifier": "disk0s7",
+      "DeviceNode": "/dev/disk0s7",
+      "Ejectable": false,
+      "FilesystemName": "Journaled HFS+",
+      "FilesystemType": "hfs",
+      "FilesystemUserVisibleName": "Mac OS Extended (Journaled)",
+      "FreeSpace": 34584068096,
+      "GlobalPermissionsEnabled": true,
+      "IOKitSize": 49865785344,
+      "Internal": true,
+      "JournalOffset": 1531904,
+      "JournalSize": 8388608,
+      "MediaType": "Generic",
+      "MountPoint": "/",
+      "ParentWholeDisk": "disk0",
+      "RAIDMaster": false,
+      "RAIDSlice": false,
+      "SMARTStatus": "Verified",
+      "SolidState": true,
+      "SupportsGlobalPermissionsDisable": true,
+      "SystemImage": false,
+      "TotalSize": 49865785344,
+      "VolumeName": "Mac OS X",
+      "VolumeUUID": "A9050223-6B21-3B34-A44E-13CEB2CF066B",
+      "WholeDisk": false,
+      "Writable": true,
+      "WritableMedia": true,
+      "WritableVolume": true,
+      "DeviceTreePath": "IODeviceTree:fixture"
+    }
+  },
+  "gpt": {
+    "guid": "7c60f00e-223f-4163-9fd2-6ee63d8503ac",
+    "partitions": {
+      "1": {
+        "type": "c12a7328-f81f-11d2-ba4b-00a0c93ec93b",
+        "guid": "5a440b4f-5c1b-48f2-9d6d-a7c70430f3f1",
+        "first": 40,
+        "last": 409639,
+        "flags": 0
+      },
+      "2": {
+        "type": "7c3457ef-0000-11aa-aa11-00306543ecac",
+        "guid": "5167bf46-1e18-47ee-96ba-8844e1994ce8",
+        "first": 409640,
+        "last": 70381583,
+        "flags": 0
+      },
+      "3": {
+        "type": "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7",
+        "guid": "8af778fe-4856-45e7-ad4c-d00a40997988",
+        "first": 70383616,
+        "last": 167858175,
+        "flags": 0
+      },
+      "4": {
+        "type": "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7",
+        "guid": "206e9fd4-d543-4725-815e-33243b44652d",
+        "first": 168122368,
+        "last": 265818111,
+        "flags": 0
+      },
+      "5": {
+        "type": "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7",
+        "guid": "9a5332be-c1ea-4903-adf2-8a700c7af6e3",
+        "first": 266082304,
+        "last": 363689983,
+        "flags": 0
+      },
+      "6": {
+        "type": "48465300-0000-11aa-aa11-00306543ecac",
+        "guid": "0b23d1f9-bb51-42f8-aba2-ca0530679b76",
+        "first": 363952480,
+        "last": 392316311,
+        "flags": 0
+      },
+      "7": {
+        "type": "48465300-0000-11aa-aa11-00306543ecac",
+        "guid": "2680587c-2704-4ba2-aa1f-904f7efa93e1",
+        "first": 392578456,
+        "last": 489972567,
+        "flags": 0
+      }
+    },
+    "digest": "ceffcfb9c7ea0080a1e94233deb05c97258f89e9104a1d913cf17398cabf4d33"
+  },
+  "listing": {
+    "AllDisks": [
+      "disk0",
+      "disk0s1",
+      "disk0s2",
+      "disk0s3",
+      "disk0s4",
+      "disk0s5",
+      "disk0s6",
+      "disk0s7"
+    ],
+    "AllDisksAndPartitions": [
+      {
+        "Content": "GUID_partition_scheme",
+        "DeviceIdentifier": "disk0",
+        "Partitions": [
+          {
+            "Content": "EFI",
+            "DeviceIdentifier": "disk0s1",
+            "Size": 209715200,
+            "VolumeName": "EFI"
+          },
+          {
+            "Content": "7C3457EF-0000-11AA-AA11-00306543ECAC",
+            "DeviceIdentifier": "disk0s2",
+            "Size": 35825635328
+          },
+          {
+            "Content": "Microsoft Basic Data",
+            "DeviceIdentifier": "disk0s3",
+            "MountPoint": "/Volumes/Windows7",
+            "Size": 49906974720,
+            "VolumeName": "Windows7"
+          },
+          {
+            "Content": "Microsoft Basic Data",
+            "DeviceIdentifier": "disk0s4",
+            "MountPoint": "/Volumes/Windows10",
+            "Size": 50020220928,
+            "VolumeName": "Windows10"
+          },
+          {
+            "Content": "Microsoft Basic Data",
+            "DeviceIdentifier": "disk0s5",
+            "MountPoint": "/Volumes/Windows81",
+            "Size": 49975132160,
+            "VolumeName": "Windows81"
+          },
+          {
+            "Content": "Apple_HFS",
+            "DeviceIdentifier": "disk0s6",
+            "MountPoint": "/Volumes/ISOs",
+            "Size": 14522281984,
+            "VolumeName": "ISOs"
+          },
+          {
+            "Content": "Apple_HFS",
+            "DeviceIdentifier": "disk0s7",
+            "MountPoint": "/",
+            "Size": 49865785344,
+            "VolumeName": "Mac OS X"
+          }
+        ],
+        "Size": 251000193024
+      }
+    ],
+    "VolumesFromDisks": [
+      "Windows7",
+      "Windows10",
+      "Windows81",
+      "ISOs",
+      "Mac OS X"
+    ],
+    "WholeDisks": [
+      "disk0"
+    ]
+  }
+}

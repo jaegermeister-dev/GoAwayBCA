@@ -1,0 +1,63 @@
+[
+  {
+    "component": "driver-installer-previous",
+    "installer_sha256": "9995b80d9d716b5b6caa40acf61547b57501e5ecda3347dd493e539a92b44ea7",
+    "engine_sha256": "d678b10902a23eca0dc38b65fa16f50addddfb4120b5a9890d3c938e5f22fb86",
+    "source_files": {
+      "driver_setup.c": "492f28094318971ba3be577578e5b327ba9921f6c601b15cf294163381275aed",
+      "Driver-Setup.ps1": "57376532ebc77c476925ed158bd13fedc8c7512de1c49f764a33ee69a6d72f26",
+      "Native-Driver-Api.cs": "69b84d49e3b03444ae7e6d1494f0c1d0d8abd28166597756db4207050004889e",
+      "Driver-Setup.iss": "a05d5d9257d2a51fa55bffe191694b38165b8fa23d7b6b2f8a054f8468063aa0",
+      "Apple-Keyboard-Layout.ps1": "2a907fadef4c8c3c3a3e446a92f73762f9a505d39d32339d82aeef4d363489ad",
+      "Accepted-Hardware.ps1": "6a144d14fb719a6fe34d9f3d8ea97dc3c6b373358e047fd10b22cde7b916429a",
+      "Apple-Timestamp-Trust.ps1": "35beae995f80fc71ce58c5a551f018c4bf6e62372f76746b97b06885f2462e7b",
+      "Apple-Timestamp-Root.crt": "2399561127a57125de8cefea610ddf2fa078b5c8067f4e828290bfb860e84b3c",
+      "BootCamp-Backlight-Response.ps1": "fa09b1ba79d1dd71b44c22ea6ecd0694db48f93cec7415c05440a7377615848b",
+      "Apply-Trackpad-Settings.ps1": "13637c91388fe4d42938fc9e5e46433dd34bebc0b5a92b9991b4b6f39177060b",
+      "BackToSeven-Trackpad-Preferences.exe": "7077e492368cfac6e1c86aeceee5c0806bfb3bb1990176f6e8e1f1964be594b0",
+      "trackpad_preferences.c": "12b4e01dbc655ef31c73a9bbc9619b05f008aa93b441f0feadadade6d7664cb5",
+      "Repair-Graphics-Boot.ps1": "23a458aeca09c441d28b2dbe9b470d18da4796c12f98adc4cf07b4a19a9f82b7",
+      "Boot-Partition-Identity.cs": "2fa4db515260308e1e7553dee0c6b3fa9c66a7912bc3fcffde6694a8fe112d13",
+      "Boot-Store-Guard.cs": "e620845b4091a20839f2eaa251f3f333110eff85fd0e3373d354583927a01d3a",
+      "Menu-Store-Guard.cs": "6b0650d30bd79e14799c799a10d3e29025424da402dab2172a4e402496d838f0",
+      "BackToSeven.ico": "4ffb79649e7d8ce69ee45cb7384ce11ccb957eb21913e6c89e35d4749c66d23b",
+      "BackToSeven-Wizard.bmp": "3fa0f91a9902a61677286b1c4b9c2bb7e31fdd7f1ef1de6439bc85e4c4344ad5",
+      "BackToSeven-Wizard-Small.bmp": "c9134b277695c5eda4bccd10f074f16564b5134a53d1bfecabd4b8e2df8dba0e"
+    },
+    "build_tools": {
+      "zig": "0.17.0-dev.2251+1175a3e99",
+      "inno_setup": "6.7.3"
+    }
+  },
+  {
+    "component": "driver-installer-source",
+    "installer_sha256": "d7633862c3dc64df4fdc7c0f52c0df07bf878c506e243734c4cb53f17c2343c5",
+    "engine_sha256": "054b3c0aecc2c9a9aae90d999a75bb78b23c1700f3570fa116997d25ee12820c",
+    "source_files": {
+      "driver_setup.c": "5cb63ddf5c7c34b2b51c1e226d94be3b10b805febc0c4b29bea2a9236e64b1bd",
+      "Driver-Setup.ps1": "ef7545d4f6f111fe5f0e23a383f1ec4d76530b6abc30781cf30c2535b4df7ef5",
+      "Native-Driver-Api.cs": "e834a82cfd5e0d2000b2a28191519edae489e55f26428b1ad76e6bae312880f8",
+      "Driver-Setup.iss": "484152c7ab46f0bdddaebd55f94ad7fe9b33577b5d8bf25939bcdc0e1d1c6db1",
+      "Apple-Keyboard-Layout.ps1": "2a907fadef4c8c3c3a3e446a92f73762f9a505d39d32339d82aeef4d363489ad",
+      "Accepted-Hardware.ps1": "6a144d14fb719a6fe34d9f3d8ea97dc3c6b373358e047fd10b22cde7b916429a",
+      "Apple-Timestamp-Trust.ps1": "35beae995f80fc71ce58c5a551f018c4bf6e62372f76746b97b06885f2462e7b",
+      "Apple-Timestamp-Root.crt": "2399561127a57125de8cefea610ddf2fa078b5c8067f4e828290bfb860e84b3c",
+      "BootCamp-Backlight-Response.ps1": "fa09b1ba79d1dd71b44c22ea6ecd0694db48f93cec7415c05440a7377615848b",
+      "Apply-Trackpad-Settings.ps1": "13637c91388fe4d42938fc9e5e46433dd34bebc0b5a92b9991b4b6f39177060b",
+      "BackToSeven-Trackpad-Preferences.exe": "7077e492368cfac6e1c86aeceee5c0806bfb3bb1990176f6e8e1f1964be594b0",
+      "trackpad_preferences.c": "12b4e01dbc655ef31c73a9bbc9619b05f008aa93b441f0feadadade6d7664cb5",
+      "Repair-Graphics-Boot.ps1": "62cf449889be5863b8d7bf5aef018ff7328e24cc096ec406d2f0b8b3e6fe846e",
+      "Boot-Partition-Identity.cs": "2fa4db515260308e1e7553dee0c6b3fa9c66a7912bc3fcffde6694a8fe112d13",
+      "Boot-Store-Guard.cs": "e620845b4091a20839f2eaa251f3f333110eff85fd0e3373d354583927a01d3a",
+      "Menu-Store-Guard.cs": "1fba92d16f0663dce7d3b98129ef339a194a89eb25b3be80e8a89ad19008e37d",
+      "BackToSeven.ico": "4ffb79649e7d8ce69ee45cb7384ce11ccb957eb21913e6c89e35d4749c66d23b",
+      "BackToSeven-Wizard.bmp": "3fa0f91a9902a61677286b1c4b9c2bb7e31fdd7f1ef1de6439bc85e4c4344ad5",
+      "BackToSeven-Wizard-Small.bmp": "c9134b277695c5eda4bccd10f074f16564b5134a53d1bfecabd4b8e2df8dba0e",
+      "Windows-Storage-Info.h": "640a429ab11d76469dc35e5c1223f1dc6d520135d0e28dfde255b2c906957ea6"
+    },
+    "build_tools": {
+      "zig": "0.17.0-dev.2251+1175a3e99",
+      "inno_setup": "6.7.3"
+    }
+  }
+]

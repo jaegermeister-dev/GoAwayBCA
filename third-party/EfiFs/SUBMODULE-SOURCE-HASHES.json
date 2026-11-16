@@ -1,0 +1,18 @@
+[
+  {
+    "component": "gnu-efi",
+    "commit": "3cf072ace613e4459a0308b06309f4072cf4aa36",
+    "url": "https://codeload.github.com/ncroxon/gnu-efi/tar.gz/3cf072ace613e4459a0308b06309f4072cf4aa36",
+    "bytes": 245316,
+    "sha256": "5721b436735763f136ca2c2ec0d536759a4604ac20abf5d55bb84b2f54ac8a82",
+    "file": "gnu-efi-3cf072ace613e4459a0308b06309f4072cf4aa36.tar.gz"
+  },
+  {
+    "component": "grub",
+    "commit": "f10ad08fa2a02dce95774c1b5caee38254b30531",
+    "url": "https://gitlab.freedesktop.org/gnu-grub/grub/-/archive/f10ad08fa2a02dce95774c1b5caee38254b30531/grub-f10ad08fa2a02dce95774c1b5caee38254b30531.tar.gz",
+    "bytes": 6773533,
+    "sha256": "a93ab9c399635beb8e118608b407a82376e2b8661b777bf4660df84284018e3d",
+    "file": "grub-f10ad08fa2a02dce95774c1b5caee38254b30531.tar.gz"
+  }
+]

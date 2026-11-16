@@ -1,0 +1,28 @@
+Private Windows 7 SP1 x64 4Kn sector helper
+
+Extract the pinned GNU-EFI archive from ../../third-party/EfiFs (relative to
+the source root, third-party/EfiFs) into a new gnu-efi directory. Run
+build_sector.py with --gnu-efi, --output, --clang and --lld, using the
+llvm-mingw20260908 x64 toolchain. The GNU-EFI library sources and their
+copyright/license notices are included in that source archive.
+
+The reproduced EFI SHA256 is:
+6eb2afdf99e2b7f4d045ac585e7417d260dd93198ce7f8eee365cde13a7e052b
+The application targets EFI application 1.10 without requiring an exact
+firmware revision. No Microsoft CRT or VM debug-port access is linked.
+
+The helper is restricted to the original SP1 kernel and the exact GDR/LDR
+kernel profiles shipped in KB3033929. The profiles are explicit in
+win7_sector_boot.c. Before kernel initialization it adjusts the known hive-sector
+guard from 512 to 4096. It does not alter the on-disk kernel or disable driver
+signing, test mode, code integrity or PatchGuard. An unrecognised kernel
+is not accepted silently. Adjacent SectorNext.efi retains the selected normal
+Windows or graphics-helper path. The destination's actual logical-sector
+size must be 4096. This is separate from NVMe-driver support.
+
+The private VM evidence includes initial setup, normal restart, file and
+registry persistence, production-menu handoff and a restart to the desktop
+after installing the original KB3033929 update on a 4Kn volume. The driver
+installer preserves and recreates the signing catalogue, then requires a
+restart before that update. Other kernel updates and hibernation remain
+unvalidated. Physical-Mac driver acceptance remains a separate test.

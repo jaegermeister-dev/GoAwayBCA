@@ -1,0 +1,17 @@
+[
+  {
+    "file": "pkgconf-3.0.7.tar.xz",
+    "url": "https://github.com/pkgconf/pkgconf/releases/download/pkgconf-3.0.7/pkgconf-3.0.7.tar.xz",
+    "sha256": "c926ff491cbd9a331a589160811bd97ab1749b4d5198a519338f2cdfabe6940a"
+  },
+  {
+    "file": "wimlib-1.14.5.tar.gz",
+    "url": "https://wimlib.net/downloads/wimlib-1.14.5.tar.gz",
+    "sha256": "84221a3abd5b91228f15f8e6065c335a336237b5738197b75bf419eea561a194"
+  },
+  {
+    "file": "ntfs-3g_ntfsprogs-2026.9.28.tgz",
+    "url": "https://download.tuxera.com/opensource/ntfs-3g_ntfsprogs-2026.9.28.tgz",
+    "sha256": "350d9415c59f7c3fa74e23985ad2d56423c6a168337368f672e2e362d8f295c8"
+  }
+]

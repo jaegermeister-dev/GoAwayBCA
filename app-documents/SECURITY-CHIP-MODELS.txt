@@ -1,0 +1,5 @@
+GoAwayBCA security-chip guidance
+
+T1: not officially supported by this tool. If it fails, diagnostic reports may be considered, without a guarantee of support or a fix.
+T2: not supported by this tool. Lowering startup security does not guarantee it will work. T2-specific troubleshooting and fixes are not planned.
+The application displays the relevant notice based on the detected model. Do not confirm a different model to bypass compatibility checks.

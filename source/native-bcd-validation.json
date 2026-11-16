@@ -1,0 +1,34 @@
+{
+  "physical_disks_accessed": false,
+  "live_boot_store_accessed": false,
+  "administrator": true,
+  "checks": [
+    {
+      "name": "template",
+      "exit_code": 0,
+      "expected_entries_visible": true,
+      "native_device_readback": {
+        "exit_code": 0,
+        "output": "Native store path: \\??\\C:\\Users\\L\\Documents\\Codex\\2026-09-21\\read-c-users-l-desktop-start\\work\\windows-native-deployer-20261006\\test-scratch\\bcd-semantic-check-v4\\template\\BCD\r\n{\r\n    \"Status\":  \"PASS\",\r\n    \"Store\":  \"C:\\\\Users\\\\L\\\\Documents\\\\Codex\\\\2026-09-21\\\\read-c-users-l-desktop-start\\\\work\\\\windows-native-deployer-20261006\\\\test-scratch\\\\bcd-semantic-check-v4\\\\template\\\\BCD\",\r\n    \"LiveStoreAccessed\":  false,\r\n    \"Devices\":  [\r\n                    {\r\n                        \"Object\":  \"{9dea862c-5cdd-4e70-acc1-f32b344d4795}\",\r\n                        \"Element\":  285212673,\r\n                        \"PartitionStyle\":  1,\r\n                        \"DiskSignature\":  \"{22222222-aaaa-4bbb-8ccc-222222222222}\",\r\n                        \"PartitionIdentifier\":  \"{33333333-aaaa-4bbb-8ccc-333333333333}\"\r\n                    },\r\n                    {\r\n                        \"Object\":  \"{7c10d1ea-8239-4bc7-8234-efdb85bc913a}\",\r\n                        \"Element\":  285212673,\r\n                        \"PartitionStyle\":  1,\r\n                        \"DiskSignature\":  \"{22222222-aaaa-4bbb-8ccc-222222222222}\",\r\n                        \"PartitionIdentifier\":  \"{44444444-aaaa-4bbb-8ccc-444444444444}\"\r\n                    },\r\n                    {\r\n                        \"Object\":  \"{7c10d1ea-8239-4bc7-8234-efdb85bc913a}\",\r\n                        \"Element\":  553648129,\r\n                        \"PartitionStyle\":  1,\r\n                        \"DiskSignature\":  \"{22222222-aaaa-4bbb-8ccc-222222222222}\",\r\n                        \"PartitionIdentifier\":  \"{44444444-aaaa-4bbb-8ccc-444444444444}\"\r\n                    }\r\n                ]\r\n}\r\n"
+      },
+      "registry_keys_and_values_unchanged": true,
+      "before_sha256": "30b61e409ece9dbc5c071eaac7a9ff6804a16025c57dae93e7951b38cc639252",
+      "after_sha256": "8c3fa38c7e3295c85cbacd9e988a3621b03237088a9b2de8c873abe6e1c9f2ae",
+      "output": "\r\nWindows Boot Manager\r\n--------------------\r\nidentifier              {9dea862c-5cdd-4e70-acc1-f32b344d4795}\r\ndevice                  unknown\r\npath                    \\EFI\\Microsoft\\Boot\\bootmgfw.efi\r\ndescription             Windows Boot Manager\r\ndefault                 {7c10d1ea-8239-4bc7-8234-efdb85bc913a}\r\ndisplayorder            {7c10d1ea-8239-4bc7-8234-efdb85bc913a}\r\ntimeout                 3\r\n\r\nWindows Boot Loader\r\n-------------------\r\nidentifier              {7c10d1ea-8239-4bc7-8234-efdb85bc913a}\r\ndevice                  unknown\r\npath                    \\Windows\\System32\\winload.efi\r\ndescription             Windows 7\r\nosdevice                unknown\r\nsystemroot              \\Windows\r\nnx                      OptIn\r\ndetecthal               Yes\r\n"
+    },
+    {
+      "name": "personalised",
+      "exit_code": 0,
+      "expected_entries_visible": true,
+      "native_device_readback": {
+        "exit_code": 0,
+        "output": "Native store path: \\??\\C:\\Users\\L\\Documents\\Codex\\2026-09-21\\read-c-users-l-desktop-start\\work\\windows-native-deployer-20261006\\test-scratch\\bcd-semantic-check-v4\\personalised\\BCD\r\n{\r\n    \"Status\":  \"PASS\",\r\n    \"Store\":  \"C:\\\\Users\\\\L\\\\Documents\\\\Codex\\\\2026-09-21\\\\read-c-users-l-desktop-start\\\\work\\\\windows-native-deployer-20261006\\\\test-scratch\\\\bcd-semantic-check-v4\\\\personalised\\\\BCD\",\r\n    \"LiveStoreAccessed\":  false,\r\n    \"Devices\":  [\r\n                    {\r\n                        \"Object\":  \"{9dea862c-5cdd-4e70-acc1-f32b344d4795}\",\r\n                        \"Element\":  285212673,\r\n                        \"PartitionStyle\":  1,\r\n                        \"DiskSignature\":  \"{ca8ee60b-7ae0-4456-b835-1be359460abb}\",\r\n                        \"PartitionIdentifier\":  \"{4ec44dc8-55f9-4c17-86cd-c6b64d034a62}\"\r\n                    },\r\n                    {\r\n                        \"Object\":  \"{7c10d1ea-8239-4bc7-8234-efdb85bc913a}\",\r\n                        \"Element\":  285212673,\r\n                        \"PartitionStyle\":  1,\r\n                        \"DiskSignature\":  \"{ca8ee60b-7ae0-4456-b835-1be359460abb}\",\r\n                        \"PartitionIdentifier\":  \"{561ed299-3430-4be9-ab4a-a0da0447dbed}\"\r\n                    },\r\n                    {\r\n                        \"Object\":  \"{7c10d1ea-8239-4bc7-8234-efdb85bc913a}\",\r\n                        \"Element\":  553648129,\r\n                        \"PartitionStyle\":  1,\r\n                        \"DiskSignature\":  \"{ca8ee60b-7ae0-4456-b835-1be359460abb}\",\r\n                        \"PartitionIdentifier\":  \"{561ed299-3430-4be9-ab4a-a0da0447dbed}\"\r\n                    }\r\n                ]\r\n}\r\n"
+      },
+      "registry_keys_and_values_unchanged": true,
+      "before_sha256": "27f4f1b402d47860909149ca1da2ec5c078a4086c1386544bc5a3e679add5878",
+      "after_sha256": "bff207460fd3eab7282a7945247779acdbfe6633dd057cda126a093f2eca0b71",
+      "output": "\r\nWindows Boot Manager\r\n--------------------\r\nidentifier              {9dea862c-5cdd-4e70-acc1-f32b344d4795}\r\ndevice                  unknown\r\npath                    \\EFI\\Microsoft\\Boot\\bootmgfw.efi\r\ndescription             Windows Boot Manager\r\ndefault                 {7c10d1ea-8239-4bc7-8234-efdb85bc913a}\r\ndisplayorder            {7c10d1ea-8239-4bc7-8234-efdb85bc913a}\r\ntimeout                 3\r\n\r\nWindows Boot Loader\r\n-------------------\r\nidentifier              {7c10d1ea-8239-4bc7-8234-efdb85bc913a}\r\ndevice                  unknown\r\npath                    \\Windows\\System32\\winload.efi\r\ndescription             Windows 7\r\nosdevice                unknown\r\nsystemroot              \\Windows\r\nnx                      OptIn\r\ndetecthal               Yes\r\n"
+    }
+  ],
+  "status": "PASS"
+}

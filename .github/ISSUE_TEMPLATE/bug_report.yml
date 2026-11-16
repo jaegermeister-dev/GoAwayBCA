@@ -1,0 +1,47 @@
+name: Bug report
+description: Report an installation, driver, menu or application problem.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "Please read README.md and docs/REPORTING.md first. Review logs for personal information before sharing. T2-specific support is not provided."
+  - type: input
+    id: app_version
+    attributes:
+      label: GoAwayBCA version
+      placeholder: "0.1.0-beta.1"
+    validations:
+      required: true
+  - type: input
+    id: mac
+    attributes:
+      label: Mac model identifier and macOS version
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version, edition, architecture and ISO build
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps, exact error and expected result
+    validations:
+      required: true
+  - type: textarea
+    id: layout
+    attributes:
+      label: Storage and other installed operating systems
+      description: "Include drive model/sector size if known, partition layout, existing installations, their installation methods and installation order."
+  - type: textarea
+    id: boot
+    attributes:
+      label: Startup picker and driver results
+      description: "Include OpenCore version if used, native Option/Alt picker results, whether drivers completed, and what happened after restarting."
+  - type: textarea
+    id: reports
+    attributes:
+      label: Logs, diagnostic report and screenshots
+      description: "Review attachments for personal information. Do not attach credentials or full disk images."

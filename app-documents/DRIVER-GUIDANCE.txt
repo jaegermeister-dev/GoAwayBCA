@@ -1,0 +1,5 @@
+GoAwayBCA driver guidance
+
+Driver downloads are selected using the confirmed Mac model and Windows version. Check that the model identifier is accurate. An official package does not guarantee that every driver will work with a different Windows version or pure EFI configuration.
+After Windows account setup, open the prepared driver folder and follow its instructions. Approve normal administrator prompts and restart when requested. Finish driver installation and confirm Windows boots again before preparing another Windows installation.
+For Windows versions newer than a Mac's official Boot Camp maximum, read the compatibility warning carefully. For Windows 8.1, 10 or 11, allow Windows Update to find drivers first where possible, then install only missing drivers individually. An older all-in-one Boot Camp installer can cause instability on newer Windows. Keep a backup and save any installer logs.
