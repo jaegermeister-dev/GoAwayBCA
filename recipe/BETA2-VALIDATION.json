@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0-beta.2",
+  "native_ui": "PASS",
+  "both_runtime_regressions": "PASS",
+  "disposable_ntfs_capture_and_restore_preparation": "PASS",
+  "portable_registry_roundtrip": "PASS",
+  "diagnostic_template_source_rebuild": "byte-for-byte PASS",
+  "diagnostic_firmware_vm": [
+    "512-byte sectors",
+    "4096-byte sectors",
+    "EFI 1.10",
+    "newer EFI",
+    "mismatched disk refusal",
+    "missing menu refusal",
+    "persistent flushed log",
+    "returned boot error",
+    "bundled PCI and ACPI collectors"
+  ],
+  "physical_usb_or_restored_windows_boot_tested": false,
+  "installed_systems_changed": false,
+  "baseline_preserved": true,
+  "normal_windows_menu_binary_unchanged": true
+}

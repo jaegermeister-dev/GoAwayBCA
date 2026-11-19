@@ -1,6 +1,6 @@
-GoAwayBCA Beta 1 scope
+GoAwayBCA Beta 2 scope
 
 Windows 8.1, 10 and 11 installation to existing internal GPT exFAT/NTFS partitions; pure EFI booting; driver downloads; installation management; Windows boot-menu maintenance; EFI access; Saved Files cleanup; diagnostics and experimental boot recovery.
 Windows 7 and 8 are not yet supported and are being actively developed for a future update.
-No partition creation/resizing, hybrid MBR support, USB destinations, partition backup/restore, Leopard or 32-bit EFI support is included.
+No partition creation/resizing, hybrid MBR, Leopard or 32-bit EFI support is included. USB destinations and Windows partition backup/restore are experimental.
 See README.txt for requirements, tested configurations, precautions and limitations.

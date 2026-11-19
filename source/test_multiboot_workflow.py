@@ -28,7 +28,7 @@ class Workflow(unittest.TestCase):
             session=root/'session';session.mkdir();before=base.tree_manifest(esp_root)
             p=dict(DeviceIdentifier='disk99s3',DiskUUID=PARTS[0],TotalSize=100000000000,IOKitSize=100000000000,
                 Size=100000000000,FilesystemType='exfat',VolumeName='TEST',FreeSpace=90000000000)
-            disk=dict(DeviceIdentifier='disk99',MediaName='fake disk',DeviceBlockSize=512)
+            disk=dict(DeviceIdentifier='disk99',MediaName='fake disk',DeviceBlockSize=512,Internal=True)
             target=dict(partition=p,disk=disk,esp='disk99s1')
             gpt=dict(guid=D,digest='layout');win=dict(guid=PARTS[0],first=2048,last=2048+195312500-1);esp=dict(guid=E)
             mounted=True;readonly=True;formatted=False;scans=0;events=[];approvals=[];firmware_reads=0
@@ -151,6 +151,10 @@ class Workflow(unittest.TestCase):
                 if str(path)=='/dev/disk99s3':return argparse.Namespace(st_mode=stat.S_IFBLK)
                 return original_stat(path,*a,**kw)
             stack.enter_context(patch.object(app,'ROOT',root))
+            # Native picker and fresh device probing have their own fixtures.
+            # Preserve this workflow's explicit destination-selection event.
+            stack.enter_context(patch('destination_picker.choose',side_effect=lambda owner,targets,family:
+                targets[owner.choose(app.destination_prompt(family),['Synthetic destination'])]))
             stack.enter_context(patch.object(app.platform,'system',return_value='Darwin'))
             stack.enter_context(patch.object(app.platform,'machine',return_value='x86_64'))
             stack.enter_context(patch.object(app.os,'geteuid',return_value=0,create=True))

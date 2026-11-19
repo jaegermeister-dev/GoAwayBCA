@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "app_entries": 3126,
+  "app_entries": 3154,
   "exact_app_match": true,
   "application_and_cpu_probe_compiled": true,
   "dependency_and_firmware_binaries_pinned": true,

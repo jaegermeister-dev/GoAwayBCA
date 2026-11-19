@@ -90,7 +90,7 @@ static NSAlert *SupportAlert(void) {
 
     [alert setMessageText:@"GoAwayBCA support"];
 
-    [alert setInformativeText:@"GoAwayBCA Beta 1. For help or to report a problem, open a GitHub issue and include the saved log and diagnostic report. Review reports for personal information before sharing them.\n\nReddit opens r/GoAwayBCA. The GitHub link opens the GoAwayBCA repository. No logs or hardware reports are uploaded automatically."];
+    [alert setInformativeText:@"GoAwayBCA Beta 2. For help or to report a problem, open a GitHub issue and include the saved log and diagnostic report. Review reports for personal information before sharing them.\n\nReddit opens r/GoAwayBCA. The GitHub link opens the GoAwayBCA repository. No logs or hardware reports are uploaded automatically."];
 
     [alert addButtonWithTitle:@"GitHub"];
 
@@ -902,7 +902,7 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     NSTextView *logs;
 
-    NSButton *startButton, *isoButton, *preparedButton, *choiceContinue, *manageButton, *rebuildButton, *skipVerificationButton, *savedDriversButton;
+    NSButton *startButton, *isoButton, *preparedButton, *choiceContinue, *manageButton, *rebuildButton, *skipVerificationButton, *savedDriversButton, *backupButton, *advancedButton;
 
     NSButton *compatibilityButton, *diagnosticsButton, *efiAccessButton, *debugButton, *savedFilesButton, *troubleshootingButton;
 
@@ -916,6 +916,8 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     BOOL busy;
     BOOL startupSucceeded;
+    NSTabView *destinationTabs;
+    NSInteger destinationSelection;
 
 }
 
@@ -997,7 +999,7 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
         ([[configuration objectForKey:@"installation_enabled"] boolValue] ?
 
-            @"GoAwayBCA — Beta 1" : @"GoAwayBCA — installation unavailable")];
+            @"GoAwayBCA — Beta 2" : @"GoAwayBCA — installation unavailable")];
 
     [window setReleasedWhenClosed:NO]; [window setDelegate:(id)self];
 
@@ -1015,7 +1017,7 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     NSButton *support = [self button:@"Support…" frame:NSMakeRect(600,493,100,30) action:@selector(showSupport:)];
 
-    Label(view, [NSString stringWithFormat:@"%@ • Internal exFAT or NTFS partitions", HardwareModel()],
+    Label(view, [NSString stringWithFormat:@"%@ • Internal or experimental USB destinations", HardwareModel()],
 
           NSMakeRect(20,470,440,22), NO);
 
@@ -1031,6 +1033,11 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     savedDriversButton = [self button:@"Open Drivers Folder" frame:NSMakeRect(475,312,225,30) action:@selector(showSavedDrivers:)];
 
+    backupButton = [self button:@"Back Up / Restore…" frame:NSMakeRect(475,312,225,30) action:@selector(backupWindows:)];
+    [backupButton setToolTip:@"Experimental Windows partition backup and restore. Read the source and destination warnings before proceeding."];
+    [backupButton setEnabled:profile && [[configuration objectForKey:@"management_enabled"] boolValue]];
+    advancedButton = [self button:@"Advanced…" frame:NSMakeRect(475,278,225,30) action:@selector(showAdvanced:)];
+    [savedDriversButton setFrame:NSMakeRect(247,278,222,30)];
     preparedField = Label(view, @"This program does not include any partitioning functionality. You must create the partitions yourself before using this tool. This tool only formats selected partitions after multiple confirmations",
 
                           NSMakeRect(20,347,680,57), NO);
@@ -1093,7 +1100,7 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     [scroll setDocumentView:logs]; [view addSubview:scroll];
 
-    startButton = [self button:DemoMode ? @"Run safe UI simulation" : @"Review and prepare…"
+    startButton = [self button:DemoMode ? @"Run safe UI simulation" : @"Start Windows installation"
 
                          frame:NSMakeRect(455,15,245,36) action:@selector(start:)];
 
@@ -1148,8 +1155,10 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
     [rebuildButton setAutoresizingMask:NSViewMinYMargin];
 
     [savedDriversButton setAutoresizingMask:NSViewMinYMargin];
+    [backupButton setAutoresizingMask:NSViewMinYMargin];
+    [advancedButton setAutoresizingMask:NSViewMinYMargin];
 
-    [self appendLog:@"GoAwayBCA Beta 1. Choose a Windows 8.1, 10 or 11 ISO to begin."];
+    [self appendLog:@"GoAwayBCA Beta 2. Choose a Windows 8.1, 10 or 11 ISO to begin."];
 
     if (![[configuration objectForKey:@"installation_enabled"] boolValue])
 
@@ -1169,6 +1178,8 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     }
 
+    [diagnosticsButton setHidden:YES]; [efiAccessButton setHidden:YES]; [debugButton setHidden:YES];
+    [startButton setFont:[NSFont boldSystemFontOfSize:13]];
     [self layoutActionRow];
 
 }
@@ -1181,13 +1192,13 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     [debugButton setFrame:NSMakeRect(116,15,150,36)];
 
-    [savedFilesButton setFrame:NSMakeRect(272,15,134,36)];
+    [savedFilesButton setFrame:NSMakeRect(120,15,134,36)];
 
-    [startButton setFrame:NSMakeRect(412,15,width-432,36)];
+    [startButton setFrame:NSMakeRect(width-285,15,265,36)];
 
     CGFloat column = (width-52)/3.0;
 
-    NSArray *buttons = [NSArray arrayWithObjects:manageButton,rebuildButton,savedDriversButton,compatibilityButton,diagnosticsButton,efiAccessButton,nil];
+    NSArray *buttons = [NSArray arrayWithObjects:manageButton,rebuildButton,backupButton,compatibilityButton,savedDriversButton,advancedButton,nil];
 
     NSUInteger index = 0;
 
@@ -1464,6 +1475,8 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     [troubleshootingButton setEnabled:!value];
 
+    [backupButton setEnabled:!value && profile && [[configuration objectForKey:@"management_enabled"] boolValue]];
+    [advancedButton setEnabled:!value];
     [savedFilesButton setEnabled:!value && profile && [[configuration objectForKey:@"management_enabled"] boolValue]];
 
 }
@@ -1498,6 +1511,37 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     [self setBusy:YES]; [NSThread detachNewThreadSelector:@selector(beginWorker:) toTarget:self withObject:nil];
 
+}
+
+- (void)backupWindows:(id)sender {
+    if (SelfTest || DemoMode || busy || !profile || ![[configuration objectForKey:@"management_enabled"] boolValue]) return;
+    NSAlert *choice=[[[NSAlert alloc] init] autorelease];
+    [choice setMessageText:@"Windows partition backup and restore"];
+    [choice setInformativeText:@"Both features are experimental, including restoration to the same drive. Keep another backup and the original installation until you have tested a restore.\n\nA restore replaces all files on the selected empty exFAT/NTFS destination after further confirmations. This app does not create or resize partitions."];
+    [choice addButtonWithTitle:@"Back Up…"]; [choice addButtonWithTitle:@"Restore…"]; [choice addButtonWithTitle:@"Cancel"];
+    NSInteger selected=[choice runModal];
+    if (selected!=NSAlertFirstButtonReturn && selected!=NSAlertSecondButtonReturn) return;
+    [workerOperation release]; workerOperation = [(selected==NSAlertFirstButtonReturn ? @"backup" : @"restore") copy];
+    [self setBusy:YES]; [NSThread detachNewThreadSelector:@selector(beginWorker:) toTarget:self withObject:nil];
+}
+
+- (void)showAdvanced:(id)sender {
+    if (busy) return;
+    NSMenu *menu=[[[NSMenu alloc] initWithTitle:@"Advanced"] autorelease];
+    [menu setAutoenablesItems:NO];
+    NSArray *titles=@[@"Create Windows EFI diagnostic tool…",@"Collect Hardware Report…",@"Mount / Unmount EFI…",@"Delete Boot Menu…"];
+    SEL actions[]={@selector(bootDiagnostics:),@selector(diagnostics:),@selector(efiAccess:),@selector(debugReset:)};
+    for (NSUInteger i=0;i<[titles count];i++) {
+        NSMenuItem *item=[menu addItemWithTitle:[titles objectAtIndex:i] action:actions[i] keyEquivalent:@""];
+        [item setTarget:self]; [item setEnabled:profile && startupSucceeded && [[configuration objectForKey:@"management_enabled"] boolValue]];
+    }
+    [menu popUpMenuPositioningItem:nil atLocation:NSMakePoint(0,NSHeight([advancedButton bounds])) inView:advancedButton];
+}
+
+- (void)bootDiagnostics:(id)sender {
+    if (SelfTest || DemoMode || busy || !profile || ![[configuration objectForKey:@"management_enabled"] boolValue]) return;
+    [workerOperation release]; workerOperation=[@"boot-diagnostics" copy];
+    [self setBusy:YES]; [NSThread detachNewThreadSelector:@selector(beginWorker:) toTarget:self withObject:nil];
 }
 
 - (void)experimental:(id)sender {
@@ -2083,6 +2127,31 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     }
 
+    if ([kind isEqual:@"backup_open_file"]) {
+        NSOpenPanel *panel=[NSOpenPanel openPanel];
+        [panel setTitle:@"Choose Windows partition backup"];
+        [panel setMessage:@"Select a .gabackup file created with this app. Its contents and compatibility will be checked before any destination is changed."];
+        [panel setCanChooseDirectories:NO]; [panel setCanChooseFiles:YES]; [panel setAllowsMultipleSelection:NO];
+        BOOL selected=[panel runModalForDirectory:nil file:nil types:@[@"gabackup"]]==NSOKButton;
+        NSString *path=selected ? [[panel filenames] objectAtIndex:0] : @"";
+        if (!DemoMode) Send(peer,@{@"type":@"reply",@"sequence":[message objectForKey:@"sequence"],
+            @"cancelled":@(!selected),@"value":path});
+        return;
+    }
+
+    if ([kind isEqual:@"backup_save_file"]) {
+        NSSavePanel *panel=[NSSavePanel savePanel];
+        [panel setTitle:@"Save Windows partition backup"];
+        [panel setMessage:@"Choose a new filename on a different partition from the Windows installation. Existing backups will not be overwritten."];
+        NSString *name=[message objectForKey:@"suggested_name"];
+        if (![name isKindOfClass:[NSString class]]) name=@"Windows.gabackup";
+        BOOL selected=[panel runModalForDirectory:nil file:name]==NSOKButton;
+        NSString *path=selected ? [panel filename] : @"";
+        if (!DemoMode) Send(peer,@{@"type":@"reply",@"sequence":[message objectForKey:@"sequence"],
+            @"cancelled":@(!selected),@"value":path ?: @""});
+        return;
+    }
+
     if ([kind isEqual:@"driver_save_folder"]) {
 
         NSOpenPanel *panel=[NSOpenPanel openPanel];
@@ -2147,7 +2216,9 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
             value=selected;
 
-        } else if ([kind isEqual:@"choose"])
+        } else if ([kind isEqual:@"destination_picker"])
+            value = [NSNumber numberWithInteger:destinationSelection];
+        else if ([kind isEqual:@"choose"])
 
             value = [NSNumber numberWithInt:(int)[(NSPopUpButton *)[accessory viewWithTag:201] indexOfSelectedItem] - 1];
 
@@ -2202,7 +2273,8 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
         && ![kind isEqual:@"saved_files_selection"] && ![kind isEqual:@"saved_files_confirm"]
 
         && ![kind isEqual:@"compatibility_review"] && ![kind isEqual:@"import_review"]
-        && ![kind isEqual:@"notice"]) return nil;
+        && ![kind isEqual:@"notice"] && ![kind isEqual:@"destination_picker"]
+        && ![kind isEqual:@"backup_review"] && ![kind isEqual:@"restore_review"] && ![kind isEqual:@"restore_ready"]) return nil;
 
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
 
@@ -2214,11 +2286,13 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     if ([kind isEqual:@"notice"]) action = [[message objectForKey:@"button_title"] isEqual:@"Done"] ? @"Done" : @"OK";
 
+    if ([kind isEqual:@"backup_review"]) action=@"Choose backup location…";
+    if ([kind isEqual:@"restore_ready"]) action=@"Review erase confirmations…";
     if ([kind isEqual:@"format_ready"]) action = [workerOperation isEqual:@"manage"] ? @"Format selected partition…" : @"Format selected partition and install…";
 
     else if ([kind isEqual:@"review"]) action = @"I checked this partition — continue";
 
-    else if ([kind isEqual:@"confirm"]) action = [workerOperation isEqual:@"reset-menu"] ? @"Delete Windows boot menu" : ([workerOperation isEqual:@"manage"] ? @"Erase selected partition" : @"Erase selected partition and install");
+    else if ([kind isEqual:@"confirm"]) action = [workerOperation isEqual:@"reset-menu"] ? @"Delete Windows boot menu" : ([workerOperation isEqual:@"manage"] ? @"Erase selected partition" : ([workerOperation isEqual:@"restore"] ? @"Erase selected partition and restore" : @"Erase selected partition and install"));
 
     else if ([kind isEqual:@"rename_review"]) action = @"Rename picker entry";
 
@@ -2240,7 +2314,60 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     NSView *accessory;
 
-    if ([kind isEqual:@"saved_files_selection"]) {
+    if ([kind isEqual:@"destination_picker"]) {
+        NSArray *items = [message objectForKey:@"items"];
+        if (![items isKindOfClass:[NSArray class]]) return nil;
+        destinationSelection = -1;
+        NSView *destinationBox = [[[NSView alloc] initWithFrame:NSMakeRect(0,0,620,280)] autorelease];
+        destinationTabs = [[[NSTabView alloc] initWithFrame:NSMakeRect(0,0,620,242)] autorelease];
+        [destinationTabs setTabViewType:NSNoTabsBezelBorder];
+        [destinationBox addSubview:destinationTabs];
+        NSInteger tabNumber=0;
+        for (NSString *location in [NSArray arrayWithObjects:@"Internal",@"External",nil]) {
+            NSButton *tabButton = [[[NSButton alloc] initWithFrame:NSMakeRect(180+130*tabNumber,246,130,30)] autorelease];
+            [tabButton setTitle:location]; [tabButton setBezelStyle:NSRoundedBezelStyle];
+            [tabButton setButtonType:NSPushOnPushOffButton]; [tabButton setState:tabNumber==0 ? NSOnState : NSOffState];
+            [tabButton setTag:701+tabNumber++]; [tabButton setTarget:self];
+            [tabButton setAction:@selector(destinationTabChanged:)]; [destinationBox addSubview:tabButton];
+            NSTabViewItem *tab = [[[NSTabViewItem alloc] initWithIdentifier:location] autorelease];
+            [tab setLabel:location];
+            NSScrollView *scroll = [[[NSScrollView alloc] initWithFrame:NSMakeRect(0,0,600,230)] autorelease];
+            [scroll setHasVerticalScroller:YES]; [scroll setBorderType:NSBezelBorder];
+            NSUInteger count = 0;
+            for (NSDictionary *item in items) if ([[item objectForKey:@"location"] isEqual:location]) count++;
+            CGFloat height = MAX(230,count*76);
+            NSView *list = [[[NSView alloc] initWithFrame:NSMakeRect(0,0,580,height)] autorelease];
+            NSUInteger number = 0;
+            for (NSDictionary *item in items) {
+                if (![[item objectForKey:@"location"] isEqual:location]) continue;
+                CGFloat y = height-(++number)*76;
+                BOOL enabled = [[item objectForKey:@"enabled"] boolValue];
+                NSString *title = [item objectForKey:@"title"] ?: @"Unknown drive";
+                NSString *detail = [item objectForKey:@"detail"] ?: @"";
+                if ([[item objectForKey:@"kind"] isEqual:@"drive"]) {
+                    NSTextField *heading = Label(list,title,NSMakeRect(4,y+43,570,28),YES);
+                    [heading setTextColor:enabled ? [NSColor controlTextColor] : [NSColor disabledControlTextColor]];
+                } else {
+                    NSButton *select = [[[NSButton alloc] initWithFrame:NSMakeRect(15,y+43,560,28)] autorelease];
+                    [select setButtonType:NSRadioButton]; [select setTitle:title]; [select setState:NSOffState];
+                    [select setEnabled:enabled]; [select setFont:[NSFont systemFontOfSize:11]];
+                    [select setTag:900+[[item objectForKey:@"id"] integerValue]];
+                    [select setToolTip:detail]; [select setTarget:self]; [select setAction:@selector(destinationChanged:)];
+                    [list addSubview:select];
+                }
+                NSTextField *description = Label(list,detail,NSMakeRect(28,y+2,545,40),NO);
+                [description setFont:[NSFont systemFontOfSize:10]];
+                [description setTextColor:enabled ? [NSColor controlTextColor] : [NSColor disabledControlTextColor]];
+                [[description cell] setWraps:YES]; [[description cell] setScrollable:NO];
+                [description setToolTip:detail];
+            }
+            if (!count) Label(list,@"No drives found in this category.",NSMakeRect(8,184,565,32),NO);
+            [scroll setDocumentView:list]; [list scrollPoint:NSMakePoint(0,height-230)];
+            [tab setView:scroll]; [destinationTabs addTabViewItem:tab];
+        }
+        [destinationTabs setDelegate:(id)self]; accessory=destinationBox;
+        choiceContinue=[[alert buttons] objectAtIndex:0]; [choiceContinue setEnabled:NO];
+    } else if ([kind isEqual:@"saved_files_selection"]) {
 
         NSArray *items=[message objectForKey:@"items"];
 
@@ -2409,6 +2536,37 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     [choiceContinue setEnabled:selected];
 
+}
+
+- (void)destinationChanged:(NSButton *)sender {
+    destinationSelection = -1;
+    for (NSTabViewItem *tab in [destinationTabs tabViewItems])
+        for (NSView *item in [[(NSScrollView *)[tab view] documentView] subviews])
+            if ([item isKindOfClass:[NSButton class]]) [(NSButton *)item setState:NSOffState];
+    if ([sender isEnabled] && [sender tag]>=900) {
+        [sender setState:NSOnState]; destinationSelection=[sender tag]-900;
+    }
+    [choiceContinue setEnabled:destinationSelection>=0];
+}
+
+- (void)destinationTabChanged:(NSButton *)sender {
+    NSInteger index=[sender tag]-701;
+    if (index<0 || index>1) return;
+    [destinationTabs selectTabViewItemAtIndex:index];
+    for (NSInteger i=0;i<2;i++)
+        [(NSButton *)[[destinationTabs superview] viewWithTag:701+i] setState:i==index ? NSOnState : NSOffState];
+}
+
+- (void)tabView:(NSTabView *)tabs didSelectTabViewItem:(NSTabViewItem *)tab {
+    if (tabs!=destinationTabs) return;
+    NSInteger selected=[tabs indexOfTabViewItem:tab];
+    for (NSInteger i=0;i<2;i++)
+        [(NSButton *)[[tabs superview] viewWithTag:701+i] setState:i==selected ? NSOnState : NSOffState];
+    destinationSelection=-1;
+    for (NSTabViewItem *item in [tabs tabViewItems])
+        for (NSView *control in [[(NSScrollView *)[item view] documentView] subviews])
+            if ([control isKindOfClass:[NSButton class]]) [(NSButton *)control setState:NSOffState];
+    [choiceContinue setEnabled:NO];
 }
 
 - (void)selectionChanged:(NSPopUpButton *)sender {
@@ -2874,9 +3032,10 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
     if ([startButton isEnabled] != expectedEnabled) return 7;
 
-    for (NSButton *button in @[manageButton,rebuildButton,diagnosticsButton,efiAccessButton,debugButton])
-
+    for (NSButton *button in @[manageButton,rebuildButton,backupButton,advancedButton])
         if ([button isHidden]) return 50;
+    for (NSButton *button in @[diagnosticsButton,efiAccessButton,debugButton])
+        if (![button isHidden]) return 50;
 
     if ([rebuildButton action]!=@selector(rebuild:) || [manageButton action]!=@selector(manage:)
 
@@ -3039,6 +3198,12 @@ int main(int argc, char **argv) {
     Resources=[[[NSBundle mainBundle] resourcePath] retain];
 
     [NSApplication sharedApplication];
+    NSMenu *mainMenu=[[[NSMenu alloc] initWithTitle:@"Main"] autorelease];
+    NSMenuItem *applicationItem=[[[NSMenuItem alloc] initWithTitle:@"GoAwayBCA" action:nil keyEquivalent:@""] autorelease];
+    NSMenu *applicationMenu=[[[NSMenu alloc] initWithTitle:@"GoAwayBCA"] autorelease];
+    NSMenuItem *quit=[applicationMenu addItemWithTitle:@"Quit GoAwayBCA" action:@selector(terminate:) keyEquivalent:@"q"];
+    [quit setKeyEquivalentModifierMask:NSCommandKeyMask]; [quit setTarget:NSApp];
+    [applicationItem setSubmenu:applicationMenu]; [mainMenu addItem:applicationItem]; [NSApp setMainMenu:mainMenu];
 
     DeployerUI *delegate=[[DeployerUI alloc] init];
 

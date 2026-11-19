@@ -1,7 +1,7 @@
 {
-  "asset": "GoAwayBCA-Beta-1-Dependency-Sources.zip",
-  "bytes": 580384970,
-  "sha256": "557f7410f5e69e757f9b49d6740b214ca170a31a4eb1b2f9b51834539b23b529",
+  "asset": "GoAwayBCA-Beta-2-Dependency-Sources.zip",
+  "bytes": 580389378,
+  "sha256": "e69608fb27d4f32ee4f0a4170940611385b95afe3dc4a1e739e4b846ab96bd78",
   "components": {
     "ntfs-wim": 6,
     "hivex": 5,
@@ -12,5 +12,9 @@
     "7zip-legacy": 11,
     "inno-portable": 14
   },
-  "files": 302
+  "files": 304,
+  "beta2_backup_source": [
+    "source/build_backup_helper_macos.py",
+    "source/backup_metadata_probe.c"
+  ]
 }

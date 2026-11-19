@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.0-beta.2 — 19 November 2026
+
+- Add Windows-partition-specific OpenShell EFI diagnostics: collect only, or collect and attempt the selected Windows boot, with logs flushed before handoff.
+- Add experimental USB destinations, Internal/External tabs, actual-drive geometry checks, portable preparation and separate menus per physical drive.
+- Add experimental Windows partition backup/restore with verified archives, source/destination comparisons, retained origin and restore history, and per-drive menu refresh.
+- Add Backup / Restore and Advanced controls; rename the main action to Start Windows installation.
+- Add safe Cmd+Q handling. Manual EFI mounting defaults to read/write; an existing read-only mount can be normally unmounted/remounted with consent.
+- Use the new GoAwayBCA icon and expand the tested-hardware, troubleshooting and feature documentation.
+- Keep the normal Windows menu firmware and the internal installation path; no installation optimisations or new older-host/firmware support.
+
+Windows 7 and Windows 8 are not yet supported; support is being actively developed for a future update. The new USB and backup/restore paths are experimental and have not been physically boot-tested. Tests used disposable filesystem images, both bundled runtimes, native UI checks and isolated firmware VMs; they did not install Windows on the owner’s Macs.
+
 ## 0.1.0-beta.1 — 16 November 2026
 
 First public beta of GoAwayBCA.

@@ -74,12 +74,12 @@ def recheck(owner, entries, rows, target, expected):
 
 
 def empty_menu_targets(owner, excluded_esps=()):
-    """Find our existing internal menus even when every Windows volume is gone."""
+    """Find connected internal/USB menus even when every Windows volume is gone."""
     import drive_geometry
     import menu_lifecycle as m
     from install_windows7 import info, gpt_for, ESP_TYPE, require, tree_manifest, media_size
     targets = {}
-    for drive in drive_geometry.collect()['drives'].values():
+    for drive in drive_geometry.collect(include_external=True)['drives'].values():
         target = dict(disk=info(drive['device_at_launch']))
         layout = gpt_for(target)
         for part in layout['partitions'].values():

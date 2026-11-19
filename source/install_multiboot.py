@@ -222,14 +222,17 @@ class MultiBootInstaller(InstallationManager):
         scan=self.scan();write_receipt(self.session/'installation-scan.json',scan)
         targets=eligible_targets(inventory(),scan)
         require(targets,'No eligible empty exFAT/NTFS partition. Erase an existing Windows installation through Manage Installations first.')
-        target=targets[self.choose(destination_prompt(edition['family']),
-            [partition_summary(t['partition'],t['disk']) for t in targets])]
+        from destination_picker import choose as choose_destination
+        target=choose_destination(self,targets,edition['family'])
         from disk_layout import require_windows_sector_support
         import win7_sector
         self.prepared_4kn=win7_sector.prepare_target(self,target,edition,wim,ROOT,model)
         require_windows_sector_support(target,edition['family'],self.prepared_4kn)
         import win8_nvme
         optional_nvme=win8_nvme.prepare(self,target,edition,wim,ROOT) if edition['family']=='Windows 8' else None
+        import usb_installation
+        usb_plan=usb_installation.prepare(self,target,edition,wim,ROOT,
+            system_source=optional_nvme['system'] if optional_nvme else None)
         from installation_destination import check as check_destination
         check_destination(target,Path(self.ntfscat).with_name('ntfsls'))
         p=target['partition'];device=p['DeviceIdentifier']
@@ -306,6 +309,7 @@ class MultiBootInstaller(InstallationManager):
             confirmed_model=model,detected_model=detected_model,
             accepted_gpu_staging=self.accepted_gpu)
         receipt['optional_windows8_nvme']=optional_nvme['receipt'] if optional_nvme else None
+        receipt['usb_preparation']=usb_plan['choice'] if usb_plan else None
         receipt_path=self.session/'receipt.json';write_receipt(receipt_path,receipt)
         if self.args.dry_run:self.note('Preflight complete. No target or EFI writes.');return
         summary=partition_summary(info(device),target['disk'],multiline=True)
@@ -366,6 +370,7 @@ class MultiBootInstaller(InstallationManager):
             assert_postformat_target(target,current,info(target['disk']['DeviceIdentifier']))
             require(not current.get('MountPoint'),'Target mounted during driver copy')
         receipt['optional_windows8_nvme_applied']=win8_nvme.apply(optional_nvme,self,raw,driver_guard)
+        receipt['usb_preparation_applied']=usb_installation.apply(self,usb_plan,raw,driver_guard)
         receipt['driver_verification']=driver_preparation.apply(self.driver_delivery,self.wim,self.ntfscat,raw,driver_guard,self.note,
                                                                interaction=self.interaction)
         write_receipt(receipt_path,receipt)

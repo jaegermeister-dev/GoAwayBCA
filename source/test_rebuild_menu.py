@@ -84,7 +84,10 @@ class RebuildWorkflowTests(unittest.TestCase):
                 empty_targets={'disk7s1':empty}
                 patches.enter_context(patch('menu_presence.collect',return_value=[proof(i) for i in range(3)]))
             discover=patches.enter_context(patch('menu_presence.empty_menu_targets',return_value=empty_targets))
+            patches.enter_context(patch('menu_drive_review.choices',side_effect=lambda owner,rows:
+                [r['target']['esp']+' fixture menu' for r in rows]))
             def choose(message,choices):
+                if len(choices)==1:return 0
                 self.assertTrue(other_disk)
                 self.assertEqual(len(choices),2)
                 self.assertTrue(choices[0].startswith('disk9s1'))

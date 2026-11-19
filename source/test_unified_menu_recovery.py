@@ -28,10 +28,19 @@ def child(index):
     return result
 
 
+def creation_record():
+    # Synthetic committed record; no private payload or installed disk is used.
+    return dict(schema=1, creator='WinDeploy', state='committed',
+        installation_uuid='bbbbbbbb-2222-4333-8444-111111111111',
+        disk_guid=D, partition_guid=P[0], esp_guid=E,
+        partition_bytes=293000000*512, partition_offset=500004096*512,
+        family='Windows 7', edition='Windows 7 Ultimate', image_index=1,
+        wim_sha256='a'*64, efi_assets=[])
+
+
 class Recovery(unittest.TestCase):
     def test_paired_sector_route_survives_missing_menu_for_both_graphics_routes(self):
         import win7_sector as sector
-        from test_backtoseven import ProductTests
         for gpu in (False,True):
             with self.subTest(gpu=gpu),tempfile.TemporaryDirectory() as tmp,patch.object(sector,'HELPER_SHA',lifecycle.sha(b'sector helper')):
                 root=Path(tmp);owner,rows,content=self.fixture(root,[0])
@@ -41,7 +50,7 @@ class Recovery(unittest.TestCase):
                     kernel_sha256=sector.KERNEL_SHA,helper_sha256=sector.HELPER_SHA)
                 boot_files,path,route=sector.wrap({loader:b'fixture helper' if gpu else installed_loader(0)},
                     P[0],loader,profile,b'sector helper')
-                record=ProductTests().record()
+                record=creation_record()
                 record.update(disk_guid=D,partition_guid=P[0],esp_guid=E,
                     confirmed_model='MacBookPro11,5' if gpu else 'MacBookPro11,4',
                     sector_compatibility=route,efi_assets=[dict(partition_guid=E,path=k,
@@ -162,8 +171,7 @@ class Recovery(unittest.TestCase):
     def test_older_owned_helper_record_survives_missing_catalog(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);owner,rows,content=self.fixture(root,[0])
-            from test_backtoseven import ProductTests
-            record=ProductTests().record()
+            record=creation_record()
             record.update(disk_guid=D,partition_guid=P[0],esp_guid=E,
                 efi_assets=[dict(partition_guid=E,path='EFI/W7DEP-WIN7-AUTO/WIN7AUTO.efi',
                     sha256=actions.gpu.HELPER_SHA,exclusive=True)])
@@ -285,6 +293,8 @@ class Recovery(unittest.TestCase):
                 def mount(device,readonly=True):access[0]=readonly;return esp
                 manager.mount_esp=mount
                 patches.enter_context(patch('menu_presence.empty_menu_targets',return_value={}))
+                manager.choose=lambda text,options:0
+                patches.enter_context(patch('menu_drive_review.choices',return_value=['Fixture drive menu']))
                 patches.enter_context(patch.object(rebuild_menu,'ROOT',root/'resources'))
                 patches.enter_context(patch.object(rebuild_menu,'gpt_for',return_value=dict(guid=D,digest='layout')))
                 patches.enter_context(patch.object(rebuild_menu,'match_gpt',return_value=({},dict(guid=E))))

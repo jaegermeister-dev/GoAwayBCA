@@ -77,6 +77,11 @@ def layout(disk, tree=None):
     result = dict(identity, digest=digest, source='macOS IORegistry partition metadata',
                   hybrid_mbr_checked=False, partition_devices=devices,
                   partition_scan_complete=complete)
+    protocol = index[name]['protocol']
+    if protocol.get('Physical Interconnect Location') == 'External':
+        require(protocol.get('Physical Interconnect') == 'USB',
+                'Only internal and USB Windows destinations are supported.')
+        result.update(connection='USB', device=name, device_path=disk.get('DeviceTreePath'))
     from drive_geometry import confirm
     result['sector_size'] = confirm(result)
     return result

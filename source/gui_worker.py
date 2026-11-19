@@ -44,7 +44,7 @@ def main():
     parser.add_argument('--socket', required=True)
     parser.add_argument('--token', required=True)
     parser.add_argument('--profile', required=True)
-    parser.add_argument('--operation',choices=('install','manage','rebuild','diagnostics','efi-access','reset-menu','experimental','saved-files','startup-check'),default='install')
+    parser.add_argument('--operation',choices=('install','manage','rebuild','diagnostics','efi-access','reset-menu','experimental','saved-files','startup-check','backup','restore','boot-diagnostics'),default='install')
     parser.add_argument('--session', action='store_true')
     args = parser.parse_args()
     require(sys.platform == 'darwin' and os.geteuid() == 0, 'Authorised macOS GUI worker required')
@@ -84,7 +84,7 @@ def execute_request(connection, ui, resources, config, profile, version, launch_
         request = request if request is not None else receive(connection)
         require(request.get('type') == 'configuration', 'Missing explicit GUI configuration')
         operation = request.get('operation', 'install')
-        require(operation in ('install', 'manage', 'rebuild','diagnostics','efi-access','reset-menu','experimental','saved-files','startup-check'), 'Unknown GUI operation')
+        require(operation in ('install', 'manage', 'rebuild','diagnostics','efi-access','reset-menu','experimental','saved-files','startup-check','backup','restore','boot-diagnostics'), 'Unknown GUI operation')
         # A management-scoped integrity check must never authorise installing
         # the payloads it intentionally did not read.
         require(launch_operation==operation,'GUI operation changed after verification')
@@ -126,6 +126,15 @@ def execute_request(connection, ui, resources, config, profile, version, launch_
         elif operation == 'reset-menu':
             from reset_menu import ResetMenu
             installer = ResetMenu(options, interaction=ui)
+        elif operation == 'backup':
+            from backup_windows import WindowsBackup
+            installer = WindowsBackup(options, interaction=ui)
+        elif operation == 'restore':
+            from restore_windows import WindowsRestore
+            installer = WindowsRestore(options, interaction=ui)
+        elif operation == 'boot-diagnostics':
+            from boot_diagnostics import BootDiagnostics
+            installer = BootDiagnostics(options, interaction=ui)
         elif operation == 'diagnostics':
             from diagnostics import Diagnostics
             installer = Diagnostics(options, interaction=ui)
@@ -155,6 +164,9 @@ def execute_request(connection, ui, resources, config, profile, version, launch_
         installer.execute()
         success = True
         message = ('Disk compatibility check completed.' if operation=='startup-check' else
+                   'Windows backup finished. See the saved report.' if operation=='backup' else
+                   'Windows restore finished. See the saved report.' if operation=='restore' else
+                   'EFI diagnostic tool prepared. Follow the saved OpenShell instructions.' if operation=='boot-diagnostics' else
                    'Saved-file cleanup finished. See the saved deletion receipt.' if operation=='saved-files' else
                    'Experimental boot settings finished. See the saved log and backup location.' if operation=='experimental' else
                    'Boot menu deletion finished. See the log for removed and retained files. No partition was formatted.' if operation=='reset-menu' else

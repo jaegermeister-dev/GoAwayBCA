@@ -121,6 +121,8 @@ class Reader:
         location = protocol.get('Physical Interconnect Location')
         app.require(location in ('Internal', 'External'), 'Unknown storage connection location: '+device)
         merge('Internal', location == 'Internal')
+        if location == 'External' and protocol.get('Physical Interconnect') == 'USB':
+            merge('BusProtocol', 'USB')
         if d['Whole']:
             if d.get('VirtualOrPhysical') == 'Unknown':
                 d.pop('VirtualOrPhysical')

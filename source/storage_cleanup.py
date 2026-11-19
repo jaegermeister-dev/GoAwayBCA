@@ -15,6 +15,7 @@ import tempfile
 
 SESSION=re.compile(r'(manage|session)-[A-Za-z0-9_]+\Z')
 PREPARATION=re.compile(r'(iso-preparation|prepared-source|keyboard-preparation|helper-test|'
+                       r'usb-preparation|restore-preparation|verified-source\.ntfs|'
                        r'driver-source-[A-Za-z0-9_]+|apple-drivers-[A-Za-z0-9_]+|'
                        r'community-publisher-[A-Za-z0-9_]+|community-setup-refresh-[A-Za-z0-9_]+|'
                        r'combined-drivers-[A-Za-z0-9_]+|ntfs-overlay\.wim|backtoseven-overlay\.wim)\Z')
@@ -54,7 +55,9 @@ def preparations(base,exclude=None,uid=0):
                 except (OSError,ValueError) as error:
                     warnings.append(session+'/'+name+': '+str(error));continue
                 if not state['bytes']:continue
-                category=('ISO preparation' if name in ('iso-preparation','prepared-source') else
+                category=('Backup restore preparation' if name in ('restore-preparation','verified-source.ntfs') else
+                          'USB preparation' if name=='usb-preparation' else
+                          'ISO preparation' if name in ('iso-preparation','prepared-source') else
                           'Scratch test' if name=='helper-test' else 'Temporary driver/installation files')
                 rows.append(dict(kind='preparation',session=session,name=name,state=state,
                     title=category+' — '+session,

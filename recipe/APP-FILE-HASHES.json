@@ -1,22 +1,397 @@
 {
   "Contents/Info.plist": {
-    "bytes": 841,
-    "sha256": "e8280cb4b9759c6b6837c5eb2c3bd0549423715998df6e73c929619b4bda285a",
+    "bytes": 842,
+    "sha256": "f207adc4dbafe097fd9ec040370de7dd982688818527fdca3e4f2619a0aeb7d9",
     "mode": 420
   },
   "Contents/MacOS/WindowsDeployer": {
-    "bytes": 193752,
-    "sha256": "3e5ca39e08ed6d0a6c8bbf0dc0bb86a50edafbbc575ced31292b849c26eec15d",
+    "bytes": 211272,
+    "sha256": "51badf59e57d3d094900884a1201d3f9febf487506bdd2ac303f51a948a19200",
     "mode": 493
   },
-  "Contents/Resources/apple_driver_policy.py": {
-    "bytes": 6343,
-    "sha256": "ab63be0ab4147ced1eb5b36f951d6705605025ba0457f2ded9191fc45e5a8206",
+  "Contents/Resources/BCD.template": {
+    "bytes": 8192,
+    "sha256": "30b61e409ece9dbc5c071eaac7a9ff6804a16025c57dae93e7951b38cc639252",
+    "mode": 420
+  },
+  "Contents/Resources/BCD10.template": {
+    "bytes": 8192,
+    "sha256": "78305a0512fcb202e84d4862da7ed66d34b93a3bb92e08aed3fbfb90fef27e99",
+    "mode": 420
+  },
+  "Contents/Resources/BCD81.template": {
+    "bytes": 8192,
+    "sha256": "f796708a6a52be6278460bf5f4bedf5c9b1685da696f882c73ce4ccd5dec2abb",
+    "mode": 420
+  },
+  "Contents/Resources/BOOT-FAILURE-REPORTING.txt": {
+    "bytes": 1141,
+    "sha256": "f6d7b58da3b0b988a65d43a2f4a33908ef17990b3a693b1ee70b26aca7eb4b44",
     "mode": 420
   },
   "Contents/Resources/BackToSeven.icns": {
     "bytes": 1953313,
     "sha256": "a0d3d242b8c90cb6b3b319c2e0f3a03724064dd22e636172daacb8b71fd93915",
+    "mode": 420
+  },
+  "Contents/Resources/CURRENT-SCOPE.txt": {
+    "bytes": 619,
+    "sha256": "87be8fb081d212a7ae4eae05908dff5a9e48fc37cfcc09d307ee183a5eaba714",
+    "mode": 420
+  },
+  "Contents/Resources/DEPENDENCIES.txt": {
+    "bytes": 1296,
+    "sha256": "d905534eb2ba46ad7d50ae492ecce683efde51a797aaa337c528e64f0db131ca",
+    "mode": 420
+  },
+  "Contents/Resources/DRIVER-GUIDANCE.txt": {
+    "bytes": 913,
+    "sha256": "8bdf1a14d53c4b496b4a46da9cd7b6377cfa25cd2f9398237a05ff085a70a11c",
+    "mode": 420
+  },
+  "Contents/Resources/GoAwayBCA.icns": {
+    "bytes": 460427,
+    "sha256": "6845bfcf0ae9b99d5eb2cb821c84dac967969056f3f207e91dfca1406b63a85f",
+    "mode": 420
+  },
+  "Contents/Resources/HARDWARE-REPORT-GUIDE.txt": {
+    "bytes": 631,
+    "sha256": "4610d84eefdc49d96289719994481e167d96162e7d49635bc5d0ab7e4d86c761",
+    "mode": 420
+  },
+  "Contents/Resources/LICENSE.txt": {
+    "bytes": 35823,
+    "sha256": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
+    "mode": 420
+  },
+  "Contents/Resources/MACHINE-GUIDANCE.txt": {
+    "bytes": 870,
+    "sha256": "211da560158775c8ea6a3be3d8238642d4e930b56c2c0edd72bada677972390d",
+    "mode": 420
+  },
+  "Contents/Resources/MANUAL-EFI-CLEANUP.txt": {
+    "bytes": 700,
+    "sha256": "10df83dd32992c417e75fe24326b924b75ff37e3f0f83694e1e017297c25f039",
+    "mode": 420
+  },
+  "Contents/Resources/README.txt": {
+    "bytes": 3977,
+    "sha256": "2c5115324eb23ca061faa89ebbd1a665988cc571d8d3ef2418951b1c5be9e2f7",
+    "mode": 420
+  },
+  "Contents/Resources/SECURITY-CHIP-MODELS.txt": {
+    "bytes": 459,
+    "sha256": "c493a72925abcb81db634ad6aff03e0ee2967da5f6c46aca5e189fcb96047bad",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/7zip/7zip-License.txt": {
+    "bytes": 6341,
+    "sha256": "9ac2b4a97ab5d523965534d8b2d5868e511b39096d51fff458ab72c38b80fccc",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/7zip/7zip-copying.txt": {
+    "bytes": 27032,
+    "sha256": "1e7e6bae5a5bde32f1ae5a7c37a082d1ab03cf89354f7f936ac40be9e39a6531",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/7zip/7zip-unRarLicense.txt": {
+    "bytes": 1921,
+    "sha256": "17bd9fa4399092c777536fff045b41df76ec9d2ac4c9b8e7345d3b8b6ccc7976",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/OpenNtfsDxe/LICENSE.txt": {
+    "bytes": 1847,
+    "sha256": "ab36eb02aa83a5f502234ec3c3c05a5cb3c29dacc1d46106fe07041ce4908464",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/boost/LICENSE_1_0.txt": {
+    "bytes": 1338,
+    "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/hivex/LICENSE": {
+    "bytes": 26650,
+    "sha256": "aa9baa29e495877229e89f517d381672586f7233ccfcc7c0defa30ffbaaf3c65",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/innoextract/innoextract-LICENSE": {
+    "bytes": 886,
+    "sha256": "7cd6f3bf0c83f2c3ce8438aab20a4827a5de934fb87dd7966f6f3f2651685127",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/ntfs-3g/COPYING": {
+    "bytes": 18002,
+    "sha256": "231f7edcc7352d7734a96eef0b8030f77982678c516876fcb81e25b32d68564c",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/ntfs-3g/COPYING.LIB": {
+    "bytes": 25283,
+    "sha256": "d7bf9d064ac3e5840f9dd02422b7eeec4f1fd03f37fadbd043602be5e882304f",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-legacy/LICENSE.txt": {
+    "bytes": 12793,
+    "sha256": "96e4f59524cde5af4a2ea837ef5e52b65e51f1f999825fd8a9ec3b444cb82aea",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.bdb.txt": {
+    "bytes": 7293,
+    "sha256": "3bdff06e69991c94664f2ef5c5f8096f60b7dbec071756ea6cc26b445e06ec5b",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.bzip2.txt": {
+    "bytes": 1743,
+    "sha256": "1f38bbc7caacafd65169276d759c0d88c991b753b643ce35d0e45ea1971dd441",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.cpython.txt": {
+    "bytes": 36164,
+    "sha256": "86e61415828a8b5b06ec8d024e6f086ce155a8b85fd0c419c0ba4dc004e74fdd",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.expat.txt": {
+    "bytes": 1144,
+    "sha256": "122f2c27000472a201d337b9b31f7eb2b52d091b02857061a8880371612d9534",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libX11.txt": {
+    "bytes": 47018,
+    "sha256": "2daec087a88e7c9b8082557cdeebad5bbb8155a4137472f0b22e269cd99d0c1e",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libXau.txt": {
+    "bytes": 1148,
+    "sha256": "56abe29bb1d9806a9e04fa9f80fed2c0f18027594df3f098148d814aef6bddfa",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libedit.txt": {
+    "bytes": 1614,
+    "sha256": "29cea33c32bbc9785142386377915612a2fa786482c46843383384aded2e09b1",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libffi.txt": {
+    "bytes": 1132,
+    "sha256": "deaf3a42effb551a5b140fa9afefed183a27f1341c6d1bf430d106a5e6931fc0",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.liblzma.txt": {
+    "bytes": 660,
+    "sha256": "9a4062de0a2c388a98cf35a35d348b62fa97c838a71c3c28ee1a2d7d0a565b02",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libuuid.txt": {
+    "bytes": 1432,
+    "sha256": "122ee1f7e258f2c3c0e538a75c037684f420454bf3850ddc74ce750bbf5fe86b",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libxcb.txt": {
+    "bytes": 1337,
+    "sha256": "c5ffbfeaa501071ceeb97b7de2c0d703fdaa35de01c0fb6cbac1c28453a3e9fd",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.mpdecimal.txt": {
+    "bytes": 1284,
+    "sha256": "669512af7219f58be03a398766d7c9da11a3b3df9d3f05cb74c5ceca25c8da3b",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.ncurses.txt": {
+    "bytes": 1447,
+    "sha256": "87a4c4442337b8968ef956031c406b74f9cb7149b7ba87311bdaba534816201c",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.openssl-1.1.txt": {
+    "bytes": 6120,
+    "sha256": "9c04cce50c4989d5601dd8b07f6ab922c40388b66ac736c9007cb1ed9d9dd560",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.openssl-3.txt": {
+    "bytes": 10175,
+    "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.sqlite.txt": {
+    "bytes": 1481,
+    "sha256": "38bef3d28b24f145ea293bd3b6eb4b20396982abc8303128fb493986ea5bc719",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.tcl.txt": {
+    "bytes": 2255,
+    "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.tix.txt": {
+    "bytes": 2826,
+    "sha256": "3ac5cdd0bef6c43ce34c6a7ced452081d9e5a0bf94082b9f9147d23ec9e214f5",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.zlib.txt": {
+    "bytes": 995,
+    "sha256": "818922b2620f12801a12bf78e399644a30990e66824abd8ca8ec24d451d6f92c",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/tcl-family/tcl9.0.4/libtommath/LICENSE": {
+    "bytes": 1257,
+    "sha256": "2fa64b163659f41965c9815882a8296d3d03ff546b76153e11445f9bdecf955a",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/tcl-family/tcl9.0.4/license.terms": {
+    "bytes": 2255,
+    "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/tcl-family/tcl9.0.4/pkgs/itcl4.3.8/license.terms": {
+    "bytes": 2503,
+    "sha256": "b61edfaeead97546bc62b1f205b046f2e440b83bfc517bc0932b93bc3d505865",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/tcl-family/tcl9.0.4/pkgs/thread3.0.6/license.terms": {
+    "bytes": 2231,
+    "sha256": "0a03981c40f7813ce6ddbdfce9882020bcfd696ea044b21ef07619ed9b86abae",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/tcl-family/tk9.0.4/license.terms": {
+    "bytes": 2267,
+    "sha256": "2cde822b93ca16ae535c954b7dfe658b4ad10df2a193628d1b358f1765e8b198",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/wimlib/COPYING": {
+    "bytes": 1705,
+    "sha256": "1829e594e80000d0158ffb111491171feb8dc78842e3c0f40954489d30779854",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/wimlib/COPYING.GPLv3": {
+    "bytes": 35149,
+    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/wimlib/COPYING.LGPL": {
+    "bytes": 26419,
+    "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/xz-innoextract/xz-0BSD": {
+    "bytes": 607,
+    "sha256": "0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/xz-innoextract/xz-COPYING": {
+    "bytes": 3119,
+    "sha256": "616a3ad264ce29b8f1cb97e53037b139d406899ca8d1f799651e17bfa09830b8",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING": {
+    "bytes": 3119,
+    "sha256": "616a3ad264ce29b8f1cb97e53037b139d406899ca8d1f799651e17bfa09830b8",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING.0BSD": {
+    "bytes": 607,
+    "sha256": "0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING.GPLv2": {
+    "bytes": 17984,
+    "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING.GPLv3": {
+    "bytes": 35149,
+    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING.LGPLv2.1": {
+    "bytes": 26419,
+    "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/README.txt": {
+    "bytes": 554,
+    "sha256": "c1a43ccce2f3b13050d4a05200cf13818f30b4be774c35e749925852f2b3eb56",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/hivex/LICENSE": {
+    "bytes": 26650,
+    "sha256": "aa9baa29e495877229e89f517d381672586f7233ccfcc7c0defa30ffbaaf3c65",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/hivex/build_hivex_macos.py": {
+    "bytes": 2728,
+    "sha256": "5c284b6b29ea1d56306db8ee611a7763cb85c21468ec4593a8fd0360f7ab1ebd",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/hivex/check_offline_keyboard_macos.py": {
+    "bytes": 2237,
+    "sha256": "ac012f492a4e885a9942718c22fa52ed96b0da12ebcb937c870db4696d0d501c",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/hivex/hivex-1.3.24.tar.gz": {
+    "bytes": 741279,
+    "sha256": "a52fa45cecc9a78adb2d28605d68261e4f1fd4514a778a5473013d2ccc8a193c",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/7zip-26.04-source.tar.xz": {
+    "bytes": 1560440,
+    "sha256": "9691944c0fe0d01bb49373a704fb983fd33bc98b1738695179dfbf99ac1734f6",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/7zip-License.txt": {
+    "bytes": 6341,
+    "sha256": "9ac2b4a97ab5d523965534d8b2d5868e511b39096d51fff458ab72c38b80fccc",
+    "mode": 493
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/7zip-copying.txt": {
+    "bytes": 27032,
+    "sha256": "1e7e6bae5a5bde32f1ae5a7c37a082d1ab03cf89354f7f936ac40be9e39a6531",
+    "mode": 493
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/7zip-unRarLicense.txt": {
+    "bytes": 1921,
+    "sha256": "17bd9fa4399092c777536fff045b41df76ec9d2ac4c9b8e7345d3b8b6ccc7976",
+    "mode": 493
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/BUILD-NOTES.txt": {
+    "bytes": 427,
+    "sha256": "d03efbe22c733f876344c4109f055e09d34b8be09f631d580b948fe56f986a3f",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/Boost-LICENSE": {
+    "bytes": 1338,
+    "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/build_publisher_extractors_macos.py": {
+    "bytes": 5818,
+    "sha256": "0d296a4e353cb90a76bdca5a27414f92253616aae35609dd3bd867f7c609200b",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/innoextract-LICENSE": {
+    "bytes": 886,
+    "sha256": "7cd6f3bf0c83f2c3ce8438aab20a4827a5de934fb87dd7966f6f3f2651685127",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/innoextract.tar.gz": {
+    "bytes": 206931,
+    "sha256": "6344a69fc1ed847d4ed3e272e0da5998948c6b828cb7af39c6321aba6cf88126",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/xz-0BSD": {
+    "bytes": 607,
+    "sha256": "0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/xz-COPYING": {
+    "bytes": 3119,
+    "sha256": "616a3ad264ce29b8f1cb97e53037b139d406899ca8d1f799651e17bfa09830b8",
+    "mode": 420
+  },
+  "Contents/Resources/ThirdParty/publisher-extractors/xz.tar.xz": {
+    "bytes": 1511132,
+    "sha256": "890966ec3f5d5cc151077879e157c0593500a522f413ac50ba26d22a9a145214",
+    "mode": 420
+  },
+  "Contents/Resources/apple_driver_policy.py": {
+    "bytes": 6343,
+    "sha256": "ab63be0ab4147ced1eb5b36f951d6705605025ba0457f2ded9191fc45e5a8206",
     "mode": 420
   },
   "Contents/Resources/backtoseven_boot.py": {
@@ -44,24 +419,69 @@
     "sha256": "e0c1e7df3b830bd9372a67b9c778a5225cdb88d87cacb9aff571c32ac6d60c8b",
     "mode": 420
   },
+  "Contents/Resources/backup_archive.py": {
+    "bytes": 8282,
+    "sha256": "bcd41d7991f8bf33efd45cade8c294ae136cc0c7d1788220fa3b195ef859ed12",
+    "mode": 420
+  },
+  "Contents/Resources/backup_capture.py": {
+    "bytes": 4352,
+    "sha256": "b7c69cfc8b62d19ab84711270d96cffc7c9f4e30d3034d94178bb0e5c1e40d6c",
+    "mode": 420
+  },
+  "Contents/Resources/backup_drive.py": {
+    "bytes": 3260,
+    "sha256": "591e5f9be8331aea806879914dd6116d0b2bb15ed27508eec4fa1530724f900d",
+    "mode": 420
+  },
+  "Contents/Resources/backup_file_access.py": {
+    "bytes": 4213,
+    "sha256": "8e9319ae6f613a7e8fad59e20d04f0784bb7da4809c684fc9f77270b40cb255c",
+    "mode": 420
+  },
+  "Contents/Resources/backup_metadata.py": {
+    "bytes": 8794,
+    "sha256": "f2ba5ee09236304e0626370bd3de96ca4aff98817582eacfa92de0866d194913",
+    "mode": 420
+  },
+  "Contents/Resources/backup_restore_boot.py": {
+    "bytes": 4629,
+    "sha256": "0b43a5cfce41fe56dd5efbb21dfe40e99ec796c5a4717733ba4383e703e0f85f",
+    "mode": 420
+  },
+  "Contents/Resources/backup_restore_filesystem.py": {
+    "bytes": 6535,
+    "sha256": "4e79aa41799445d467a2cffdbe809c0255287060212c79371685e5fe080d71a2",
+    "mode": 420
+  },
+  "Contents/Resources/backup_restore_identity.py": {
+    "bytes": 9568,
+    "sha256": "dfef9603c608858edf191d3d93236642983c386850858f3ef4a7727dd76db567",
+    "mode": 420
+  },
+  "Contents/Resources/backup_restore_plan.py": {
+    "bytes": 7314,
+    "sha256": "aa5c722dcca917787fbc99f0e9e1823b51b2f6e21c6fc356d561ecf564d3b1c2",
+    "mode": 420
+  },
+  "Contents/Resources/backup_restore_preparation.py": {
+    "bytes": 7104,
+    "sha256": "515113af13830e28e3880f1940b5e4373c8d871aceacf509b0c416c17626946e",
+    "mode": 420
+  },
+  "Contents/Resources/backup_restore_write.py": {
+    "bytes": 4187,
+    "sha256": "8af34ba5b5ca8ce7c52b5c8333d951acf2126cadc9166be157124077d615184f",
+    "mode": 420
+  },
+  "Contents/Resources/backup_windows.py": {
+    "bytes": 10762,
+    "sha256": "cc8257f6d682bdbe5ad437ac05614aa824c1bbb8edee15e25160cd1849d94c16",
+    "mode": 420
+  },
   "Contents/Resources/bcd.py": {
     "bytes": 2705,
     "sha256": "f2a0eeda3960b081afaafbf84ae886b1ee982895bef9235f28fe154c220dbd37",
-    "mode": 420
-  },
-  "Contents/Resources/BCD.template": {
-    "bytes": 8192,
-    "sha256": "30b61e409ece9dbc5c071eaac7a9ff6804a16025c57dae93e7951b38cc639252",
-    "mode": 420
-  },
-  "Contents/Resources/BCD10.template": {
-    "bytes": 8192,
-    "sha256": "78305a0512fcb202e84d4862da7ed66d34b93a3bb92e08aed3fbfb90fef27e99",
-    "mode": 420
-  },
-  "Contents/Resources/BCD81.template": {
-    "bytes": 8192,
-    "sha256": "f796708a6a52be6278460bf5f4bedf5c9b1685da696f882c73ce4ccd5dec2abb",
     "mode": 420
   },
   "Contents/Resources/bcd_isolation.py": {
@@ -94,11 +514,6 @@
     "sha256": "c9133afbbc73fc11a5e7644a90f5331efe5113805748de00852b087a32dba2d4",
     "mode": 493
   },
-  "Contents/Resources/BOOT-FAILURE-REPORTING.txt": {
-    "bytes": 1134,
-    "sha256": "0f4c27ac50ccd15d73035c3891f0deb5d217251a352c3aa7e26232f2b4351fd5",
-    "mode": 420
-  },
   "Contents/Resources/boot_catalog.py": {
     "bytes": 7099,
     "sha256": "d30052925313bb87b9ae26cf085ef557de56de7b58e75983cd9df12689a8be16",
@@ -107,6 +522,16 @@
   "Contents/Resources/boot_dependencies.py": {
     "bytes": 2046,
     "sha256": "3d19b9df534643e09b47eda1b459d31b40023724493275b19638de6303b94f7d",
+    "mode": 420
+  },
+  "Contents/Resources/boot_diagnostic_binding.py": {
+    "bytes": 2106,
+    "sha256": "a322c74a9b281d2628e55d12c38679640603b506cff1bf756ffcaf4cf58cb7a1",
+    "mode": 420
+  },
+  "Contents/Resources/boot_diagnostics.py": {
+    "bytes": 8483,
+    "sha256": "6451563cfff2546766cf8d0c4d59e5cf6d0395012c63b214ee8b5d0fa3c20837",
     "mode": 420
   },
   "Contents/Resources/bootcamp_download.py": {
@@ -154,16 +579,6 @@
     "sha256": "dad2a45f74ecd5100be081fd29de093bda1c856937d14923fee64369c6369b30",
     "mode": 420
   },
-  "Contents/Resources/CURRENT-SCOPE.txt": {
-    "bytes": 593,
-    "sha256": "ffba63b8dc8f01131b6c73458410ec4b16c91619d5688853f2e9c059bdb22081",
-    "mode": 420
-  },
-  "Contents/Resources/DEPENDENCIES.txt": {
-    "bytes": 1287,
-    "sha256": "68119bbc14d7a5920909f0ec4f89dae682a976866ca1c51175c35f9ca80f0b54",
-    "mode": 420
-  },
   "Contents/Resources/deployment_lock.py": {
     "bytes": 2234,
     "sha256": "e3bf8dead2e8860a8141c2f56fb5e84693da48c84631a5dfa6bf6c79c190b54b",
@@ -179,6 +594,11 @@
     "sha256": "481a42ec20e1b1ed049f528bdfc228fa9cf517fbc27d529719b3d2f1f5202b33",
     "mode": 420
   },
+  "Contents/Resources/destination_picker.py": {
+    "bytes": 4638,
+    "sha256": "0b48778a2901567182ff360ac79108ba8790f3e7844961a3e8da02ac28f9c8c2",
+    "mode": 420
+  },
   "Contents/Resources/diagnostic-efi/ACPI.efi": {
     "bytes": 45056,
     "sha256": "979881423129fcbadfea3bcbe01461a25dc85190fc991c467d1d23c1b1f7db38",
@@ -187,6 +607,21 @@
   "Contents/Resources/diagnostic-efi/ACPI.pdb": {
     "bytes": 368640,
     "sha256": "0954ab5858b6f1b32752c85a737ce91b814b1a7dea1b3e8e35f262b483f5c3f4",
+    "mode": 420
+  },
+  "Contents/Resources/diagnostic-efi/PCI.efi": {
+    "bytes": 33280,
+    "sha256": "48639dedf04fab5b65ed03f548ad3c79ff593422f3763550be725b6c529e502a",
+    "mode": 420
+  },
+  "Contents/Resources/diagnostic-efi/PCI.pdb": {
+    "bytes": 311296,
+    "sha256": "086cf45468cf613d9f400304c648010b2390a5899fa9d9adca94f9fbb140fc26",
+    "mode": 420
+  },
+  "Contents/Resources/diagnostic-efi/WindowsDiagnostics.template.efi": {
+    "bytes": 298496,
+    "sha256": "877f133360b30a457bbfc1c81ec3a7125256f4774803b1e0e360df40ebea06a9",
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/acpi_collector.zig": {
@@ -209,16 +644,6 @@
     "sha256": "b44f426fa5aa0d4d1bd9068667673ca30207fc54a13e631557c21319c436d4f6",
     "mode": 420
   },
-  "Contents/Resources/diagnostic-efi/PCI.efi": {
-    "bytes": 33280,
-    "sha256": "48639dedf04fab5b65ed03f548ad3c79ff593422f3763550be725b6c529e502a",
-    "mode": 420
-  },
-  "Contents/Resources/diagnostic-efi/PCI.pdb": {
-    "bytes": 311296,
-    "sha256": "086cf45468cf613d9f400304c648010b2390a5899fa9d9adca94f9fbb140fc26",
-    "mode": 420
-  },
   "Contents/Resources/diagnostic-efi/pci_collector.zig": {
     "bytes": 9789,
     "sha256": "cac782e44692eaadc2447824d54373b7e7d88f80fd4da4dcdfaf6f02fe43d3ff",
@@ -230,18 +655,13 @@
     "mode": 420
   },
   "Contents/Resources/disk_layout.py": {
-    "bytes": 5261,
-    "sha256": "09ee96afc6ac256239f50c488cc02f92124b215e06791f00b38c57cf02836e4f",
+    "bytes": 5608,
+    "sha256": "bcececa0572447c7a7bfe007731a188a3218d3ed71171ac45075da3a4113e88f",
     "mode": 420
   },
   "Contents/Resources/drive_geometry.py": {
-    "bytes": 3422,
-    "sha256": "7ad7805480a5692b582afc0abd11b136daa5ef5f9c29382b59b7689e62c8253c",
-    "mode": 420
-  },
-  "Contents/Resources/DRIVER-GUIDANCE.txt": {
-    "bytes": 908,
-    "sha256": "22793429887b14c18376690c09062ce8cd39b83a4caee7fe8c5bd5843e3636d5",
+    "bytes": 4473,
+    "sha256": "922dfc5229912b4fe360f05c1ec189f8a79126a53e9d90c3871325b7da079668",
     "mode": 420
   },
   "Contents/Resources/driver_cache_trust.py": {
@@ -257,16 +677,6 @@
   "Contents/Resources/driver_sources.py": {
     "bytes": 12350,
     "sha256": "299637d61ddb2109ab74f77d395ce7184a077d7b015b98724f9af4cf53959466",
-    "mode": 420
-  },
-  "Contents/Resources/efi/accepted-win7/ALLOW-AUTO.txt": {
-    "bytes": 55,
-    "sha256": "784bd1fbe529be3c24c82daf84e92ce972792d46ca87a7fb48be899fc1dc10ed",
-    "mode": 420
-  },
-  "Contents/Resources/efi/accepted-win7/WIN7AUTO.efi": {
-    "bytes": 250880,
-    "sha256": "e883cafc83e127c09ccec1c6cef96d4cf0b2f39242ba66e68adaa0279c2d7c07",
     "mode": 420
   },
   "Contents/Resources/efi/ExperimentalFix.efi": {
@@ -299,9 +709,24 @@
     "sha256": "f581308710fbf74d260496f41300581fb4179c289021e0938e3aef276171247b",
     "mode": 420
   },
+  "Contents/Resources/efi/accepted-win7/ALLOW-AUTO.txt": {
+    "bytes": 55,
+    "sha256": "784bd1fbe529be3c24c82daf84e92ce972792d46ca87a7fb48be899fc1dc10ed",
+    "mode": 420
+  },
+  "Contents/Resources/efi/accepted-win7/WIN7AUTO.efi": {
+    "bytes": 250880,
+    "sha256": "e883cafc83e127c09ccec1c6cef96d4cf0b2f39242ba66e68adaa0279c2d7c07",
+    "mode": 420
+  },
   "Contents/Resources/efi_access.py": {
-    "bytes": 8649,
-    "sha256": "3131fb709af6fdc305e1d20f1c7c26b448ee2cb6e733b786aec919477f522d61",
+    "bytes": 8691,
+    "sha256": "853cabc3f21a1dc4be45c869e36283c94d2512a81ee0f4a66242aa67a3d8083f",
+    "mode": 420
+  },
+  "Contents/Resources/efi_mounts.py": {
+    "bytes": 1571,
+    "sha256": "0d367f8c7f251f8702d79877692b35f423245a65487687601347a49f46a096bd",
     "mode": 420
   },
   "Contents/Resources/efi_transaction.py": {
@@ -334,29 +759,19 @@
     "sha256": "760431fb23762cd77838468442a22dd0acfcb2012666b66b9419c031be34ddb3",
     "mode": 420
   },
-  "Contents/Resources/GoAwayBCA.icns": {
-    "bytes": 1377765,
-    "sha256": "96328b60edfc017c23263db747a6586fef52368f23ed1dde632938f260eada20",
-    "mode": 420
-  },
   "Contents/Resources/gui_protocol.py": {
     "bytes": 5618,
     "sha256": "3d858982bbbc79354691b116f056894199457845a9922d10ae8988ba9ab703fb",
     "mode": 420
   },
   "Contents/Resources/gui_session.py": {
-    "bytes": 4356,
-    "sha256": "cbd2081cd934c1c45224ce68b9d8ca631fdbd7bdb3529eebfc620c4e45657f88",
+    "bytes": 4300,
+    "sha256": "e278e884120e2cb2232a4866c74d4f817eab361b6d7532231fbb834e3ad9bd3c",
     "mode": 420
   },
   "Contents/Resources/gui_worker.py": {
-    "bytes": 12447,
-    "sha256": "b5c4bc4fff5c68cba44ed062854bbf8e9d5250f4466dd104f499b25c96cc4559",
-    "mode": 420
-  },
-  "Contents/Resources/HARDWARE-REPORT-GUIDE.txt": {
-    "bytes": 626,
-    "sha256": "ddbd2ebf8c5ad26fa2d266e60587de7d0360f66aa5dd19976a86498a11c9b1a1",
+    "bytes": 13112,
+    "sha256": "efd389416d30e9e2de3ddbe51b4651d61a7fd959f41fb13d5a286f3f930fd170",
     "mode": 420
   },
   "Contents/Resources/hardware_reports.py": {
@@ -375,8 +790,8 @@
     "mode": 420
   },
   "Contents/Resources/install_multiboot.py": {
-    "bytes": 29273,
-    "sha256": "a25d20176d0666de85906f5b418b2c169eeb750c21478943f360ac69f2dd372d",
+    "bytes": 29221,
+    "sha256": "50c27eefa9e895ceb46d55ba44fff570a549a5ed9df9a7b8b55fe1167e657cf5",
     "mode": 420
   },
   "Contents/Resources/install_unified.py": {
@@ -385,8 +800,8 @@
     "mode": 420
   },
   "Contents/Resources/install_windows7.py": {
-    "bytes": 59228,
-    "sha256": "151f02e4ab855c359ca709da730ca65039405b1aa20630349e8a86259b61fa33",
+    "bytes": 58850,
+    "sha256": "ede0069f8ab3e90d173121a449818c0d292cb7bea5935d22558d86c806e66f88",
     "mode": 420
   },
   "Contents/Resources/installation_destination.py": {
@@ -419,6 +834,11 @@
     "sha256": "7f527fc5e5d72eb6bc390151c4816ef1350b3ff1604a409331b66d9d60fcfcc1",
     "mode": 493
   },
+  "Contents/Resources/licenses-and-sources/Python-3.7.17-LICENSE.txt": {
+    "bytes": 12793,
+    "sha256": "96e4f59524cde5af4a2ea837ef5e52b65e51f1f999825fd8a9ec3b444cb82aea",
+    "mode": 420
+  },
   "Contents/Resources/licenses-and-sources/build_native_macos.sh": {
     "bytes": 2851,
     "sha256": "0d2c4a40a1b5ed5f6711d78738a9f32b565c9a09304e0f136c4f61f09035b94a",
@@ -442,11 +862,6 @@
   "Contents/Resources/licenses-and-sources/ntfs-3g_ntfsprogs-2026.9.28.tgz": {
     "bytes": 1343029,
     "sha256": "350d9415c59f7c3fa74e23985ad2d56423c6a168337368f672e2e362d8f295c8",
-    "mode": 420
-  },
-  "Contents/Resources/licenses-and-sources/Python-3.7.17-LICENSE.txt": {
-    "bytes": 12793,
-    "sha256": "96e4f59524cde5af4a2ea837ef5e52b65e51f1f999825fd8a9ec3b444cb82aea",
     "mode": 420
   },
   "Contents/Resources/licenses-and-sources/wimlib-1.14.5/COPYING": {
@@ -479,11 +894,6 @@
     "sha256": "17780e92fdf10a1de243257b258da0463477d236ee5936fd32b67d7093bb615b",
     "mode": 420
   },
-  "Contents/Resources/MACHINE-GUIDANCE.txt": {
-    "bytes": 864,
-    "sha256": "fe067adb6886b4c24649ec8e1c36bf49af2baa02b2276e07c8d3b3ce049ac632",
-    "mode": 420
-  },
   "Contents/Resources/manage_format_plan.py": {
     "bytes": 7697,
     "sha256": "2645475b205eb65f20465ebd6a246fe5169ecc2e889ca6b9b625f6178530cc20",
@@ -494,14 +904,14 @@
     "sha256": "bc45d2f8d6bdd27035fc4d115e5bbf3ad72390a2b2675da7a4e1bf358b6f3929",
     "mode": 420
   },
-  "Contents/Resources/MANUAL-EFI-CLEANUP.txt": {
-    "bytes": 695,
-    "sha256": "a6ec374d6495601dbb6f386c6472e63d33502a7e07ead96c710fd15e83a85acc",
-    "mode": 420
-  },
   "Contents/Resources/menu_assets.py": {
     "bytes": 5113,
     "sha256": "72d27d383aae75a98abcbeb291dd44c0300ac5a5d31e19c39761ecd9c91585c4",
+    "mode": 420
+  },
+  "Contents/Resources/menu_drive_review.py": {
+    "bytes": 2438,
+    "sha256": "98a9a025a442528472681569d610658a7651f804bcc4dc4a5cf76725cf80a004",
     "mode": 420
   },
   "Contents/Resources/menu_lifecycle.py": {
@@ -510,8 +920,8 @@
     "mode": 420
   },
   "Contents/Resources/menu_presence.py": {
-    "bytes": 5613,
-    "sha256": "085462aa74f3dad0218711e2096eb11a194c292827b7af1e0130900296d8b008",
+    "bytes": 5635,
+    "sha256": "6f31e52b6a2c5bfe7f3b7be0930ac82b88ad91f60b26a651e7d7553b002873ae",
     "mode": 420
   },
   "Contents/Resources/menu_refresh.py": {
@@ -527,6 +937,11 @@
   "Contents/Resources/ntfs_read.py": {
     "bytes": 13772,
     "sha256": "6908d96e818b75b9f39c36542daa4c90dd8eb74e7a1b0340f3c4131fa7ea99fd",
+    "mode": 420
+  },
+  "Contents/Resources/ntfsclone_image.py": {
+    "bytes": 3410,
+    "sha256": "3a8c398ccf27f8b0550934259c31c44cc72ffd0c817bb2c7386998358811b113",
     "mode": 420
   },
   "Contents/Resources/offline_keyboard.py": {
@@ -550,8 +965,8 @@
     "mode": 420
   },
   "Contents/Resources/partition_detection.py": {
-    "bytes": 8646,
-    "sha256": "980b61d759e3f677263a431240b691ad74c7ec984167e696bf840b4dbd1a8fdd",
+    "bytes": 8774,
+    "sha256": "699521f80f157e9264d108a3517f508add180a2e80c19c7b5b7f2201f14cae0b",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/bin/2to3": {
@@ -609,6 +1024,16 @@
     "bytes": 505,
     "sha256": "a9adde8ddb37144cbca2f3b2fa195296dd6049a37b864b3d9ebd98960211b926",
     "mode": 493
+  },
+  "Contents/Resources/payloads/legacy/python/include/python3.7m/Python-ast.h": {
+    "bytes": 21802,
+    "sha256": "a0144467f096ec9ef6665cfbc4f310b4bb034ac38b8469cea69cbbd951552da5",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/include/python3.7m/Python.h": {
+    "bytes": 3554,
+    "sha256": "1c7578ad6cdc8d89dd31cc438b2c8e541eb90facbceac0c22aef4ee0532f96ad",
+    "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/include/python3.7m/abstract.h": {
     "bytes": 40798,
@@ -1070,16 +1495,6 @@
     "sha256": "df98a492044f55cf016c008fef3181d77d13f1828b84625b5cb1f460e5f5ed2f",
     "mode": 420
   },
-  "Contents/Resources/payloads/legacy/python/include/python3.7m/Python-ast.h": {
-    "bytes": 21802,
-    "sha256": "a0144467f096ec9ef6665cfbc4f310b4bb034ac38b8469cea69cbbd951552da5",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/include/python3.7m/Python.h": {
-    "bytes": 3554,
-    "sha256": "1c7578ad6cdc8d89dd31cc438b2c8e541eb90facbceac0c22aef4ee0532f96ad",
-    "mode": 420
-  },
   "Contents/Resources/payloads/legacy/python/include/python3.7m/pythonrun.h": {
     "bytes": 6204,
     "sha256": "053670c3288c845970eb3cb0a578910fd8f2506a4b219bee114728705d59b728",
@@ -1180,6 +1595,11 @@
   },
   "Contents/Resources/payloads/legacy/python/lib/pkgconfig/python3.pc": {
     "link": "python-3.7.pc"
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/LICENSE.txt": {
+    "bytes": 12793,
+    "sha256": "96e4f59524cde5af4a2ea837ef5e52b65e51f1f999825fd8a9ec3b444cb82aea",
+    "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/__future__.py": {
     "bytes": 5101,
@@ -1506,6 +1926,11 @@
     "sha256": "4e37efbd8139828cba9875d443d4f0a8c03d47d843b3b16b4bdecfda72cd1423",
     "mode": 420
   },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/cProfile.py": {
+    "bytes": 6242,
+    "sha256": "babc437dc9018739a0aee4445988721e60b918362216b99fc17e60780dee14bf",
+    "mode": 493
+  },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/calendar.py": {
     "bytes": 24826,
     "sha256": "32bec5ee1c4823b8b176d94a92b919a0260df1a766af8354dec49f96aedb811e",
@@ -1591,6 +2016,21 @@
     "sha256": "cf6b27870fec4221f2650e2609fab59f0c036960025f9b8e7dac6143a341c276",
     "mode": 420
   },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/config-3.7m-darwin/Makefile": {
+    "bytes": 74579,
+    "sha256": "f0ebf8a9a8c77f46c9d2cd0974b14c11fbfc25e7f4c22abc3611d062e2421d39",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/config-3.7m-darwin/Setup": {
+    "bytes": 14509,
+    "sha256": "da0fc72b7186426289320f627683dc701125895ee53ec4cc7a3ddc3f5b65aed8",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/config-3.7m-darwin/Setup.local": {
+    "bytes": 41,
+    "sha256": "d29e734b34f3f8cb4a8c2b9305b6e7f378214ecd13928f2671db2c7ee0f7b378",
+    "mode": 420
+  },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/config-3.7m-darwin/config.c": {
     "bytes": 3367,
     "sha256": "3adb62efc73c1e8feedde5c890ef74fbcba045bb157cc4de0468da249e37f161",
@@ -1606,11 +2046,6 @@
     "sha256": "92adf3cf516747616fbe142306be804c8a7a6da49b85e0e1763d0aa4465f9fb6",
     "mode": 493
   },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/config-3.7m-darwin/Makefile": {
-    "bytes": 74579,
-    "sha256": "f0ebf8a9a8c77f46c9d2cd0974b14c11fbfc25e7f4c22abc3611d062e2421d39",
-    "mode": 420
-  },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/config-3.7m-darwin/makesetup": {
     "bytes": 7854,
     "sha256": "f5467e4989a180c72bb294f3d91d77e580392a10a3fd250d51d84ef8e373206d",
@@ -1624,16 +2059,6 @@
   "Contents/Resources/payloads/legacy/python/lib/python3.7/config-3.7m-darwin/python.o": {
     "bytes": 2104,
     "sha256": "65b71bc6672cbc7484d3120dc3d55076d92ccb461a6524763c65cb84bcc93197",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/config-3.7m-darwin/Setup": {
-    "bytes": 14509,
-    "sha256": "da0fc72b7186426289320f627683dc701125895ee53ec4cc7a3ddc3f5b65aed8",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/config-3.7m-darwin/Setup.local": {
-    "bytes": 41,
-    "sha256": "d29e734b34f3f8cb4a8c2b9305b6e7f378214ecd13928f2671db2c7ee0f7b378",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/configparser.py": {
@@ -1661,11 +2086,6 @@
     "sha256": "39f6a9729114363c7609312ca113f4964e63b8aa83ae40584eb15bc10faebc5d",
     "mode": 420
   },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/cProfile.py": {
-    "bytes": 6242,
-    "sha256": "babc437dc9018739a0aee4445988721e60b918362216b99fc17e60780dee14bf",
-    "mode": 493
-  },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/crypt.py": {
     "bytes": 3346,
     "sha256": "474cda3ba1e5b1ca1b79304efb8f2527aacb3254fe3fa724d657d29ab53ff575",
@@ -1689,6 +2109,11 @@
   "Contents/Resources/payloads/legacy/python/lib/python3.7/ctypes/_endian.py": {
     "bytes": 2000,
     "sha256": "4c9944875236d4227e8fd80ca0439417870ef387a532403393da91bf7ff67e16",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/ctypes/macholib/README.ctypes": {
+    "bytes": 296,
+    "sha256": "dc29d1da83b6a0a09a41647e4111eee878ed079c2d6b54a98fd6d8b88dd581f2",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/ctypes/macholib/__init__.py": {
@@ -1719,11 +2144,6 @@
   "Contents/Resources/payloads/legacy/python/lib/python3.7/ctypes/macholib/framework.py": {
     "bytes": 2201,
     "sha256": "bf15187b7ea40c0255f14095e1091c13953c2efd98d96b409debc67669defc56",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/ctypes/macholib/README.ctypes": {
-    "bytes": 296,
-    "sha256": "dc29d1da83b6a0a09a41647e4111eee878ed079c2d6b54a98fd6d8b88dd581f2",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/ctypes/util.py": {
@@ -1804,6 +2224,11 @@
   "Contents/Resources/payloads/legacy/python/lib/python3.7/dis.py": {
     "bytes": 19888,
     "sha256": "1b3db3e67cbd4a46f15768c32bda5325f9ef53a91d6e08458c1e9ee6b5734a1b",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/distutils/README": {
+    "bytes": 295,
+    "sha256": "7c8dd7dc035b7050c051056ddb91023a0ec92e6582a0987de13953551eca2759",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/distutils/__init__.py": {
@@ -2074,11 +2499,6 @@
   "Contents/Resources/payloads/legacy/python/lib/python3.7/distutils/msvccompiler.py": {
     "bytes": 23564,
     "sha256": "1b7b51c4fe9bb814f034218a90844eab7eefda003a7f941d67a5954ceaafa2bc",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/distutils/README": {
-    "bytes": 295,
-    "sha256": "7c8dd7dc035b7050c051056ddb91023a0ec92e6582a0987de13953551eca2759",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/distutils/spawn.py": {
@@ -3451,6 +3871,26 @@
     "sha256": "1b50422ab2868be5f91aff20d969bbfce37b0498c54418e62cd2fcba67fcf4f9",
     "mode": 493
   },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/Grammar.txt": {
+    "bytes": 6704,
+    "sha256": "45ee8e7d9e09bd6d2236d67659d4d0c5b59c4b19ae72b0bb23cc8abbde2c0fd4",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/Grammar3.7.17.final.0.pickle": {
+    "bytes": 32572,
+    "sha256": "430e94a12d9d0a2f996470f760b7e38d24b3a9b8d7dd898a151038b23f3cc892",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/PatternGrammar.txt": {
+    "bytes": 793,
+    "sha256": "ee5ba5db3b6722a0e2fbe2560ebc1c883e72328ef9c3b4da1c7c5d1cc649bce3",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/PatternGrammar3.7.17.final.0.pickle": {
+    "bytes": 2093,
+    "sha256": "edb7f84f6a386161434bf3cdb64db03b29b80717cedd1c492789578454bc3d05",
+    "mode": 420
+  },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/__init__.py": {
     "bytes": 7,
     "sha256": "c8204cfd372ee45f79cb744ed0565bc8d486716115a546f48477c0719b8a6bb9",
@@ -3746,16 +4186,6 @@
     "sha256": "55ce115556c7513dd967364dc6a40c39210c874e8168cf090ddd6dc606df34cb",
     "mode": 420
   },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/Grammar.txt": {
-    "bytes": 6704,
-    "sha256": "45ee8e7d9e09bd6d2236d67659d4d0c5b59c4b19ae72b0bb23cc8abbde2c0fd4",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/Grammar3.7.17.final.0.pickle": {
-    "bytes": 32572,
-    "sha256": "430e94a12d9d0a2f996470f760b7e38d24b3a9b8d7dd898a151038b23f3cc892",
-    "mode": 420
-  },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/main.py": {
     "bytes": 11653,
     "sha256": "bec917f26fe605744cd34e51bf5de3be5baf63ceda573c0cdc4c5fb383390fce",
@@ -3764,16 +4194,6 @@
   "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/patcomp.py": {
     "bytes": 7054,
     "sha256": "a033a3eb91a39f96747d4300aa3394965e529c71896cd6503dd27e6b685eede5",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/PatternGrammar.txt": {
-    "bytes": 793,
-    "sha256": "ee5ba5db3b6722a0e2fbe2560ebc1c883e72328ef9c3b4da1c7c5d1cc649bce3",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/PatternGrammar3.7.17.final.0.pickle": {
-    "bytes": 2093,
-    "sha256": "edb7f84f6a386161434bf3cdb64db03b29b80717cedd1c492789578454bc3d05",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/pgen2/__init__.py": {
@@ -3834,11 +4254,6 @@
   "Contents/Resources/payloads/legacy/python/lib/python3.7/lib2to3/refactor.py": {
     "bytes": 27399,
     "sha256": "4d9446e9c919b5983c2ded2cb8d4cd4361fc885b8f9effe16da2d788b008a5db",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/LICENSE.txt": {
-    "bytes": 12793,
-    "sha256": "96e4f59524cde5af4a2ea837ef5e52b65e51f1f999825fd8a9ec3b444cb82aea",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/linecache.py": {
@@ -4606,6 +5021,11 @@
     "sha256": "34296f728e7fe68cccb97a9f6edbf3bf3a686f44044c744fe85f207a92ed4811",
     "mode": 420
   },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/dom/NodeFilter.py": {
+    "bytes": 936,
+    "sha256": "9bfacbbb64e239a75591a7260b3ed86748eeb4366e6c40f3542753e79bace9a7",
+    "mode": 420
+  },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/dom/__init__.py": {
     "bytes": 4019,
     "sha256": "b415a6f3d3663c3ac332ee4a0f4213eadad9281508dc97410e258a03633b063a",
@@ -4631,11 +5051,6 @@
     "sha256": "750e0efce304ff642dbd9923faebbd50b45823319b6f963413495774480ba18e",
     "mode": 420
   },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/dom/NodeFilter.py": {
-    "bytes": 936,
-    "sha256": "9bfacbbb64e239a75591a7260b3ed86748eeb4366e6c40f3542753e79bace9a7",
-    "mode": 420
-  },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/dom/pulldom.py": {
     "bytes": 11761,
     "sha256": "0e112cde1ea72d712c6eb3fe2e1bb25ae7b9ef3ee7c89d3e663ce931dbeb2ef0",
@@ -4644,16 +5059,6 @@
   "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/dom/xmlbuilder.py": {
     "bytes": 12403,
     "sha256": "e40c535fe470f1cdb766aac63254ea936a431e9d029e64a4a52b0da3267b6ac1",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/etree/__init__.py": {
-    "bytes": 1604,
-    "sha256": "171cc64fd9c7ba894922a35cdec74c4e34ebfd1e7973ad25c01b80ddde35b4cd",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/etree/cElementTree.py": {
-    "bytes": 82,
-    "sha256": "d0f57acab07fe4f9c116c3392d85946bac8e78608f409cea70005f16ea019b57",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/etree/ElementInclude.py": {
@@ -4669,6 +5074,16 @@
   "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/etree/ElementTree.py": {
     "bytes": 57266,
     "sha256": "1fd99be9cc3eb9685aac2abd2be3997b7ceade0b8a2add83a6595e901450dab2",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/etree/__init__.py": {
+    "bytes": 1604,
+    "sha256": "171cc64fd9c7ba894922a35cdec74c4e34ebfd1e7973ad25c01b80ddde35b4cd",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/etree/cElementTree.py": {
+    "bytes": 82,
+    "sha256": "d0f57acab07fe4f9c116c3392d85946bac8e78608f409cea70005f16ea019b57",
     "mode": 420
   },
   "Contents/Resources/payloads/legacy/python/lib/python3.7/xml/parsers/__init__.py": {
@@ -4744,6 +5159,11 @@
     "sha256": "b87b57ef9e791db7ea852ba08db3b5f25b32ffec726377bd5db6e3cd2e3837b3",
     "mode": 420
   },
+  "Contents/Resources/payloads/legacy/tools/backup-metadata-probe": {
+    "bytes": 299920,
+    "sha256": "ef8556831f12957686364243abc6f2bcc03de588c21bb3703a130d748c27b3b8",
+    "mode": 493
+  },
   "Contents/Resources/payloads/legacy/tools/mkntfs": {
     "bytes": 370424,
     "sha256": "dca73519e40a6332e0a7b907ba8fa70d6be1355f25b7bfba31ac98a6e594b5dc",
@@ -4754,6 +5174,11 @@
     "sha256": "f816da3853a409da746ee874c8e8589bee2400afb76c69a482407d8dfea8a084",
     "mode": 493
   },
+  "Contents/Resources/payloads/legacy/tools/ntfsclone": {
+    "bytes": 353288,
+    "sha256": "453598bd000216a32465210bf0e0be92b8edeb40fa1580abd9f38bcf424200b9",
+    "mode": 493
+  },
   "Contents/Resources/payloads/legacy/tools/ntfscp": {
     "bytes": 327128,
     "sha256": "e77678b99597da78584d3f280e435133198671d520f4618b0d5caca2944e151c",
@@ -4762,6 +5187,11 @@
   "Contents/Resources/payloads/legacy/tools/ntfsls": {
     "bytes": 318464,
     "sha256": "3adfaaf7aea8341a78e8bb06fbb08f946d248ee144ffa2e8766c749a52490d25",
+    "mode": 493
+  },
+  "Contents/Resources/payloads/legacy/tools/ntfsresize": {
+    "bytes": 368264,
+    "sha256": "9a9ebee227b9c261c303fd54ca81ef41f9cd1a226349e58f8f35b848eadabbfe",
     "mode": 493
   },
   "Contents/Resources/payloads/legacy/tools/wimlib-imagex": {
@@ -4826,6 +5256,11 @@
     "bytes": 2100,
     "sha256": "8b7da74dd6083273be3969862ffb81b9f4db26926becc7ae6aee3f6562962044",
     "mode": 493
+  },
+  "Contents/Resources/payloads/modern/python/include/python3.11/Python.h": {
+    "bytes": 2854,
+    "sha256": "0996602e0860a811d9a526c410e5acf04c1ec91c0a27bc5edef3ea077ad46a27",
+    "mode": 420
   },
   "Contents/Resources/payloads/modern/python/include/python3.11/abstract.h": {
     "bytes": 31404,
@@ -5682,11 +6117,6 @@
     "sha256": "8c8e9d1d279216f1c08f0aedac5de49a9b8852a3f838f21e298300e969474ef4",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/include/python3.11/Python.h": {
-    "bytes": 2854,
-    "sha256": "0996602e0860a811d9a526c410e5acf04c1ec91c0a27bc5edef3ea077ad46a27",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/include/python3.11/pythonrun.h": {
     "bytes": 1189,
     "sha256": "83a9561503b277834bc57fa1955d552b1f4da3b892e44a47ca3ecbc461277d0d",
@@ -5847,6 +6277,11 @@
   },
   "Contents/Resources/payloads/modern/python/lib/pkgconfig/python3.pc": {
     "link": "python-3.11.pc"
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/LICENSE.txt": {
+    "bytes": 13936,
+    "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+    "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/__future__.py": {
     "bytes": 5218,
@@ -6163,6 +6598,11 @@
     "sha256": "76ab3252924e71e859d7d90e8d3db13b6554975cfcac0fdadced4de7f8779330",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/cProfile.py": {
+    "bytes": 6346,
+    "sha256": "0a97cf92d0e3efd2e08c2f9b0f0fb8e52a2b26978550804d8e59435201f3fa84",
+    "mode": 493
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/calendar.py": {
     "bytes": 24731,
     "sha256": "15903bacf6416869a58abff7d1680e16f26e9bd0186ad0562a0668d05f076fd9",
@@ -6248,39 +6688,9 @@
     "sha256": "b06f8899881193efc72cfc3ebf2836dce4e668b3856ad35f4016616d643a519e",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/config.c": {
-    "bytes": 8233,
-    "sha256": "87e28d90e9b248ee962a1bee92d914393836ef6555c6c40239f1d4f05b882eef",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/config.c.in": {
-    "bytes": 1752,
-    "sha256": "5c76ef60a799f420b09b047dc1087728e5ed08ba82f6c7664c4d4f1d1d715b21",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/install-sh": {
-    "bytes": 15358,
-    "sha256": "3d7488bebd0cfc9b5c440c55d5b44f1c6e2e3d3e19894821bae4a27f9307f1d2",
-    "mode": 493
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/Makefile": {
     "bytes": 158643,
     "sha256": "673c0960cfb538ece2fcec8df09d504f6edc8a8ec6c810452280d92eb37f7d6b",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/makesetup": {
-    "bytes": 9262,
-    "sha256": "d3c80c4510c229b4c6a7191d57d1652b3cb827967851a4bb65a26ebc0523b99b",
-    "mode": 493
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/python-config.py": {
-    "bytes": 2100,
-    "sha256": "8b7da74dd6083273be3969862ffb81b9f4db26926becc7ae6aee3f6562962044",
-    "mode": 493
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/python.o": {
-    "bytes": 4560,
-    "sha256": "3318ffc6c6f2835c6a8db89e43e5277d61d1cf2ad4e827977ffd58513db98e41",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/Setup": {
@@ -6301,6 +6711,36 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/Setup.stdlib": {
     "bytes": 5449,
     "sha256": "2b7c048117ff7548e4c304af26297975598487847ec29e4947b32e885830ad42",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/config.c": {
+    "bytes": 8233,
+    "sha256": "87e28d90e9b248ee962a1bee92d914393836ef6555c6c40239f1d4f05b882eef",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/config.c.in": {
+    "bytes": 1752,
+    "sha256": "5c76ef60a799f420b09b047dc1087728e5ed08ba82f6c7664c4d4f1d1d715b21",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/install-sh": {
+    "bytes": 15358,
+    "sha256": "3d7488bebd0cfc9b5c440c55d5b44f1c6e2e3d3e19894821bae4a27f9307f1d2",
+    "mode": 493
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/makesetup": {
+    "bytes": 9262,
+    "sha256": "d3c80c4510c229b4c6a7191d57d1652b3cb827967851a4bb65a26ebc0523b99b",
+    "mode": 493
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/python-config.py": {
+    "bytes": 2100,
+    "sha256": "8b7da74dd6083273be3969862ffb81b9f4db26926becc7ae6aee3f6562962044",
+    "mode": 493
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/config-3.11-darwin/python.o": {
+    "bytes": 4560,
+    "sha256": "3318ffc6c6f2835c6a8db89e43e5277d61d1cf2ad4e827977ffd58513db98e41",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/configparser.py": {
@@ -6328,11 +6768,6 @@
     "sha256": "5499e1be7ba52d4715a911ae65ef2d703db9379d21fff2a07fad8877c318e070",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/cProfile.py": {
-    "bytes": 6346,
-    "sha256": "0a97cf92d0e3efd2e08c2f9b0f0fb8e52a2b26978550804d8e59435201f3fa84",
-    "mode": 493
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/crypt.py": {
     "bytes": 3913,
     "sha256": "208df2ff33c19056345dcf5474abef1a58da799e2f3bab09d1d28b77ad3c623d",
@@ -6356,6 +6791,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/ctypes/_endian.py": {
     "bytes": 2536,
     "sha256": "38dc998ee2d180a64d4fe561b79287b19850df405f48fe72dede7a65d71de844",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/ctypes/macholib/README.ctypes": {
+    "bytes": 296,
+    "sha256": "dc29d1da83b6a0a09a41647e4111eee878ed079c2d6b54a98fd6d8b88dd581f2",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/ctypes/macholib/__init__.py": {
@@ -6386,11 +6826,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/ctypes/macholib/framework.py": {
     "bytes": 1105,
     "sha256": "302439e40d9cbdd61b8b7cffd0b7e1278a6811b635044ee366a36e0d991f62da",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/ctypes/macholib/README.ctypes": {
-    "bytes": 296,
-    "sha256": "dc29d1da83b6a0a09a41647e4111eee878ed079c2d6b54a98fd6d8b88dd581f2",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/ctypes/util.py": {
@@ -6471,6 +6906,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/dis.py": {
     "bytes": 28906,
     "sha256": "2e8d70c8cd2f4ce1fab5574f4a5ee81f5572d929da00067d14e6f6582356d240",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/distutils/README": {
+    "bytes": 244,
+    "sha256": "8d19071886238eda514e96a7ab1c17d6d8c26ae628c4ddbc8ecc5329fd9d8000",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/distutils/__init__.py": {
@@ -6686,11 +7126,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/distutils/msvccompiler.py": {
     "bytes": 23527,
     "sha256": "4dae9b283df0b4606089d2e442c1f12932a106665701a69fbab64c1ef3181513",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/distutils/README": {
-    "bytes": 244,
-    "sha256": "8d19071886238eda514e96a7ab1c17d6d8c26ae628c4ddbc8ecc5329fd9d8000",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/distutils/spawn.py": {
@@ -7658,6 +8093,116 @@
     "sha256": "44ff36aff5367692b887b5943280750af95beb227fe0ed47aebc4d269e13a916",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/CREDITS.txt": {
+    "bytes": 2152,
+    "sha256": "33e6a36056667d40e26f195c14371567470f53324c3fec43aec29e09d7d2a60b",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/ChangeLog": {
+    "bytes": 56360,
+    "sha256": "b7f42699e5e5a7c82ebdf2a2962946b7228c933ece0ea7c0d7789f21a7dd7e64",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/HISTORY.txt": {
+    "bytes": 10312,
+    "sha256": "531067a78ad392f25631aba1d885f40786cf5f47854577162c9f90ff1f33164c",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/README.txt": {
+    "bytes": 443,
+    "sha256": "60399d6129e3e486ce6b437bbf614ff4838bd4e7f42d461c3e5467cf3b4fa272",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/folder.gif": {
+    "bytes": 120,
+    "sha256": "7c98d566a13fd599d1c11a375f387fef69b6c595c4f18c5d88c188a860be0e55",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle.ico": {
+    "bytes": 57746,
+    "sha256": "7f13eeb5dca39d05e24b9eb069c6dcb2748633822d67288a8bf8b7e21cdddf55",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_16.gif": {
+    "bytes": 634,
+    "sha256": "fe3af292b38660a8a58b1a8b4fa4240aa190602e7e9a700ea0536b3181fc968e",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_16.png": {
+    "bytes": 1031,
+    "sha256": "78fb3fb0ec11f61bc6cf0947f3c3923aa18e1c6513684058ed0fa01ac858143e",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_256.png": {
+    "bytes": 39205,
+    "sha256": "3f517467d12e0e3ecf20f9bd68ce4bd18a2b8088f32308fd978fd80e87d3628b",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_32.gif": {
+    "bytes": 1019,
+    "sha256": "fe70991cfccd1267922e94d91e02e9a58d2d29fd3382a2f4975280b9023cb7b9",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_32.png": {
+    "bytes": 2036,
+    "sha256": "797cd05f1964d57c4c6c248ac7f7ea6a38019ada32a9ab7e6c28d060f87b03de",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_48.gif": {
+    "bytes": 1388,
+    "sha256": "37484901eb40eefa846308e1da3ff6f240ea98f769a2afc3cf4fdba00327ecbe",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_48.png": {
+    "bytes": 3977,
+    "sha256": "a09f433197c8870b12bb7859cc4c3fe2068908cb1ddbd4880ab0f6fee91b6c23",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/minusnode.gif": {
+    "bytes": 75,
+    "sha256": "efa5aa1d1e3439ab85425bd2aa3a25b9e6c21309e672690cfb32219e1eb7a7f3",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/openfolder.gif": {
+    "bytes": 125,
+    "sha256": "9a59e2abf1840156e9db8f85a38822fd56ab79a139eb95ec86f1fba1bb87326b",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/plusnode.gif": {
+    "bytes": 78,
+    "sha256": "6ace9e90a2bcb16d06c4d78837137f2c14bc26b3bd9f24b7b6afeadb689bdafb",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/python.gif": {
+    "bytes": 380,
+    "sha256": "158c31382f8e5b41fded0c2aa9cc66a382928b003cdd8b5b0518836ad9c89377",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/tk.gif": {
+    "bytes": 72,
+    "sha256": "7f16cb2e322891dbd9101302c09ffda0c2a3a72d053bb8c0927d507414c59cad",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/NEWS2x.txt": {
+    "bytes": 27172,
+    "sha256": "c89a3b513501ebace8e428aea68dce39d0af9f29196e08fc9ea49c99605e79e7",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/News3.txt": {
+    "bytes": 55422,
+    "sha256": "ac8bf0e6cc500f17b0a3c784d1ea5939c19a9d5811435d05a90b392504b60dc5",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/README.txt": {
+    "bytes": 11653,
+    "sha256": "4f2dc8ffdbfc7837b60edc32ac2f593a220f4abf0ea00cc477382ad8ecf8eb3d",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/TODO.txt": {
+    "bytes": 8478,
+    "sha256": "f88e0fb30fa0ab5d0dc3030442ed92713f34170336c4dd2623723dc34829df89",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/__init__.py": {
     "bytes": 396,
     "sha256": "3f8058df4fec56eb20ff67ff84c86fd3d9697e2384c5a290ed696f6d3187aa45",
@@ -7696,11 +8241,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/calltip_w.py": {
     "bytes": 7083,
     "sha256": "077e9d0d95946296077d5c95f343e242a7d250a6efece4afc58759b5e984e6c3",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/ChangeLog": {
-    "bytes": 56360,
-    "sha256": "b7f42699e5e5a7c82ebdf2a2962946b7228c933ece0ea7c0d7789f21a7dd7e64",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/codecontext.py": {
@@ -7746,11 +8286,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/configdialog.py": {
     "bytes": 105314,
     "sha256": "68a6a9470476408acdce5e3a8816196e025f8cccd0845bf1da579db19a5bba8c",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/CREDITS.txt": {
-    "bytes": 2152,
-    "sha256": "33e6a36056667d40e26f195c14371567470f53324c3fec43aec29e09d7d2a60b",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/debugger.py": {
@@ -7828,89 +8363,9 @@
     "sha256": "f91f1568d083bdbc856d38ef48493bcb138c6a492d523385b300a5bac30133e6",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/HISTORY.txt": {
-    "bytes": 10312,
-    "sha256": "531067a78ad392f25631aba1d885f40786cf5f47854577162c9f90ff1f33164c",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/hyperparser.py": {
     "bytes": 12889,
     "sha256": "18563d2b4c248aed70b7f29fd903fd51d1b5aceb3dc93c23f9a54141eed7a9b0",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/folder.gif": {
-    "bytes": 120,
-    "sha256": "7c98d566a13fd599d1c11a375f387fef69b6c595c4f18c5d88c188a860be0e55",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle.ico": {
-    "bytes": 57746,
-    "sha256": "7f13eeb5dca39d05e24b9eb069c6dcb2748633822d67288a8bf8b7e21cdddf55",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_16.gif": {
-    "bytes": 634,
-    "sha256": "fe3af292b38660a8a58b1a8b4fa4240aa190602e7e9a700ea0536b3181fc968e",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_16.png": {
-    "bytes": 1031,
-    "sha256": "78fb3fb0ec11f61bc6cf0947f3c3923aa18e1c6513684058ed0fa01ac858143e",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_256.png": {
-    "bytes": 39205,
-    "sha256": "3f517467d12e0e3ecf20f9bd68ce4bd18a2b8088f32308fd978fd80e87d3628b",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_32.gif": {
-    "bytes": 1019,
-    "sha256": "fe70991cfccd1267922e94d91e02e9a58d2d29fd3382a2f4975280b9023cb7b9",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_32.png": {
-    "bytes": 2036,
-    "sha256": "797cd05f1964d57c4c6c248ac7f7ea6a38019ada32a9ab7e6c28d060f87b03de",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_48.gif": {
-    "bytes": 1388,
-    "sha256": "37484901eb40eefa846308e1da3ff6f240ea98f769a2afc3cf4fdba00327ecbe",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/idle_48.png": {
-    "bytes": 3977,
-    "sha256": "a09f433197c8870b12bb7859cc4c3fe2068908cb1ddbd4880ab0f6fee91b6c23",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/minusnode.gif": {
-    "bytes": 75,
-    "sha256": "efa5aa1d1e3439ab85425bd2aa3a25b9e6c21309e672690cfb32219e1eb7a7f3",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/openfolder.gif": {
-    "bytes": 125,
-    "sha256": "9a59e2abf1840156e9db8f85a38822fd56ab79a139eb95ec86f1fba1bb87326b",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/plusnode.gif": {
-    "bytes": 78,
-    "sha256": "6ace9e90a2bcb16d06c4d78837137f2c14bc26b3bd9f24b7b6afeadb689bdafb",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/python.gif": {
-    "bytes": 380,
-    "sha256": "158c31382f8e5b41fded0c2aa9cc66a382928b003cdd8b5b0518836ad9c89377",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/README.txt": {
-    "bytes": 443,
-    "sha256": "60399d6129e3e486ce6b437bbf614ff4838bd4e7f42d461c3e5467cf3b4fa272",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/Icons/tk.gif": {
-    "bytes": 72,
-    "sha256": "7f16cb2e322891dbd9101302c09ffda0c2a3a72d053bb8c0927d507414c59cad",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/idle.bat": {
@@ -7948,16 +8403,6 @@
     "sha256": "efb7d9bddcae17fab2108cb714c240c82d1368087b6d2b91e02ec224ddebce12",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/NEWS2x.txt": {
-    "bytes": 27172,
-    "sha256": "c89a3b513501ebace8e428aea68dce39d0af9f29196e08fc9ea49c99605e79e7",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/News3.txt": {
-    "bytes": 55422,
-    "sha256": "ac8bf0e6cc500f17b0a3c784d1ea5939c19a9d5811435d05a90b392504b60dc5",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/outwin.py": {
     "bytes": 5715,
     "sha256": "e1946c1a25a020a48843b2ed528bcdd6df29b2af117472b7e2627997b1339b84",
@@ -7991,11 +8436,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/query.py": {
     "bytes": 15067,
     "sha256": "faea5edd6b8693e6a32107054ad0de3be4d28e6aacb7792f86cbbe146131373b",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/README.txt": {
-    "bytes": 11653,
-    "sha256": "4f2dc8ffdbfc7837b60edc32ac2f593a220f4abf0ea00cc477382ad8ecf8eb3d",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/redirector.py": {
@@ -8066,11 +8506,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/textview.py": {
     "bytes": 6808,
     "sha256": "eace58159e9636bb1456885c21f5ed474e203090139e5dd3457ac72ad5552006",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/TODO.txt": {
-    "bytes": 8478,
-    "sha256": "f88e0fb30fa0ab5d0dc3030442ed92713f34170336c4dd2623723dc34829df89",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/idlelib/tooltip.py": {
@@ -8307,6 +8742,26 @@
     "bytes": 61968,
     "sha256": "b683cfb95ce1bc4bf042a72292c9afa6f9f0a090873efa03b83d3e3bc6cce94e",
     "mode": 493
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/Grammar.txt": {
+    "bytes": 8696,
+    "sha256": "508e62e787dd756eb0a4eb1b8d128320ca02cd246ab14cc8ce0a476dc88cc5b6",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/Grammar3.11.17.final.0.pickle": {
+    "bytes": 15313,
+    "sha256": "97c8ed74d091fcfd23498029bb819c29d096c3dcb1326edee5dfb0591ade2e4b",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/PatternGrammar.txt": {
+    "bytes": 793,
+    "sha256": "ee5ba5db3b6722a0e2fbe2560ebc1c883e72328ef9c3b4da1c7c5d1cc649bce3",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/PatternGrammar3.11.17.final.0.pickle": {
+    "bytes": 1225,
+    "sha256": "36ee934395b9209737b13893ddaff05fad8e239c2fdfac29d401d3fceeb30768",
+    "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/__init__.py": {
     "bytes": 156,
@@ -8603,16 +9058,6 @@
     "sha256": "55ce115556c7513dd967364dc6a40c39210c874e8168cf090ddd6dc606df34cb",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/Grammar.txt": {
-    "bytes": 8696,
-    "sha256": "508e62e787dd756eb0a4eb1b8d128320ca02cd246ab14cc8ce0a476dc88cc5b6",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/Grammar3.11.17.final.0.pickle": {
-    "bytes": 15313,
-    "sha256": "97c8ed74d091fcfd23498029bb819c29d096c3dcb1326edee5dfb0591ade2e4b",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/main.py": {
     "bytes": 11854,
     "sha256": "8f5dfa77b8c8b375daba8bb88aaa195395674311e2513b29575a70821e3aa0b8",
@@ -8621,16 +9066,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/patcomp.py": {
     "bytes": 7054,
     "sha256": "a033a3eb91a39f96747d4300aa3394965e529c71896cd6503dd27e6b685eede5",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/PatternGrammar.txt": {
-    "bytes": 793,
-    "sha256": "ee5ba5db3b6722a0e2fbe2560ebc1c883e72328ef9c3b4da1c7c5d1cc649bce3",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/PatternGrammar3.11.17.final.0.pickle": {
-    "bytes": 1225,
-    "sha256": "36ee934395b9209737b13893ddaff05fad8e239c2fdfac29d401d3fceeb30768",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/pgen2/__init__.py": {
@@ -8691,11 +9126,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/lib2to3/refactor.py": {
     "bytes": 27507,
     "sha256": "6e9a4262fb65cd4d277f009df73ffa5748f5fe3b963d3c5395c160d5f88b089b",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/LICENSE.txt": {
-    "bytes": 13936,
-    "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/linecache.py": {
@@ -9096,6 +9526,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/signal.py": {
     "bytes": 2495,
     "sha256": "0363c964c90ac0b3e515de5749205e6e6454051a1211058375d84d91eab6071a",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/README.txt": {
+    "bytes": 119,
+    "sha256": "cba8fece8f62c36306ba27a128f124a257710e41fc619301ee97be93586917cb",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/_distutils_hack/__init__.py": {
@@ -9898,6 +10333,11 @@
     "sha256": "91d3ef01cc5f92703c07fe20ea13c38c1ec2e2eccbfdc57955d7b63a3d88a739",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/README.rst": {
+    "bytes": 9222,
+    "sha256": "b7b2229e36a2bb0521f35d9799502940725bf294f0df753c03d511ab2e86945e",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/__init__.py": {
     "bytes": 4907,
     "sha256": "5b3bac3d319620c790416495274876ada7c69154daf56289d874fedbe12866b5",
@@ -9906,6 +10346,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/bom.cdx.json": {
     "bytes": 5319,
     "sha256": "797e200aa7fff16fad9fb2deeaece50a2b2bec623eb6c3759176eee6cee19328",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/cachecontrol/LICENSE.txt": {
+    "bytes": 558,
+    "sha256": "86eeee87be2a43f3ff1f56496f451f69243926f025fedbb033666c304c4c161b",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/cachecontrol/__init__.py": {
@@ -9958,11 +10403,6 @@
     "sha256": "82a31753cc34810b8442249dbb7620fb4bddf645bb9eb58a6cb71aef9ae17861",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/cachecontrol/LICENSE.txt": {
-    "bytes": 558,
-    "sha256": "86eeee87be2a43f3ff1f56496f451f69243926f025fedbb033666c304c4c161b",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/cachecontrol/py.typed": {
     "bytes": 0,
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -9976,6 +10416,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/cachecontrol/wrapper.py": {
     "bytes": 1417,
     "sha256": "86c19cee0f101904d3fb87fcb60cf700ce6ac12720e853b405274b491744be95",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/certifi/LICENSE": {
+    "bytes": 989,
+    "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/certifi/__init__.py": {
@@ -9998,14 +10443,14 @@
     "sha256": "82efc40952359b746ad32b69b0d13ad6181019c29a380b7d46cf46f0ab1308e2",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/certifi/LICENSE": {
-    "bytes": 989,
-    "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/certifi/py.typed": {
     "bytes": 0,
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/distlib/LICENSE.txt": {
+    "bytes": 14531,
+    "sha256": "808e10c8a6ab8deb149ff9b3fb19f447a808094606d712a9ca57fead3552599d",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/distlib/__init__.py": {
@@ -10016,11 +10461,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/distlib/compat.py": {
     "bytes": 40605,
     "sha256": "1d3ce1398f7c73f7f231513bc6d56e659f80564378f9119eb3e8569afbb0aae9",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/distlib/LICENSE.txt": {
-    "bytes": 14531,
-    "sha256": "808e10c8a6ab8deb149ff9b3fb19f447a808094606d712a9ca57fead3552599d",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/distlib/resources.py": {
@@ -10068,6 +10508,11 @@
     "sha256": "55b21889fd3d28799b834fba3d29482e7aa1b0519864b790e3914af7cdda666b",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/distro/LICENSE": {
+    "bytes": 11325,
+    "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/distro/__init__.py": {
     "bytes": 981,
     "sha256": "d9f1e317e49f80fbe3c8d67588787fc23a96751fd8a393831f0642d232c13e17",
@@ -10083,14 +10528,14 @@
     "sha256": "5ea6de7da7008434f8cebfedae76c0d79798f2f74ae064e08609af506ac433fe",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/distro/LICENSE": {
-    "bytes": 11325,
-    "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/distro/py.typed": {
     "bytes": 0,
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/idna/LICENSE.md": {
+    "bytes": 1541,
+    "sha256": "1a9a4f0e3d479a27240ddd59a9137a66ab4a0f9dfdc8ca6188cc0bfd85187f04",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/idna/__init__.py": {
@@ -10133,11 +10578,6 @@
     "sha256": "838f6c70b4a4a89b4084b98e3836bb8551eb8928e66fad2d893b04a287097412",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/idna/LICENSE.md": {
-    "bytes": 1541,
-    "sha256": "1a9a4f0e3d479a27240ddd59a9137a66ab4a0f9dfdc8ca6188cc0bfd85187f04",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/idna/package_data.py": {
     "bytes": 21,
     "sha256": "4de23de04a8014015a5df049c2c38f50c2e7dbdebdba2acf6be0da79a71e0325",
@@ -10153,14 +10593,14 @@
     "sha256": "8ee8cdcf942a58c7097fe5d82efe17d6306f6f9165234b7af9ed6620bb206cf9",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/msgpack/__init__.py": {
-    "bytes": 1109,
-    "sha256": "440f2072a2b5ed8a64c419cdc172556b5a1ad8bca058381f1759c0d4d3f0de6a",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/msgpack/COPYING": {
     "bytes": 614,
     "sha256": "492dedba85da5872f78e6091bcd1fea474d660d35acb4dee964b8aab3f007427",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/msgpack/__init__.py": {
+    "bytes": 1109,
+    "sha256": "440f2072a2b5ed8a64c419cdc172556b5a1ad8bca058381f1759c0d4d3f0de6a",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/msgpack/exceptions.py": {
@@ -10176,6 +10616,21 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/msgpack/fallback.py": {
     "bytes": 32390,
     "sha256": "d20d4fce9d2fb66044989e70f45decffe24c55444ff114b81b571ce5345a02c2",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE": {
+    "bytes": 197,
+    "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE.APACHE": {
+    "bytes": 10174,
+    "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE.BSD": {
+    "bytes": 1344,
+    "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/packaging/__init__.py": {
@@ -10226,21 +10681,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/packaging/errors.py": {
     "bytes": 2680,
     "sha256": "ea17c461701ff2ffc817ae7e94569d24e30889e04fdb120ab721178c6d67188b",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE": {
-    "bytes": 197,
-    "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE.APACHE": {
-    "bytes": 10174,
-    "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/packaging/LICENSE.BSD": {
-    "bytes": 1344,
-    "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/packaging/licenses/__init__.py": {
@@ -10298,14 +10738,19 @@
     "sha256": "31cbbb4dfe98d62d20438157bf8b7483c71b2f98e8004b218e0229cffdaf2122",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pkg_resources/LICENSE": {
+    "bytes": 1023,
+    "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pkg_resources/__init__.py": {
     "bytes": 124451,
     "sha256": "bdb4c9d3faee5201b1423944aacaee16688d3d5ca1dadf6afb3c930d3d39df12",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pkg_resources/LICENSE": {
-    "bytes": 1023,
-    "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/platformdirs/LICENSE": {
+    "bytes": 1089,
+    "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/platformdirs/__init__.py": {
@@ -10333,11 +10778,6 @@
     "sha256": "11a22c1605c6bbc7034dbe3558cde1b1efd2ac8a0e521b7cfd30a8e5774e3923",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/platformdirs/LICENSE": {
-    "bytes": 1089,
-    "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/platformdirs/macos.py": {
     "bytes": 9538,
     "sha256": "3d6b9d78364063d52ec0b3ffe6b3777b149116d61d639e368438636a1e1d4960",
@@ -10361,6 +10801,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/platformdirs/windows.py": {
     "bytes": 15798,
     "sha256": "60e75218d85da719bfc9d66aeee1bbe22f665f6fd659b70c480e1fa1b5f02f43",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pygments/LICENSE": {
+    "bytes": 1331,
+    "sha256": "a9d66f1d526df02e29dce73436d34e56e8632f46c275bbdffc70569e882f9f17",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pygments/__init__.py": {
@@ -10423,11 +10868,6 @@
     "sha256": "4eac9f40e3e10983f1df96a940beb90808fd93ee01c6eccbabc3037dd9b68ef1",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pygments/LICENSE": {
-    "bytes": 1331,
-    "sha256": "a9d66f1d526df02e29dce73436d34e56e8632f46c275bbdffc70569e882f9f17",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pygments/modeline.py": {
     "bytes": 1008,
     "sha256": "99ef20e6bc9289dbcfb4c04eac3cb63b5b0ca99774da5047318e4a0d979f530b",
@@ -10483,6 +10923,11 @@
     "sha256": "ce4f77e6d252a70480f73c4d995d53ba17043f431f6e85e24594864272cf12a9",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/LICENSE": {
+    "bytes": 1081,
+    "sha256": "1b22b049b5267d6dfc23a67bf4a84d8ec04b9fdfb1a51d360e42b4342c8b4154",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/__init__.py": {
     "bytes": 691,
     "sha256": "70f07f6bd2d7cf9c6fb116d7d68daac807632dab5925d43f2dce4c70d5fe5fb6",
@@ -10503,19 +10948,14 @@
     "sha256": "a9c5cc866c7ffcc209ab5d201875b7980e1397c772f18cc731c7309cda0a970d",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/LICENSE": {
-    "bytes": 1081,
-    "sha256": "1b22b049b5267d6dfc23a67bf4a84d8ec04b9fdfb1a51d360e42b4342c8b4154",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/py.typed": {
     "bytes": 0,
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/README.rst": {
-    "bytes": 9222,
-    "sha256": "b7b2229e36a2bb0521f35d9799502940725bf294f0df753c03d511ab2e86945e",
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/requests/LICENSE": {
+    "bytes": 10142,
+    "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/requests/__init__.py": {
@@ -10583,11 +11023,6 @@
     "sha256": "ebd8a02475d31a0e473a8f553e9501ff43645b9563885ad52844e7a63f0d76ab",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/requests/LICENSE": {
-    "bytes": 10142,
-    "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/requests/models.py": {
     "bytes": 41848,
     "sha256": "f7d77b585e29477e4d1e8f63adb1a2068719dcb08cb25a155340c0710e3dc774",
@@ -10623,14 +11058,14 @@
     "sha256": "bbb3080b2cd04ef7d46b76ac83d9c1bdcae785220f11ceaa8494b18861b04ce9",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/resolvelib/__init__.py": {
-    "bytes": 541,
-    "sha256": "ca85fe778493bf01860a24111397090bd0ad7abebd4a0560a82971382bd23fb3",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/resolvelib/LICENSE": {
     "bytes": 751,
     "sha256": "f388fd38cad13112c1dc0f669bbe80e7f84541edbafb72f3030d2ca7642c3c9d",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/resolvelib/__init__.py": {
+    "bytes": 541,
+    "sha256": "ca85fe778493bf01860a24111397090bd0ad7abebd4a0560a82971382bd23fb3",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/resolvelib/providers.py": {
@@ -10676,6 +11111,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/resolvelib/structs.py": {
     "bytes": 6420,
     "sha256": "a6ef84262476201213af649078d3d16b4ad7863952b5f98efc6120021af7d34e",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/rich/LICENSE": {
+    "bytes": 1056,
+    "sha256": "deed7c17a4318158190a3ea239cc879a5a50271cebb98ae7025f48fbe58dca15",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/rich/__init__.py": {
@@ -10903,11 +11343,6 @@
     "sha256": "6a3912140b4456ff44153705b3ec38b997dfb7b9c45e13732fb655760ad3e6b2",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/rich/LICENSE": {
-    "bytes": 1056,
-    "sha256": "deed7c17a4318158190a3ea239cc879a5a50271cebb98ae7025f48fbe58dca15",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/rich/live.py": {
     "bytes": 15180,
     "sha256": "b45dee90000967f37665b19c96a67e8b02e822867c7f41c7533efd8c0c89aa3f",
@@ -11073,6 +11508,11 @@
     "sha256": "c969d0eab02f446277a991aa06bc52d925b64ca05336b3f449d63c4313853eec",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/tomli/LICENSE": {
+    "bytes": 1072,
+    "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/tomli/__init__.py": {
     "bytes": 314,
     "sha256": "9eb042d7c0db5d14c2168ec4946e410de5a91c9cce86892f5e4db5e4633c6762",
@@ -11093,14 +11533,14 @@
     "sha256": "f864c6d9552a929c7032ace654ee05ef26ca75d21b027b801d77e65907138b74",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/tomli/LICENSE": {
-    "bytes": 1072,
-    "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/tomli/py.typed": {
     "bytes": 26,
     "sha256": "f0f8f2675695a10a5156fb7bd66bafbaae6a13e8d315990af862c792175e6e67",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/tomli_w/LICENSE": {
+    "bytes": 1072,
+    "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/tomli_w/__init__.py": {
@@ -11113,14 +11553,14 @@
     "sha256": "76c89f152db161fd62efa9a64727f3f72d76e710bb67f1d0f38e592a126c617b",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/tomli_w/LICENSE": {
-    "bytes": 1072,
-    "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/tomli_w/py.typed": {
     "bytes": 26,
     "sha256": "f0f8f2675695a10a5156fb7bd66bafbaae6a13e8d315990af862c792175e6e67",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/truststore/LICENSE": {
+    "bytes": 1086,
+    "sha256": "33be7b7e8fa4fd19b1760e1a8ed8a668bdab852c91b692dd41424bcb725a9fca",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/truststore/__init__.py": {
@@ -11153,14 +11593,14 @@
     "sha256": "ac01f22980fc33bb7e6d77c6f1580e55add3a5f85585bb78ad94253b8e58b8ff",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/truststore/LICENSE": {
-    "bytes": 1086,
-    "sha256": "33be7b7e8fa4fd19b1760e1a8ed8a668bdab852c91b692dd41424bcb725a9fca",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/truststore/py.typed": {
     "bytes": 0,
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/urllib3/LICENSE.txt": {
+    "bytes": 1093,
+    "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/urllib3/__init__.py": {
@@ -11273,11 +11713,6 @@
     "sha256": "9e7024a9b8406a43a217be6bcfb5b4b9d677f047a1fee0fc7e357be0def71442",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/urllib3/LICENSE.txt": {
-    "bytes": 1093,
-    "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip/_vendor/urllib3/poolmanager.py": {
     "bytes": 23929,
     "sha256": "82b22b1131b5ae01d805a41abb5c8de31c5f2bc53d08a551626c015d6fe4752a",
@@ -11368,6 +11803,31 @@
     "sha256": "10156fbcf4539ff788a73e5ee50ced48276b317ed0c1ded53fddd14a82256762",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/INSTALLER": {
+    "bytes": 4,
+    "sha256": "ceebae7b8927a3227e5303cf5e0f1f7b34bb542ad7250ac03fbcde36ec2f1508",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/METADATA": {
+    "bytes": 4617,
+    "sha256": "3a561005822841f2c45f442f6c7a7505172c8c376c9fe274d876c8ac912968cb",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/RECORD": {
+    "bytes": 69068,
+    "sha256": "0e198b2a9027e6835adf7d056e524426a58cdcdcfde13fb0adedab978febd0a7",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/REQUESTED": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/WHEEL": {
+    "bytes": 82,
+    "sha256": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/direct_url.json": {
     "bytes": 261,
     "sha256": "bb41bc72fe2374598b3c6f75aa498e3060bb0b5b35bb9fbef3e72462df0605f2",
@@ -11376,11 +11836,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/entry_points.txt": {
     "bytes": 84,
     "sha256": "5617fcb34218817dfb9ad778bc62fbdc13dcc5d2a7a9e0853f3079f9ddf4c7ca",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/INSTALLER": {
-    "bytes": 4,
-    "sha256": "ceebae7b8927a3227e5303cf5e0f1f7b34bb542ad7250ac03fbcde36ec2f1508",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/licenses/AUTHORS.txt": {
@@ -11491,31 +11946,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/urllib3/LICENSE.txt": {
     "bytes": 1093,
     "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/METADATA": {
-    "bytes": 4617,
-    "sha256": "3a561005822841f2c45f442f6c7a7505172c8c376c9fe274d876c8ac912968cb",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/RECORD": {
-    "bytes": 69068,
-    "sha256": "0e198b2a9027e6835adf7d056e524426a58cdcdcfde13fb0adedab978febd0a7",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/REQUESTED": {
-    "bytes": 0,
-    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/pip-26.2.1.dist-info/WHEEL": {
-    "bytes": 82,
-    "sha256": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/README.txt": {
-    "bytes": 119,
-    "sha256": "cba8fece8f62c36306ba27a128f124a257710e41fc619301ee97be93586917cb",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/__init__.py": {
@@ -11693,16 +12123,6 @@
     "sha256": "bd82992b952a6d37ae7b67bca0643c48defcd504dffc73e102a80105b2453dcb",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_distutils/compilers/_modified.py": {
-    "bytes": 1891,
-    "sha256": "59e3fa1f09ef3734cdde0685aebecff4a8c0117280784d624db7a20276796640",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_distutils/compilers/_util.py": {
-    "bytes": 2393,
-    "sha256": "ea9b0cc806ddd9d7fca59aef9e89f7324cd6d9ce8bffec5e30e5cd53f3d3cb7d",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_distutils/compilers/C/base.py": {
     "bytes": 55266,
     "sha256": "e9cd70c9c4a71f6da21b461584902d69aac993e0b5af89c4b9c73e83cdf0e0d3",
@@ -11736,6 +12156,16 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_distutils/compilers/C/zos.py": {
     "bytes": 6781,
     "sha256": "0d4198e03dbaaf6b5ceb5a9f5beffb5d019aad98941c60608518e54dd8f045b7",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_distutils/compilers/_modified.py": {
+    "bytes": 1891,
+    "sha256": "59e3fa1f09ef3734cdde0685aebecff4a8c0117280784d624db7a20276796640",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_distutils/compilers/_util.py": {
+    "bytes": 2393,
+    "sha256": "ea9b0cc806ddd9d7fca59aef9e89f7324cd6d9ce8bffec5e30e5cd53f3d3cb7d",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_distutils/compilers/errors.py": {
@@ -11973,14 +12403,14 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/autocommand-2.2.2.dist-info/top_level.txt": {
-    "bytes": 12,
-    "sha256": "0337e180a292f04740c16513485f2681e5506d7398f64a241c1ea44aac30aaed",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/autocommand-2.2.2.dist-info/WHEEL": {
     "bytes": 92,
     "sha256": "db07a93359e4e034b8785a58ad6d534ea3dca0635f1e184efe2e66e1c3a299ba",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/autocommand-2.2.2.dist-info/top_level.txt": {
+    "bytes": 12,
+    "sha256": "0337e180a292f04740c16513485f2681e5506d7398f64a241c1ea44aac30aaed",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/backports/__init__.py": {
@@ -12033,14 +12463,14 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/top_level.txt": {
-    "bytes": 10,
-    "sha256": "7068da2cc3a8051d452b4029a23b73595995893b49ec91882bf1f05e212cbed5",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/WHEEL": {
     "bytes": 92,
     "sha256": "189eedfe4581172c1b6a02b97a8f48a14c0b5baa3239e4ca990fbd8871553714",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/top_level.txt": {
+    "bytes": 10,
+    "sha256": "7068da2cc3a8051d452b4029a23b73595995893b49ec91882bf1f05e212cbed5",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/importlib_metadata/__init__.py": {
@@ -12118,11 +12548,6 @@
     "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/licenses/LICENSE": {
-    "bytes": 10278,
-    "sha256": "458502e12d97bbf64438606a20044aa85eb05fb0a8a807bb35dbec253fd1fc04",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/METADATA": {
     "bytes": 4670,
     "sha256": "a3e38b9ee4326289d4864704f30e299ee769e2309ce9f4a75f0de1a50ad0a356",
@@ -12138,14 +12563,19 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/top_level.txt": {
-    "bytes": 19,
-    "sha256": "08eddf0fdcb29403625e4acca38a872d5fe6a972f6b02e4914a82dd725804fe0",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/WHEEL": {
     "bytes": 91,
     "sha256": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/licenses/LICENSE": {
+    "bytes": 10278,
+    "sha256": "458502e12d97bbf64438606a20044aa85eb05fb0a8a807bb35dbec253fd1fc04",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/importlib_metadata-8.7.1.dist-info/top_level.txt": {
+    "bytes": 19,
+    "sha256": "08eddf0fdcb29403625e4acca38a872d5fe6a972f6b02e4914a82dd725804fe0",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco/context/__init__.py": {
@@ -12173,6 +12603,11 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco/text/Lorem ipsum.txt": {
+    "bytes": 1335,
+    "sha256": "37fedcffbf73c4eb9f058f47677cb33203a436ff9390e4d38a8e01c9dad28e0b",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco/text/__init__.py": {
     "bytes": 16762,
     "sha256": "95accd617a3c221391d5b16280b0321a28906a8ea3b4edca19687c6d964fc777",
@@ -12181,11 +12616,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco/text/layouts.py": {
     "bytes": 643,
     "sha256": "1d30bc6924cb67bb978a9c8e5daa51302d79f23b9e7232ba455c22b5f999f7fc",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco/text/Lorem ipsum.txt": {
-    "bytes": 1335,
-    "sha256": "37fedcffbf73c4eb9f058f47677cb33203a436ff9390e4d38a8e01c9dad28e0b",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco/text/show-newlines.py": {
@@ -12233,24 +12663,19 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco.text-4.0.0.dist-info/top_level.txt": {
-    "bytes": 7,
-    "sha256": "d099cddcb7d71f82c845f5cbf9014e18227341664edc42f1e11d5dfe5a2ea103",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco.text-4.0.0.dist-info/WHEEL": {
     "bytes": 91,
     "sha256": "5b287efe76740c9628947367d7f84c6b894ceee0de743fd1195c1b9938f222d9",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco.text-4.0.0.dist-info/top_level.txt": {
+    "bytes": 7,
+    "sha256": "d099cddcb7d71f82c845f5cbf9014e18227341664edc42f1e11d5dfe5a2ea103",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_context-6.1.0.dist-info/INSTALLER": {
     "bytes": 2,
     "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_context-6.1.0.dist-info/licenses/LICENSE": {
-    "bytes": 1076,
-    "sha256": "9755a18519666e5f0f4cae3daad3d7012bcae48a600b31237d75e9fe134e6683",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_context-6.1.0.dist-info/METADATA": {
@@ -12268,24 +12693,24 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_context-6.1.0.dist-info/top_level.txt": {
-    "bytes": 7,
-    "sha256": "d099cddcb7d71f82c845f5cbf9014e18227341664edc42f1e11d5dfe5a2ea103",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_context-6.1.0.dist-info/WHEEL": {
     "bytes": 91,
     "sha256": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_context-6.1.0.dist-info/licenses/LICENSE": {
+    "bytes": 1076,
+    "sha256": "9755a18519666e5f0f4cae3daad3d7012bcae48a600b31237d75e9fe134e6683",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_context-6.1.0.dist-info/top_level.txt": {
+    "bytes": 7,
+    "sha256": "d099cddcb7d71f82c845f5cbf9014e18227341664edc42f1e11d5dfe5a2ea103",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/INSTALLER": {
     "bytes": 2,
     "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/licenses/LICENSE": {
-    "bytes": 1076,
-    "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/METADATA": {
@@ -12303,14 +12728,19 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/top_level.txt": {
-    "bytes": 7,
-    "sha256": "d099cddcb7d71f82c845f5cbf9014e18227341664edc42f1e11d5dfe5a2ea103",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/WHEEL": {
     "bytes": 91,
     "sha256": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/licenses/LICENSE": {
+    "bytes": 1076,
+    "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/jaraco_functools-4.4.0.dist-info/top_level.txt": {
+    "bytes": 7,
+    "sha256": "d099cddcb7d71f82c845f5cbf9014e18227341664edc42f1e11d5dfe5a2ea103",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/more_itertools/__init__.py": {
@@ -12353,11 +12783,6 @@
     "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/more_itertools-10.8.0.dist-info/licenses/LICENSE": {
-    "bytes": 1053,
-    "sha256": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/more_itertools-10.8.0.dist-info/METADATA": {
     "bytes": 39413,
     "sha256": "6ab3515145abe58b067f087c867631cf4cf5d653fed81b9642ee12086c3904b8",
@@ -12376,6 +12801,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/more_itertools-10.8.0.dist-info/WHEEL": {
     "bytes": 82,
     "sha256": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/more_itertools-10.8.0.dist-info/licenses/LICENSE": {
+    "bytes": 1053,
+    "sha256": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/packaging/__init__.py": {
@@ -12473,21 +12903,6 @@
     "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE": {
-    "bytes": 197,
-    "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.APACHE": {
-    "bytes": 10174,
-    "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.BSD": {
-    "bytes": 1344,
-    "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/packaging-26.0.dist-info/METADATA": {
     "bytes": 3309,
     "sha256": "3362bb7d6a26da2962ba8daaa4785cd0bacac21aba908a1195cc8f59580a265a",
@@ -12506,6 +12921,21 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/packaging-26.0.dist-info/WHEEL": {
     "bytes": 82,
     "sha256": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE": {
+    "bytes": 197,
+    "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.APACHE": {
+    "bytes": 10174,
+    "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.BSD": {
+    "bytes": 1344,
+    "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/platformdirs/__init__.py": {
@@ -12558,11 +12988,6 @@
     "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/platformdirs-4.4.0.dist-info/licenses/LICENSE": {
-    "bytes": 1089,
-    "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/platformdirs-4.4.0.dist-info/METADATA": {
     "bytes": 12831,
     "sha256": "bbc5216d5f4c77bfbc57227264d52e66bccde71ccf79e75e1a6046d029d30223",
@@ -12581,6 +13006,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/platformdirs-4.4.0.dist-info/WHEEL": {
     "bytes": 87,
     "sha256": "aad0b0a12256807936d52d4a6f88a1773236ae527564a688bab4e3fe780e8724",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/platformdirs-4.4.0.dist-info/licenses/LICENSE": {
+    "bytes": 1089,
+    "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/tomli/__init__.py": {
@@ -12613,11 +13043,6 @@
     "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/tomli-2.4.0.dist-info/licenses/LICENSE": {
-    "bytes": 1072,
-    "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/tomli-2.4.0.dist-info/METADATA": {
     "bytes": 10567,
     "sha256": "f5ac0a1f8fba908b4646cd655309e91aad969b6787616ac571ca462a3832ffce",
@@ -12636,6 +13061,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/tomli-2.4.0.dist-info/WHEEL": {
     "bytes": 82,
     "sha256": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/tomli-2.4.0.dist-info/licenses/LICENSE": {
+    "bytes": 1072,
+    "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/wheel/__init__.py": {
@@ -12708,19 +13138,9 @@
     "sha256": "9bf83fed336c129fa3fb19ef4abe720cb1056f59e1c8e6ee7aaf50e7fd7f9410",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/wheel-0.46.3.dist-info/entry_points.txt": {
-    "bytes": 110,
-    "sha256": "24976d480193bcc2db2244d565400cbc628edfd16d59f09517c9a9fcd1fa7b88",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/wheel-0.46.3.dist-info/INSTALLER": {
     "bytes": 2,
     "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/wheel-0.46.3.dist-info/licenses/LICENSE.txt": {
-    "bytes": 1107,
-    "sha256": "30c23618679108f3e8ea1d2a658c7ca417bdfc891c98ef1a89fa4ff0c9828654",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/wheel-0.46.3.dist-info/METADATA": {
@@ -12741,6 +13161,16 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/wheel-0.46.3.dist-info/WHEEL": {
     "bytes": 82,
     "sha256": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/wheel-0.46.3.dist-info/entry_points.txt": {
+    "bytes": 110,
+    "sha256": "24976d480193bcc2db2244d565400cbc628edfd16d59f09517c9a9fcd1fa7b88",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/wheel-0.46.3.dist-info/licenses/LICENSE.txt": {
+    "bytes": 1107,
+    "sha256": "30c23618679108f3e8ea1d2a658c7ca417bdfc891c98ef1a89fa4ff0c9828654",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/zipp/__init__.py": {
@@ -12783,11 +13213,6 @@
     "sha256": "e6184ce10e266134fdcfa401e8f1a95005bcd4f18d16b62b757323e2833fe9a9",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/zipp-3.23.0.dist-info/licenses/LICENSE": {
-    "bytes": 1076,
-    "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/zipp-3.23.0.dist-info/METADATA": {
     "bytes": 3563,
     "sha256": "bdd67d4d16cf0bf3b893e7d18cd3d2d774adb82f37ed985bc7770c607226b35b",
@@ -12803,14 +13228,19 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/zipp-3.23.0.dist-info/top_level.txt": {
-    "bytes": 5,
-    "sha256": "8806dda121df686a817d56f65ee47d26a4901c2a0eb0eb46eb2f42fcb4a9a85c",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/zipp-3.23.0.dist-info/WHEEL": {
     "bytes": 91,
     "sha256": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/zipp-3.23.0.dist-info/licenses/LICENSE": {
+    "bytes": 1076,
+    "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/_vendor/zipp-3.23.0.dist-info/top_level.txt": {
+    "bytes": 5,
+    "sha256": "8806dda121df686a817d56f65ee47d26a4901c2a0eb0eb46eb2f42fcb4a9a85c",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/archive_util.py": {
@@ -12988,6 +13418,11 @@
     "sha256": "04932d9e47dcab24df71caa3610c5fa11b54da74e759a104481564b214e25ea6",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/NOTICE": {
+    "bytes": 493,
+    "sha256": "2dddf08818297a3b89d43d95ff659d8da85741108c9136dfa3a4d856c0623bd8",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/__init__.py": {
     "bytes": 1526,
     "sha256": "06039aa049e81bd0f7c3947993f1c64046a4acf76afa17e2e292f92a2e4c52f5",
@@ -12996,6 +13431,11 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/_apply_pyprojecttoml.py": {
     "bytes": 19457,
     "sha256": "b1c202bd93feef9f4fe44033b546d16f2f1321bca69f2d95df74580e202989c7",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/NOTICE": {
+    "bytes": 18737,
+    "sha256": "09c9bcea95ca086f8bc5bed174e40bc835b297d40fb5f86bbbb570fe0a5581a7",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/__init__.py": {
@@ -13028,11 +13468,6 @@
     "sha256": "2cd45a8e57ae66dc8ff015a131c6ee03dd803e9a5d888b6912911ea828c0e784",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/_validate_pyproject/NOTICE": {
-    "bytes": 18737,
-    "sha256": "09c9bcea95ca086f8bc5bed174e40bc835b297d40fb5f86bbbb570fe0a5581a7",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/distutils.schema.json": {
     "bytes": 972,
     "sha256": "4dca77da44678703911b0ffda7a1848b4f258f6875e6d411cce6016f31a67015",
@@ -13041,11 +13476,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/expand.py": {
     "bytes": 16109,
     "sha256": "aff32ac039c0964dc66aa023d77cb4a58a82e4cf444c583fcb831a0423b6c78b",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/NOTICE": {
-    "bytes": 493,
-    "sha256": "2dddf08818297a3b89d43d95ff659d8da85741108c9136dfa3a4d856c0623bd8",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py": {
@@ -13188,24 +13618,9 @@
     "sha256": "c16e0860b33506fed9d4c69ab8fdb198f8f2cbec249909d7772bd7b1c01ff5fc",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/direct_url.json": {
-    "bytes": 268,
-    "sha256": "6405b22e15827a0a22eec4a7f8878304dfba307376ce59c76cbaea680a4aba74",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/entry_points.txt": {
-    "bytes": 2449,
-    "sha256": "ce482d8697ff15af4d544f69e85293dd793d0d1d5f680711538728820b15ee30",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/INSTALLER": {
     "bytes": 4,
     "sha256": "ceebae7b8927a3227e5303cf5e0f1f7b34bb542ad7250ac03fbcde36ec2f1508",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/licenses/LICENSE": {
-    "bytes": 1023,
-    "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/METADATA": {
@@ -13223,14 +13638,29 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/top_level.txt": {
-    "bytes": 27,
-    "sha256": "5ac967fb03c175cf0d5cb357b27091c935d48468b4994c3f9746554e16a29be2",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/WHEEL": {
     "bytes": 91,
     "sha256": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/direct_url.json": {
+    "bytes": 268,
+    "sha256": "6405b22e15827a0a22eec4a7f8878304dfba307376ce59c76cbaea680a4aba74",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/entry_points.txt": {
+    "bytes": 2449,
+    "sha256": "ce482d8697ff15af4d544f69e85293dd793d0d1d5f680711538728820b15ee30",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/licenses/LICENSE": {
+    "bytes": 1023,
+    "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/site-packages/setuptools-84.0.0.dist-info/top_level.txt": {
+    "bytes": 27,
+    "sha256": "5ac967fb03c175cf0d5cb357b27091c935d48468b4994c3f9746554e16a29be2",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/site.py": {
@@ -13743,14 +14173,14 @@
     "sha256": "722537c68c0622f8293d39bb6ab1288f3637d8dc45d6f9aae96e49af8145ca36",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/venv/scripts/common/activate": {
-    "bytes": 1709,
-    "sha256": "3fcfc8c48cb6210e2e73d69d0d758c87e5b44d0aba6ad422b458d001bdb8d263",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/venv/scripts/common/Activate.ps1": {
     "bytes": 9033,
     "sha256": "3795a060dea7d621320d6d841deb37591fadf7f5592c5cb2286f9867af0e91df",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/venv/scripts/common/activate": {
+    "bytes": 1709,
+    "sha256": "3fcfc8c48cb6210e2e73d69d0d758c87e5b44d0aba6ad422b458d001bdb8d263",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/venv/scripts/posix/activate.csh": {
@@ -13828,6 +14258,11 @@
     "sha256": "34296f728e7fe68cccb97a9f6edbf3bf3a686f44044c744fe85f207a92ed4811",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/xml/dom/NodeFilter.py": {
+    "bytes": 936,
+    "sha256": "9bfacbbb64e239a75591a7260b3ed86748eeb4366e6c40f3542753e79bace9a7",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/xml/dom/__init__.py": {
     "bytes": 4019,
     "sha256": "b415a6f3d3663c3ac332ee4a0f4213eadad9281508dc97410e258a03633b063a",
@@ -13853,11 +14288,6 @@
     "sha256": "ceb557c3bc32e2a734d947dffb2452676cfb2f6d83d6b490b9e2d9f700f45d33",
     "mode": 420
   },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/xml/dom/NodeFilter.py": {
-    "bytes": 936,
-    "sha256": "9bfacbbb64e239a75591a7260b3ed86748eeb4366e6c40f3542753e79bace9a7",
-    "mode": 420
-  },
   "Contents/Resources/payloads/modern/python/lib/python3.11/xml/dom/pulldom.py": {
     "bytes": 11637,
     "sha256": "614b88673d496a360e6b10efe8d733c7c0826fb214470ff12f24a1e597699870",
@@ -13866,16 +14296,6 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/xml/dom/xmlbuilder.py": {
     "bytes": 12387,
     "sha256": "d4f33a8f018755626b64557953a91c6bba21ff613da46f7558a2874aa5d08ebf",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/xml/etree/__init__.py": {
-    "bytes": 1605,
-    "sha256": "91950edfb196c105d93886f8af7ea3c0a79e06a6b63be3e5a4ea09804e8672a6",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/python3.11/xml/etree/cElementTree.py": {
-    "bytes": 82,
-    "sha256": "d0f57acab07fe4f9c116c3392d85946bac8e78608f409cea70005f16ea019b57",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/xml/etree/ElementInclude.py": {
@@ -13891,6 +14311,16 @@
   "Contents/Resources/payloads/modern/python/lib/python3.11/xml/etree/ElementTree.py": {
     "bytes": 74399,
     "sha256": "86c7890d6903d9fe37687633617afac35fc53b0d6bab4ee0a334ea3ffd0c31c4",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/xml/etree/__init__.py": {
+    "bytes": 1605,
+    "sha256": "91950edfb196c105d93886f8af7ea3c0a79e06a6b63be3e5a4ea09804e8672a6",
+    "mode": 420
+  },
+  "Contents/Resources/payloads/modern/python/lib/python3.11/xml/etree/cElementTree.py": {
+    "bytes": 82,
+    "sha256": "d0f57acab07fe4f9c116c3392d85946bac8e78608f409cea70005f16ea019b57",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/python3.11/xml/parsers/__init__.py": {
@@ -14618,6 +15048,11 @@
     "sha256": "1082bdba6aeb87061d7147097b969edb8b458377078928bfdcc627778a710822",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/python/lib/tk9.0/images/README": {
+    "bytes": 322,
+    "sha256": "2695adff8e900c31b4d86414d22b8a49d6dd865ca3dd99678fa355cdc46093a8",
+    "mode": 420
+  },
   "Contents/Resources/payloads/modern/python/lib/tk9.0/images/logo.eps": {
     "bytes": 32891,
     "sha256": "0dbef0fdf9c232ea53d9676b43eda981fd13f75366bd26898394f5da5923076a",
@@ -14671,11 +15106,6 @@
   "Contents/Resources/payloads/modern/python/lib/tk9.0/images/pwrdLogo75.gif": {
     "bytes": 1171,
     "sha256": "462a8ff8fd051a8100e8c6c086f497e4056ace5b20b44791f4aab964b010a448",
-    "mode": 420
-  },
-  "Contents/Resources/payloads/modern/python/lib/tk9.0/images/README": {
-    "bytes": 322,
-    "sha256": "2695adff8e900c31b4d86414d22b8a49d6dd865ca3dd99678fa355cdc46093a8",
     "mode": 420
   },
   "Contents/Resources/payloads/modern/python/lib/tk9.0/images/tai-ku.gif": {
@@ -14929,6 +15359,11 @@
     "sha256": "d9b514706d8f064537ac7b985636f19d70e42c5e92fa315a3f3513699cfdf2e8",
     "mode": 420
   },
+  "Contents/Resources/payloads/modern/tools/backup-metadata-probe": {
+    "bytes": 299920,
+    "sha256": "ef8556831f12957686364243abc6f2bcc03de588c21bb3703a130d748c27b3b8",
+    "mode": 493
+  },
   "Contents/Resources/payloads/modern/tools/mkntfs": {
     "bytes": 348992,
     "sha256": "2365ef93001538f0f47b5d7eff2c18e27ed663fb7ea9f3bf0ed241cf77b0dac5",
@@ -14939,6 +15374,11 @@
     "sha256": "b014107ce3f388ad561360632af697c840bd9bd2f967d79dcfa84caa89997b55",
     "mode": 493
   },
+  "Contents/Resources/payloads/modern/tools/ntfsclone": {
+    "bytes": 353288,
+    "sha256": "453598bd000216a32465210bf0e0be92b8edeb40fa1580abd9f38bcf424200b9",
+    "mode": 493
+  },
   "Contents/Resources/payloads/modern/tools/ntfscp": {
     "bytes": 306232,
     "sha256": "d47caa1118dd30f21fd823c2427b4214d066cd151425db72b96af3aa1df40dec",
@@ -14947,6 +15387,11 @@
   "Contents/Resources/payloads/modern/tools/ntfsls": {
     "bytes": 297648,
     "sha256": "b31161d5f40a3c76843f57d5f0c4e5f365b1586ec76eedad56641b3925ab23fb",
+    "mode": 493
+  },
+  "Contents/Resources/payloads/modern/tools/ntfsresize": {
+    "bytes": 368264,
+    "sha256": "9a9ebee227b9c261c303fd54ca81ef41f9cd1a226349e58f8f35b848eadabbfe",
     "mode": 493
   },
   "Contents/Resources/payloads/modern/tools/wimlib-imagex": {
@@ -14977,6 +15422,11 @@
   "Contents/Resources/private-support/Windows7-Driver-Support-r35.zip": {
     "bytes": 1965119,
     "sha256": "0ea949de88eebf9080ee122aab4c26da8d2a6d8cbcafde4f48b673c9b26f66d2",
+    "mode": 420
+  },
+  "Contents/Resources/product_scope.py": {
+    "bytes": 1002,
+    "sha256": "bcae99a894da5918804fce8549fe55f25011a708a60d73c5b63ac9de54d93736",
     "mode": 420
   },
   "Contents/Resources/publisher-helpers.json": {
@@ -15014,14 +15464,9 @@
     "sha256": "8d34478fca7fd19a2b2024a35fd5fcd893fc6baad0f44f8ae49af46c52dbd786",
     "mode": 420
   },
-  "Contents/Resources/README.txt": {
-    "bytes": 3862,
-    "sha256": "9c44c64aa36b109ca7301ed9285136bd09bb75abb9615094b7982d354d780b25",
-    "mode": 420
-  },
   "Contents/Resources/rebuild_menu.py": {
-    "bytes": 9292,
-    "sha256": "6c9a41fd3a4c22667685f1a19a0c8e15fffbac43285f59f8dac937e5d03b9d4e",
+    "bytes": 9435,
+    "sha256": "1ba7ccb1305ab8354abf4c243ab43394f04c3d5a1bc28fe6630fd08812f74eb3",
     "mode": 420
   },
   "Contents/Resources/rename_installation.py": {
@@ -15044,14 +15489,19 @@
     "sha256": "17dd568bd9beac8973a819161db45b9304ffe7e9f77634b21bfd133af20766bc",
     "mode": 420
   },
+  "Contents/Resources/restore_windows.py": {
+    "bytes": 14632,
+    "sha256": "a8bc047cafeaa243b0f5ac3133c12d01ae995ba030e2b822c5fb3d73a6fa0d95",
+    "mode": 420
+  },
   "Contents/Resources/runtime-profiles.plist": {
-    "bytes": 550782,
-    "sha256": "6f4d17051d48e3d9d75daa1893699ab3ca95ce407b87d91902bb23e0a150772f",
+    "bytes": 556978,
+    "sha256": "aebe083debd20debeba5de65f437b3310f3e0b5d623e93c44ddff68f326cfb6c",
     "mode": 420
   },
   "Contents/Resources/runtime_profiles.py": {
-    "bytes": 4993,
-    "sha256": "0b61e6981a25bd5f419f44e03cfe9064fb6c31197ff43ab4417562678b0a4a17",
+    "bytes": 4938,
+    "sha256": "19bd5a830f04f3c51100f43477de1558675d6a1acf08f7e00a246b145df2ff76",
     "mode": 420
   },
   "Contents/Resources/saved_file_io.py": {
@@ -15062,11 +15512,6 @@
   "Contents/Resources/sector_guidance.py": {
     "bytes": 3107,
     "sha256": "65e6b679ef5e3ad63d2d46d907ce7da622f5ca7eab810566df4346c1b1d3c871",
-    "mode": 420
-  },
-  "Contents/Resources/SECURITY-CHIP-MODELS.txt": {
-    "bytes": 454,
-    "sha256": "665bf5d914209da193b9109cd386f53990221a0ddaf69cad1abd702c25da2584",
     "mode": 420
   },
   "Contents/Resources/standalone_ownership.py": {
@@ -15080,8 +15525,8 @@
     "mode": 420
   },
   "Contents/Resources/storage_cleanup.py": {
-    "bytes": 6247,
-    "sha256": "5c41ece9bce141fd49ca46cee86470d4b56502c6bd27be9a87b6b9fe13967c11",
+    "bytes": 6526,
+    "sha256": "76b87c4a1f0c948dfa3c75d3ef54d2287cd9732b5e5c598d5efab0165dd16143",
     "mode": 420
   },
   "Contents/Resources/store_configuration.py": {
@@ -15125,13 +15570,13 @@
     "mode": 420
   },
   "Contents/Resources/test_multiboot_workflow.py": {
-    "bytes": 22347,
-    "sha256": "e052a9df6c57c3a9011c5535815af16d6934db68c6c5514b146ea40221ebcaf6",
+    "bytes": 22725,
+    "sha256": "349bdbb293ea71b34eade2a6e8963da7c872a4787c3ac169790524388dc6054f",
     "mode": 420
   },
   "Contents/Resources/test_rebuild_menu.py": {
-    "bytes": 8607,
-    "sha256": "cfb011e7335fb60e7432c69f8faeea106b36678b65e8d27f3fe9a4dd06a30086",
+    "bytes": 8822,
+    "sha256": "a3d1c2bffde1923f6daaea8ece7ce51dcc6a6130baefc5ea91ea98c40b41ab1e",
     "mode": 420
   },
   "Contents/Resources/test_reset_menu.py": {
@@ -15150,8 +15595,8 @@
     "mode": 420
   },
   "Contents/Resources/test_unified_menu_recovery.py": {
-    "bytes": 20801,
-    "sha256": "91b0c82e887113fb9443225f47a2e8ba1c6f5a1e117d8545f622b21136bd0b23",
+    "bytes": 21335,
+    "sha256": "c14f5877db2f6cd7ae2d096fc4fc449ad6fe12d3221ef40b7fd4454859c3b6e6",
     "mode": 420
   },
   "Contents/Resources/third-party/EfiFs/BUILD.txt": {
@@ -15159,34 +15604,14 @@
     "sha256": "b11e883f8fa570b41f656dd9065027a62d968ea75077321936c48fe9b19b75d5",
     "mode": 420
   },
-  "Contents/Resources/third-party/EfiFs/build_reader.py": {
-    "bytes": 3617,
-    "sha256": "8b8b60f37e23bae68d3d92358f47a3702b3cbb2c9dd8000a1f580219d4d2dd63",
-    "mode": 420
-  },
-  "Contents/Resources/third-party/EfiFs/compiler_support.c": {
-    "bytes": 81,
-    "sha256": "02a719e1e93a81bf4e6a02a9c9da961d657a4147c2de85de566634dc5bde90e8",
-    "mode": 420
-  },
   "Contents/Resources/third-party/EfiFs/EfiFs-v1.13-source.tar.gz": {
     "bytes": 3963739,
     "sha256": "489830cc83a8501ffd70daf675c1e2788df36cf175acde2e6ec73b13942768b0",
     "mode": 420
   },
-  "Contents/Resources/third-party/EfiFs/gnu-efi-3cf072ace613e4459a0308b06309f4072cf4aa36.tar.gz": {
-    "bytes": 245316,
-    "sha256": "5721b436735763f136ca2c2ec0d536759a4604ac20abf5d55bb84b2f54ac8a82",
-    "mode": 420
-  },
   "Contents/Resources/third-party/EfiFs/GoAwayBCA-NOTICE.txt": {
     "bytes": 610,
     "sha256": "09457e9b5313379ebbd8b180ccac292c7ed35c84087cce9d566a0e7cd47ff514",
-    "mode": 420
-  },
-  "Contents/Resources/third-party/EfiFs/grub-f10ad08fa2a02dce95774c1b5caee38254b30531.tar.gz": {
-    "bytes": 6773533,
-    "sha256": "a93ab9c399635beb8e118608b407a82376e2b8661b777bf4660df84284018e3d",
     "mode": 420
   },
   "Contents/Resources/third-party/EfiFs/LICENSE": {
@@ -15209,314 +15634,34 @@
     "sha256": "363f4f7d7d10848b4b0bb160516f46157641d8a2ae27e68bbe87b99c49ca7bc9",
     "mode": 420
   },
+  "Contents/Resources/third-party/EfiFs/build_reader.py": {
+    "bytes": 3617,
+    "sha256": "8b8b60f37e23bae68d3d92358f47a3702b3cbb2c9dd8000a1f580219d4d2dd63",
+    "mode": 420
+  },
+  "Contents/Resources/third-party/EfiFs/compiler_support.c": {
+    "bytes": 81,
+    "sha256": "02a719e1e93a81bf4e6a02a9c9da961d657a4147c2de85de566634dc5bde90e8",
+    "mode": 420
+  },
+  "Contents/Resources/third-party/EfiFs/gnu-efi-3cf072ace613e4459a0308b06309f4072cf4aa36.tar.gz": {
+    "bytes": 245316,
+    "sha256": "5721b436735763f136ca2c2ec0d536759a4604ac20abf5d55bb84b2f54ac8a82",
+    "mode": 420
+  },
+  "Contents/Resources/third-party/EfiFs/grub-f10ad08fa2a02dce95774c1b5caee38254b30531.tar.gz": {
+    "bytes": 6773533,
+    "sha256": "a93ab9c399635beb8e118608b407a82376e2b8661b777bf4660df84284018e3d",
+    "mode": 420
+  },
   "Contents/Resources/third-party/EfiFs/submodules.json": {
     "bytes": 118,
     "sha256": "da76b4a7f72b7f0ea9746b4627a21c96e5c1daab871e7bc9d3f654fe2d461ad2",
     "mode": 420
   },
-  "Contents/Resources/ThirdParty/hivex/build_hivex_macos.py": {
-    "bytes": 2728,
-    "sha256": "5c284b6b29ea1d56306db8ee611a7763cb85c21468ec4593a8fd0360f7ab1ebd",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/hivex/check_offline_keyboard_macos.py": {
-    "bytes": 2237,
-    "sha256": "ac012f492a4e885a9942718c22fa52ed96b0da12ebcb937c870db4696d0d501c",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/hivex/hivex-1.3.24.tar.gz": {
-    "bytes": 741279,
-    "sha256": "a52fa45cecc9a78adb2d28605d68261e4f1fd4514a778a5473013d2ccc8a193c",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/hivex/LICENSE": {
-    "bytes": 26650,
-    "sha256": "aa9baa29e495877229e89f517d381672586f7233ccfcc7c0defa30ffbaaf3c65",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/7zip/7zip-copying.txt": {
-    "bytes": 27032,
-    "sha256": "1e7e6bae5a5bde32f1ae5a7c37a082d1ab03cf89354f7f936ac40be9e39a6531",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/7zip/7zip-License.txt": {
-    "bytes": 6341,
-    "sha256": "9ac2b4a97ab5d523965534d8b2d5868e511b39096d51fff458ab72c38b80fccc",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/7zip/7zip-unRarLicense.txt": {
-    "bytes": 1921,
-    "sha256": "17bd9fa4399092c777536fff045b41df76ec9d2ac4c9b8e7345d3b8b6ccc7976",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/boost/LICENSE_1_0.txt": {
-    "bytes": 1338,
-    "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/hivex/LICENSE": {
-    "bytes": 26650,
-    "sha256": "aa9baa29e495877229e89f517d381672586f7233ccfcc7c0defa30ffbaaf3c65",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/innoextract/innoextract-LICENSE": {
-    "bytes": 886,
-    "sha256": "7cd6f3bf0c83f2c3ce8438aab20a4827a5de934fb87dd7966f6f3f2651685127",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/ntfs-3g/COPYING": {
-    "bytes": 18002,
-    "sha256": "231f7edcc7352d7734a96eef0b8030f77982678c516876fcb81e25b32d68564c",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/ntfs-3g/COPYING.LIB": {
-    "bytes": 25283,
-    "sha256": "d7bf9d064ac3e5840f9dd02422b7eeec4f1fd03f37fadbd043602be5e882304f",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/OpenNtfsDxe/LICENSE.txt": {
-    "bytes": 1847,
-    "sha256": "ab36eb02aa83a5f502234ec3c3c05a5cb3c29dacc1d46106fe07041ce4908464",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-legacy/LICENSE.txt": {
-    "bytes": 12793,
-    "sha256": "96e4f59524cde5af4a2ea837ef5e52b65e51f1f999825fd8a9ec3b444cb82aea",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.bdb.txt": {
-    "bytes": 7293,
-    "sha256": "3bdff06e69991c94664f2ef5c5f8096f60b7dbec071756ea6cc26b445e06ec5b",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.bzip2.txt": {
-    "bytes": 1743,
-    "sha256": "1f38bbc7caacafd65169276d759c0d88c991b753b643ce35d0e45ea1971dd441",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.cpython.txt": {
-    "bytes": 36164,
-    "sha256": "86e61415828a8b5b06ec8d024e6f086ce155a8b85fd0c419c0ba4dc004e74fdd",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.expat.txt": {
-    "bytes": 1144,
-    "sha256": "122f2c27000472a201d337b9b31f7eb2b52d091b02857061a8880371612d9534",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libedit.txt": {
-    "bytes": 1614,
-    "sha256": "29cea33c32bbc9785142386377915612a2fa786482c46843383384aded2e09b1",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libffi.txt": {
-    "bytes": 1132,
-    "sha256": "deaf3a42effb551a5b140fa9afefed183a27f1341c6d1bf430d106a5e6931fc0",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.liblzma.txt": {
-    "bytes": 660,
-    "sha256": "9a4062de0a2c388a98cf35a35d348b62fa97c838a71c3c28ee1a2d7d0a565b02",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libuuid.txt": {
-    "bytes": 1432,
-    "sha256": "122ee1f7e258f2c3c0e538a75c037684f420454bf3850ddc74ce750bbf5fe86b",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libX11.txt": {
-    "bytes": 47018,
-    "sha256": "2daec087a88e7c9b8082557cdeebad5bbb8155a4137472f0b22e269cd99d0c1e",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libXau.txt": {
-    "bytes": 1148,
-    "sha256": "56abe29bb1d9806a9e04fa9f80fed2c0f18027594df3f098148d814aef6bddfa",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.libxcb.txt": {
-    "bytes": 1337,
-    "sha256": "c5ffbfeaa501071ceeb97b7de2c0d703fdaa35de01c0fb6cbac1c28453a3e9fd",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.mpdecimal.txt": {
-    "bytes": 1284,
-    "sha256": "669512af7219f58be03a398766d7c9da11a3b3df9d3f05cb74c5ceca25c8da3b",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.ncurses.txt": {
-    "bytes": 1447,
-    "sha256": "87a4c4442337b8968ef956031c406b74f9cb7149b7ba87311bdaba534816201c",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.openssl-1.1.txt": {
-    "bytes": 6120,
-    "sha256": "9c04cce50c4989d5601dd8b07f6ab922c40388b66ac736c9007cb1ed9d9dd560",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.openssl-3.txt": {
-    "bytes": 10175,
-    "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.sqlite.txt": {
-    "bytes": 1481,
-    "sha256": "38bef3d28b24f145ea293bd3b6eb4b20396982abc8303128fb493986ea5bc719",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.tcl.txt": {
-    "bytes": 2255,
-    "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.tix.txt": {
-    "bytes": 2826,
-    "sha256": "3ac5cdd0bef6c43ce34c6a7ced452081d9e5a0bf94082b9f9147d23ec9e214f5",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/python-modern/upstream/licenses/LICENSE.zlib.txt": {
-    "bytes": 995,
-    "sha256": "818922b2620f12801a12bf78e399644a30990e66824abd8ca8ec24d451d6f92c",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/tcl-family/tcl9.0.4/libtommath/LICENSE": {
-    "bytes": 1257,
-    "sha256": "2fa64b163659f41965c9815882a8296d3d03ff546b76153e11445f9bdecf955a",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/tcl-family/tcl9.0.4/license.terms": {
-    "bytes": 2255,
-    "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/tcl-family/tcl9.0.4/pkgs/itcl4.3.8/license.terms": {
-    "bytes": 2503,
-    "sha256": "b61edfaeead97546bc62b1f205b046f2e440b83bfc517bc0932b93bc3d505865",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/tcl-family/tcl9.0.4/pkgs/thread3.0.6/license.terms": {
-    "bytes": 2231,
-    "sha256": "0a03981c40f7813ce6ddbdfce9882020bcfd696ea044b21ef07619ed9b86abae",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/tcl-family/tk9.0.4/license.terms": {
-    "bytes": 2267,
-    "sha256": "2cde822b93ca16ae535c954b7dfe658b4ad10df2a193628d1b358f1765e8b198",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/wimlib/COPYING": {
-    "bytes": 1705,
-    "sha256": "1829e594e80000d0158ffb111491171feb8dc78842e3c0f40954489d30779854",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/wimlib/COPYING.GPLv3": {
-    "bytes": 35149,
-    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/wimlib/COPYING.LGPL": {
-    "bytes": 26419,
-    "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/xz-innoextract/xz-0BSD": {
-    "bytes": 607,
-    "sha256": "0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/xz-innoextract/xz-COPYING": {
-    "bytes": 3119,
-    "sha256": "616a3ad264ce29b8f1cb97e53037b139d406899ca8d1f799651e17bfa09830b8",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING": {
-    "bytes": 3119,
-    "sha256": "616a3ad264ce29b8f1cb97e53037b139d406899ca8d1f799651e17bfa09830b8",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING.0BSD": {
-    "bytes": 607,
-    "sha256": "0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING.GPLv2": {
-    "bytes": 17984,
-    "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING.GPLv3": {
-    "bytes": 35149,
-    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/Notices/xz-portable-source/COPYING.LGPLv2.1": {
-    "bytes": 26419,
-    "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/7zip-26.04-source.tar.xz": {
-    "bytes": 1560440,
-    "sha256": "9691944c0fe0d01bb49373a704fb983fd33bc98b1738695179dfbf99ac1734f6",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/7zip-copying.txt": {
-    "bytes": 27032,
-    "sha256": "1e7e6bae5a5bde32f1ae5a7c37a082d1ab03cf89354f7f936ac40be9e39a6531",
-    "mode": 493
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/7zip-License.txt": {
-    "bytes": 6341,
-    "sha256": "9ac2b4a97ab5d523965534d8b2d5868e511b39096d51fff458ab72c38b80fccc",
-    "mode": 493
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/7zip-unRarLicense.txt": {
-    "bytes": 1921,
-    "sha256": "17bd9fa4399092c777536fff045b41df76ec9d2ac4c9b8e7345d3b8b6ccc7976",
-    "mode": 493
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/Boost-LICENSE": {
-    "bytes": 1338,
-    "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/BUILD-NOTES.txt": {
-    "bytes": 427,
-    "sha256": "d03efbe22c733f876344c4109f055e09d34b8be09f631d580b948fe56f986a3f",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/build_publisher_extractors_macos.py": {
-    "bytes": 5818,
-    "sha256": "0d296a4e353cb90a76bdca5a27414f92253616aae35609dd3bd867f7c609200b",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/innoextract-LICENSE": {
-    "bytes": 886,
-    "sha256": "7cd6f3bf0c83f2c3ce8438aab20a4827a5de934fb87dd7966f6f3f2651685127",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/innoextract.tar.gz": {
-    "bytes": 206931,
-    "sha256": "6344a69fc1ed847d4ed3e272e0da5998948c6b828cb7af39c6321aba6cf88126",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/xz-0BSD": {
-    "bytes": 607,
-    "sha256": "0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/xz-COPYING": {
-    "bytes": 3119,
-    "sha256": "616a3ad264ce29b8f1cb97e53037b139d406899ca8d1f799651e17bfa09830b8",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/publisher-extractors/xz.tar.xz": {
-    "bytes": 1511132,
-    "sha256": "890966ec3f5d5cc151077879e157c0593500a522f413ac50ba26d22a9a145214",
-    "mode": 420
-  },
-  "Contents/Resources/ThirdParty/README.txt": {
-    "bytes": 554,
-    "sha256": "c1a43ccce2f3b13050d4a05200cf13818f30b4be774c35e749925852f2b3eb56",
+  "Contents/Resources/usb_installation.py": {
+    "bytes": 8463,
+    "sha256": "53047e442634ac7b6f426af9040ad00259f8bb721456c10d195f0c66ef06cf40",
     "mode": 420
   },
   "Contents/Resources/user_driver_store.py": {
@@ -15582,11 +15727,6 @@
   "Contents/Resources/windows_images.py": {
     "bytes": 2317,
     "sha256": "a7097d5be8e765c4a1e2cb7c917b6786699d0fe9f4f1277fdb0153d0b2ed2689",
-    "mode": 420
-  },
-  "Contents/Resources/LICENSE.txt": {
-    "bytes": 35149,
-    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
     "mode": 420
   }
 }

@@ -8,10 +8,12 @@ import copy
 import uuid
 
 _session = None
+_external = {}
 
 
 def install_session(value):
-    global _session
+    global _session, _external
+    _external = {}  # Each operation must observe connected USB media afresh.
     if value is None:
         _session = None
         return
@@ -32,6 +34,16 @@ def report():
 
 def confirm(layout):
     """Fail on changed/unknown drive; a fresh launch creates a fresh snapshot."""
+    if layout.get('connection') == 'USB':
+        binding = {key: layout.get(key) for key in
+                   ('guid', 'sector_size', 'bytes', 'device', 'device_path', 'connection')}
+        if not binding['device'] or not binding['device_path']:
+            raise ValueError('USB drive identity is incomplete; reconnect it and retry.')
+        previous = _external.setdefault(layout['guid'], binding)
+        if binding != previous:
+            raise ValueError('The USB drive or its connection/sector size changed during this operation. '
+                             'No further writes are allowed. Reconnect it and start the operation again.')
+        return layout['sector_size']
     if _session is None:
         return layout['sector_size']  # Standalone read-only helpers/tests.
     row = _session['drives'].get(layout['guid'])
@@ -42,7 +54,11 @@ def confirm(layout):
     return row['sector_size']
 
 
-def collect(note=lambda message: None, tree=None, read_info=None):
+def external_report():
+    return copy.deepcopy(_external)
+
+
+def collect(note=lambda message: None, tree=None, read_info=None, include_external=False):
     from install_windows7 import plist_command, raw_info
     from partition_detection import registry_index
     from disk_layout import layout
@@ -53,7 +69,9 @@ def collect(note=lambda message: None, tree=None, read_info=None):
     result = dict(schema=1, source='diskutil and IORegistry metadata', drives={})
     for name, entry in sorted(index.items()):
         node = entry['node']
-        if node.get('Whole') is not True or entry['protocol'].get('Physical Interconnect Location') != 'Internal':
+        location=entry['protocol'].get('Physical Interconnect Location')
+        usb=location=='External' and entry['protocol'].get('Physical Interconnect')=='USB'
+        if node.get('Whole') is not True or (location!='Internal' and not (include_external and usb)):
             continue
         # MBR disks still go through the separate launch compatibility flow.
         # They cannot supply a valid GPT installation destination here.
@@ -66,6 +84,6 @@ def collect(note=lambda message: None, tree=None, read_info=None):
             raise ValueError('Duplicate internal drive identity at launch')
         result['drives'][key] = dict(disk_guid=key, device_at_launch=name,
             sector_size=current['sector_size'], bytes=current['bytes'])
-        note('Internal drive %s: %d-byte logical sectors; shared by installation, management and boot-menu operations.' %
-             (name, current['sector_size']))
+        note('%s drive %s: %d-byte logical sectors; shared by installation, management and boot-menu operations.' %
+             ('USB' if usb else 'Internal',name, current['sector_size']))
     return result

@@ -206,6 +206,14 @@ def internal_physical(d):
             and DISK_RE.fullmatch(str(d.get('DeviceIdentifier', ''))))
 
 
+def supported_physical(d):
+    """Keep the internal policy, and accept explicitly identified USB media."""
+    if internal_physical(d):
+        return True
+    return bool(d.get('Internal') is False and d.get('BusProtocol') == 'USB'
+                and internal_physical(dict(d, Internal=True)))
+
+
 def media_size(d):
     """Physical media length, never a mounted filesystem's TotalSize.
 
@@ -227,9 +235,10 @@ def valid_partition(p, disk):
     except Refusal:
         return False
     return bool(match and match[1] == disk.get('DeviceIdentifier')
-                and internal_physical(disk) and p.get('Whole') is False
+                and supported_physical(disk) and p.get('Whole') is False
                 and p.get('ParentWholeDisk') == disk['DeviceIdentifier']
-                and p.get('Internal') is True and p.get('ReadOnlyMedia') is False
+                and type(p.get('Internal')) is bool and p['Internal'] is disk.get('Internal')
+                and p.get('ReadOnlyMedia') is False
                 # macOS normally mounts NTFS read-only. That does not make its
                 # physical partition read-only; formatting needs raw access.
                 and (not p.get('MountPoint') or p.get('ReadOnlyVolume') is False
@@ -254,7 +263,7 @@ def find_targets(listing, read_info):
         if not DISK_RE.fullmatch(name):
             continue
         disk = read_info(name)
-        if not internal_physical(disk):
+        if not supported_physical(disk):
             continue
         esps = [p['DeviceIdentifier'] for p in item.get('Partitions', [])
                 if p.get('Content') == 'EFI']
@@ -285,7 +294,7 @@ def partition_identity(p):
 
 
 def assert_same_target(target, current, parent):
-    require(valid_partition(current, parent), 'Target is no longer an eligible internal exFAT/NTFS partition.')
+    require(valid_partition(current, parent), 'Target is no longer an eligible internal or USB GPT exFAT/NTFS partition.')
     selected = target['partition']
     before, after = partition_identity(selected), partition_identity(current)
     changed = sorted(k for k in before if before[k] != after[k])
@@ -298,7 +307,7 @@ def assert_same_target(target, current, parent):
         unmounted = selected if not selected.get('MountPoint') else current
         require(changed_mount_state and unmounted['TotalSize'] == media_size(unmounted),
                 'Filesystem capacity changed unexpectedly (TotalSize). Start again.')
-    for key in ('DeviceIdentifier', 'DeviceTreePath', 'TotalSize', 'MediaName'):
+    for key in ('DeviceIdentifier', 'DeviceTreePath', 'TotalSize', 'MediaName', 'Internal', 'BusProtocol', 'DeviceBlockSize'):
         require(parent.get(key) == target['disk'].get(key), 'Physical disk identity changed.')
     require(media_size(parent) == media_size(target['disk']), 'Physical disk size changed.')
 
@@ -316,7 +325,7 @@ def assert_postformat_target(target, current, parent):
     for key in ('DeviceIdentifier','ParentWholeDisk','DiskUUID','PartitionMapPartitionOffset'):
         require(current.get(key) == selected.get(key), 'Formatted partition physical identity changed: ' + key)
     require(media_size(current) == media_size(selected), 'Formatted partition physical size changed')
-    for key in ('DeviceIdentifier','DeviceTreePath','TotalSize','MediaName'):
+    for key in ('DeviceIdentifier','DeviceTreePath','TotalSize','MediaName','Internal','BusProtocol','DeviceBlockSize'):
         require(parent.get(key) == target['disk'].get(key), 'Formatted partition parent changed')
     require(media_size(parent) == media_size(target['disk']), 'Formatted partition parent size changed')
 
@@ -678,7 +687,8 @@ class Installer:
         require(type(readonly) is bool, 'Explicit EFI access mode required.')
         d = info(device)
         require(d.get('Content') == 'EFI' and d.get('Whole') is False
-                and d.get('Internal') is True, 'Unexpected EFI partition.')
+                and (d.get('Internal') is True or (d.get('Internal') is False and
+                     supported_physical(info(d.get('ParentWholeDisk'))))), 'Unexpected EFI partition.')
         identity = d.get('DiskUUID')
         require(identity, 'EFI partition UUID is missing.')
         if self.esp_owned:
@@ -686,10 +696,14 @@ class Installer:
                     and d.get('MountPoint') == str(self.esp_mount_path),
                     'Owned EFI mount identity/path changed; refusing to touch it.')
         if d.get('MountPoint') and not readonly and d.get('ReadOnlyVolume'):
-            require(self.esp_owned, 'EFI was already mounted read-only by another process; refusing to remount it.')
-            run(['/sbin/umount', str(self.esp_mount_path)])
-            self.esp_owned = False
-            d = info(device)
+            if self.esp_owned:
+                run(['/sbin/umount', str(self.esp_mount_path)])
+                self.esp_owned = False
+                d = info(device)
+            else:
+                from efi_mounts import remount_for_write
+                d = remount_for_write(device, d, info, run,
+                    self.choose if self.interaction is not None else None)
             require(not d.get('MountPoint') and d.get('DiskUUID') == identity,
                     'EFI unmount/identity verification failed.')
         if not d.get('MountPoint'):

@@ -10,7 +10,7 @@ from runtime_profiles import validate_payload
 from install_windows7 import require
 
 OPERATIONS = ('install','manage','rebuild','diagnostics','efi-access','reset-menu',
-              'experimental','saved-files','startup-check')
+              'experimental','saved-files','startup-check','backup','restore','boot-diagnostics')
 
 
 def run_child(execute, connection, ui, resources, config, profile, version, request):

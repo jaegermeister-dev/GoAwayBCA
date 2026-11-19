@@ -73,7 +73,7 @@ class EFIAccess(InstallationManager):
                 (' | mounted at '+r['MountPoint'] if r.get('MountPoint') else ' | not mounted') for r in rows])]
         action=self.choose('EFI files can make your operating systems unbootable if altered incorrectly. '
             'Only edit files yourself if you know what you are doing. GoAwayBCA will not edit anything here.',
-            ['Mount/open in Finder (read-only)','Mount/open in Finder (read/write)',
+            ['Mount/open in Finder (read/write)','Mount/open in Finder (read-only)',
              'Unmount this EFI partition (no force)','Cancel'])
         if action==3:return
         device=selected['DeviceIdentifier'];current=info(device);same(selected,current)
@@ -86,14 +86,16 @@ class EFIAccess(InstallationManager):
             run(['/usr/sbin/diskutil','unmount',device])
             require(not info(device).get('MountPoint'),'EFI is still mounted')
             self.note('EFI unmounted. No files changed.');return
-        existing=bool(current.get('MountPoint'));readonly=action==0
+        readonly=action==1
+        if current.get('MountPoint') and not readonly and current.get('ReadOnlyVolume') is True:
+            from efi_mounts import remount_for_write
+            current=remount_for_write(device,current,info,run,self.choose)
+        existing=bool(current.get('MountPoint'))
         if existing:
-            require(not (readonly is False and current.get('ReadOnlyVolume')),
-                'EFI is already mounted read-only. Unmount it explicitly before requesting read/write access.')
             mount=Path(current['MountPoint'])
             if readonly and current.get('ReadOnlyVolume') is not True:
                 require(self.choose('This EFI is already mounted READ/WRITE by another operation. '
-                    'WinDeploy will not change or unmount that existing mount. Open it with its current access mode?',
+                    'GoAwayBCA will not change or unmount that existing mount. Open it with its current access mode?',
                     ['Open existing read/write mount','Cancel'])==0,'Cancelled by user')
             self.note('Using the existing mount without changing its access mode or taking ownership.')
         else:

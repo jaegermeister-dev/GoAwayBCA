@@ -24,9 +24,12 @@ class RebuildMenu(InstallationManager):
         targets.update(menu_presence.empty_menu_targets(self,excluded_esps=set(targets)))
         require(targets,'No Windows installations or existing Windows boot menu found; no files changed')
         choices=list(targets.values())
-        selected=choices[0] if len(choices)==1 else choices[self.choose(
-            'Choose which disk\'s Windows menu to rebuild. No Windows partition will be formatted.',
-            [r['target']['esp']+'\n'+r['summary'] for r in choices])]
+        from menu_drive_review import choices as drive_choices, comparison
+        selected=choices[self.choose(
+            'Choose which drive\'s Windows menu to rebuild. The exact names below come from each '
+            'saved menu, which may not reflect installations added or removed outside GoAwayBCA. '
+            'Only the selected drive\'s list will be refreshed. No Windows partition will be formatted.',
+            drive_choices(self,choices))]
         target=selected['target'];gpt=gpt_for(target)
         if selected.get('boot_menu_only'):
             esp=next(p for p in gpt['partitions'].values() if p['guid']==selected['esp_guid'])
@@ -71,8 +74,7 @@ class RebuildMenu(InstallationManager):
                 after=lifecycle.sha(c['data']) if c['data'] is not None else None) for c in proposed['changes']])
         receipt=self.session/'rebuild-receipt.json';write_receipt(receipt,report)
         text=('Rebuild the GoAwayBCA Windows menu on '+target['esp']+'.\n\n'+
-            '\n'.join(e['title']+(' (currently unavailable)' if not e['available'] else '')
-                      for e in proposed['catalog']['entries'])+
+            comparison(old['catalog']['entries'],proposed['catalog']['entries'])+
             '\n\nThis restores our verified selector and regenerates its list from existing verified boot records. '
             'It does not format partitions, replace Windows, change OpenCore or change the default boot choice. '+
             (('The deleted or absent menu catalog will be recreated. ' if missing_catalog else

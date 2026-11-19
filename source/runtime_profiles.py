@@ -36,7 +36,7 @@ def select(profiles, os_version, architecture):
 
 
 def validate_payload(resources, profile, operation='install', note=None, cache=None):
-    if operation not in ('install','manage','rebuild','diagnostics','efi-access','reset-menu','experimental','saved-files','startup-check'):
+    if operation not in ('install','manage','rebuild','diagnostics','efi-access','reset-menu','experimental','saved-files','startup-check','backup','restore','boot-diagnostics'):
         raise IncompatibleHost('Unknown payload operation')
     root = Path(resources).resolve(strict=True)
     if not profile.get('files'):
