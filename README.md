@@ -2,9 +2,9 @@
 
 **Install and manage Windows on Intel Macs from macOS, without making a USB installer.**
 
-[Download Beta 2](https://github.com/jaegermeister-dev/GoAwayBCA/releases/latest) · [Report an issue](https://github.com/jaegermeister-dev/GoAwayBCA/issues) · [r/GoAwayBCA](https://www.reddit.com/r/GoAwayBCA/) · [Changelog](CHANGELOG.md)
+[Download Beta 3](https://github.com/jaegermeister-dev/GoAwayBCA/releases/latest) · [Report an issue](https://github.com/jaegermeister-dev/GoAwayBCA/issues) · [r/GoAwayBCA](https://www.reddit.com/r/GoAwayBCA/) · [Changelog](CHANGELOG.md)
 
-GoAwayBCA Beta 2 supports installing **Windows 8.1, Windows 10 and Windows 11** to existing internal GPT partitions, with experimental USB destinations using pure EFI booting. It can download drivers, manage installations and maintain a Windows boot menu for multiple installations on the same drive.
+GoAwayBCA Beta 3 supports installing **Windows 8.1, Windows 10 and Windows 11** to existing internal GPT partitions, with experimental USB destinations using pure EFI booting. It can download drivers, manage installations and maintain a Windows boot menu for multiple installations on the same drive.
 
 **Windows 7 and Windows 8 are not yet supported. Support is being actively developed for a future update.**
 
@@ -26,7 +26,7 @@ Windows 11 is available to try with compatibility guidance; it was not part of t
 
 These are the project owner’s physical tests. Community reports are separate evidence, not an expansion of this confirmed matrix. Beta 2’s new diagnostic firmware was checked in virtual firmware environments with 512/4096-byte sectors and EFI 1.10 as well as newer EFI. Backup/restore and portable USB preparation were checked using disposable filesystem images and both bundled runtimes. **These checks are not physical USB boot or restored-Windows acceptance tests. The new USB and backup/restore features remain experimental and untested on real installations.**
 
-## What Beta 2 includes
+## What Beta 3 includes
 
 - Installation from a Windows ISO directly onto an existing empty exFAT or NTFS partition. No USB installer is required.
 - Mac model confirmation and compatibility guidance using the selected Windows version, detected CPU capabilities, firmware architecture and drive geometry.
@@ -62,7 +62,7 @@ A normal **protective MBR** on a GPT disk is expected and is not the same as a h
 
 ## Install Windows
 
-1. Download and extract **GoAwayBCA-Beta-2.zip**, then open **GoAwayBCA.app**. The app bundles its runtime and tools; you do not need to install Python or a filesystem driver.
+1. Download and extract **GoAwayBCA-Beta-3.zip**, then open **GoAwayBCA.app**. The app bundles its runtime and tools; you do not need to install Python or a filesystem driver.
 2. Approve the macOS administrator prompt and complete the disk-layout check or manual confirmations. See [SIP and disk-layout checks](docs/TROUBLESHOOTING.md#sip-and-disk-layout-checks).
 3. Choose your ISO and click **Start Windows installation**. Confirm your actual Mac model identifier. Do not substitute a different model to bypass a warning.
 4. Follow the edition, compatibility, driver and menu-name prompts. Choose your empty destination partition and carefully review its size and identity before confirming formatting.
@@ -80,7 +80,13 @@ The menu is refreshed when you install, uninstall or rebuild through GoAwayBCA. 
 
 **EFI backups are not backups of Windows partitions, applications or personal files.**
 
-## New in Beta 2
+## New in Beta 3
+
+Beta 3 fixes diagnostic discovery and stalled scans, shows the correct app version in the title bar, and creates short folders such as **Test-001**. Existing diagnostic tools and logs stay intact. Create a new tool with Beta 3 to use the updated collectors; an older tool is not updated in place.
+
+Unavailable PCI devices now produce a clear partial-inventory warning instead of making the collector appear to have aborted. Actual read/save errors remain errors. Both diagnostic options were exercised on MacBookPro11,5; the selected Windows handoff completed without a returned EFI error. This improves troubleshooting and does not claim a boot fix for other models.
+
+## Diagnostics and experimental tools
 
 ### Diagnose a Windows boot failure
 
@@ -117,7 +123,7 @@ If installing a Windows version newer than that Mac's official Boot Camp maximum
 
 ## Limitations and future work
 
-Beta 2 does **not** add Leopard support or support for 64-bit Macs with 32-bit EFI. Further installation optimisations, camera fixes, sleep/resume repairs, dock Ethernet fixes and Linux/GRUB interaction testing remain intended future work. Plans are not release dates or guarantees.
+Beta 3 does **not** add Leopard support or support for 64-bit Macs with 32-bit EFI. Further installation optimisations, camera fixes, sleep/resume repairs, dock Ethernet fixes and Linux/GRUB interaction testing remain intended future work. Plans are not release dates or guarantees.
 
 Linux coexistence has not been tested, whether Linux was installed before, between or after Windows. GRUB, OpenCore and the Mac's Option/Alt picker may present different entries or fail to boot an OS. Back up before changing boot configurations, try both pickers where available, and report the installation order and results. OpenShell can sometimes launch an existing EFI loader directly, but is not a guaranteed repair. GoAwayBCA's menu lists Windows only.
 
@@ -125,6 +131,6 @@ Linux coexistence has not been tested, whether Linux was installed before, betwe
 
 Use [GitHub Issues](https://github.com/jaegermeister-dev/GoAwayBCA/issues) for reports. Include the saved log, a diagnostic report and the information in [reporting a problem](docs/REPORTING.md). Review files for personal information before sharing them. Nothing is uploaded automatically.
 
-The release includes matching source and pinned build inputs. [BUILDING.md](BUILDING.md) explains exact app reproduction and the separate dependency source materials. The published app ZIP matches the documented Beta 2 source and build inputs.
+The release includes matching source and pinned build inputs. [BUILDING.md](BUILDING.md) explains exact app reproduction and the separate dependency source materials. The published app ZIP matches the documented Beta 3 source and build inputs.
 
 GoAwayBCA's own code is licensed under **GPLv3**. Third-party components retain their original licences and notices; see [THIRD-PARTY.md](THIRD-PARTY.md). The app is provided without warranty. Windows, macOS and other product names belong to their respective owners; this project is not affiliated with Apple or Microsoft.

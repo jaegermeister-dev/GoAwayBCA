@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "product": "GoAwayBCA",
-  "version": "0.2.0-beta.2",
+  "version": "0.3.0-beta.3",
   "copies": {
     "Contents/Info.plist": {
       "mode": 420,
@@ -1429,7 +1429,7 @@
         0,
         0
       ],
-      "input": "Contents/Resources/diagnostic-efi/ACPI.efi"
+      "source": "source/diagnostic-efi/ACPI.efi"
     },
     "Contents/Resources/diagnostic-efi/ACPI.pdb": {
       "mode": 420,
@@ -1453,7 +1453,7 @@
         0,
         0
       ],
-      "input": "Contents/Resources/diagnostic-efi/PCI.efi"
+      "source": "source/diagnostic-efi/PCI.efi"
     },
     "Contents/Resources/diagnostic-efi/PCI.pdb": {
       "mode": 420,
@@ -1477,7 +1477,7 @@
         0,
         0
       ],
-      "input": "Contents/Resources/diagnostic-efi/WindowsDiagnostics.template.efi"
+      "source": "source/diagnostic-efi/WindowsDiagnostics.template.efi"
     },
     "Contents/Resources/diagnostic-efi/acpi_collector.zig": {
       "mode": 420,
@@ -1525,7 +1525,7 @@
         0,
         0
       ],
-      "input": "Contents/Resources/diagnostic-efi/diagnostic_context.zig"
+      "source": "source/diagnostic-efi/diagnostic_context.zig"
     },
     "Contents/Resources/diagnostic-efi/pci_collector.zig": {
       "mode": 420,
@@ -1537,7 +1537,7 @@
         0,
         0
       ],
-      "input": "Contents/Resources/diagnostic-efi/pci_collector.zig"
+      "source": "source/diagnostic-efi/pci_collector.zig"
     },
     "Contents/Resources/diagnostics.py": {
       "mode": 420,
@@ -37614,7 +37614,14 @@
     "Contents/MacOS/WindowsDeployer",
     "Contents/Resources/bin/cpu-probe"
   ],
-  "input_archive": "GoAwayBCA-Beta-2-Build-Inputs.zip",
+  "input_archive": "GoAwayBCA-Beta-3-Build-Inputs.zip",
   "input_bytes": 66283361,
-  "input_sha256": "cd12dde7d73ecc9bf4e96ddfd3ac6c36259d98e7c8d6caea13ad5399d32c8885"
+  "input_sha256": "cd12dde7d73ecc9bf4e96ddfd3ac6c36259d98e7c8d6caea13ad5399d32c8885",
+  "superseded_input_entries": [
+    "Contents/Resources/diagnostic-efi/PCI.efi",
+    "Contents/Resources/diagnostic-efi/ACPI.efi",
+    "Contents/Resources/diagnostic-efi/WindowsDiagnostics.template.efi",
+    "Contents/Resources/diagnostic-efi/diagnostic_context.zig",
+    "Contents/Resources/diagnostic-efi/pci_collector.zig"
+  ]
 }

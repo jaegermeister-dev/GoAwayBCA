@@ -1,15 +1,27 @@
 """Bind one diagnostic EFI template to persistent disk/partition identities."""
 import hashlib
 import struct
+import re
 import uuid
 
 MAGIC=b'GoAwayBCA-EFI-DIAGNOSTIC-V1'.ljust(32,b'\0')
 SIZE=512
 
-def configuration(session_id,disk_guid,esp_guid,windows_guid,sector,pci_hash,acpi_hash,model):
+def next_folder(existing_names):
+    occupied={name.casefold() for name in existing_names}
+    for number in range(1,1000):
+        candidate='Test-%03d' % number
+        if candidate.casefold() not in occupied:return candidate
+    raise ValueError('All diagnostic folder names Test-001 through Test-999 are in use. Existing tools and logs were preserved.')
+
+def configuration(session_id,disk_guid,esp_guid,windows_guid,sector,pci_hash,acpi_hash,model,folder_name=None):
     if sector not in (512,4096):raise ValueError('Unsupported logical sector size')
     result=bytearray(SIZE);result[:32]=MAGIC
-    struct.pack_into('<II',result,32,1,sector)
+    struct.pack_into('<II',result,32,1 if folder_name is None else 2,sector)
+    if folder_name is not None:
+        if not re.fullmatch(r'Test-[0-9]{3}',folder_name) or folder_name=='Test-000':
+            raise ValueError('Invalid diagnostic folder name')
+        result[264:272]=folder_name.encode('ascii')
     for offset,value in ((40,session_id),(56,disk_guid),(72,esp_guid),(88,windows_guid)):
         item=uuid.UUID(value)
         if item.int==0:raise ValueError('Missing persistent diagnostic identity')

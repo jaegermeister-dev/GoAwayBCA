@@ -1,0 +1,27 @@
+{
+  "version": "0.3.0-beta.3",
+  "physical_diagnostic_creation": "PASS on MacBookPro11,5 through the actual app",
+  "physical_collect_only": "PASS",
+  "physical_boot_attempt": "Windows loader handoff; no returned EFI error",
+  "pci": "34 read, 1 unavailable, 0 failed; partial inventory correctly reported",
+  "acpi": "23 unique tables, 20 files in each of two captures",
+  "diagnostic_runtime_regressions": 39,
+  "per_runtime": [
+    "Python 3.7",
+    "Python 3.11"
+  ],
+  "isolated_firmware_cases": 6,
+  "diagnostic_firmware_source_reproduction": "all three binaries match",
+  "windows_installation_and_normal_menu_logic_unchanged": true,
+  "community_reporter_windows_boot_not_confirmed": true,
+  "physical_usb_or_restored_windows_boot_tested": false,
+  "release_rebuild_checks_per_runtime": 41,
+  "release_actual_window_version": "0.3.0-beta.3",
+  "release_delta_from_tested_candidate": [
+    "Contents/Info.plist",
+    "Contents/Resources/CURRENT-SCOPE.txt",
+    "Contents/Resources/DEPENDENCIES.txt",
+    "Contents/Resources/README.txt",
+    "Contents/Resources/runtime-profiles.plist"
+  ]
+}

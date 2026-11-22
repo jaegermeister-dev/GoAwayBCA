@@ -27,12 +27,24 @@ fn hexID(id: []const u8, count: usize) !void {
     if (id.len != count) return error.BadID;
     for (id) |c| if (!std.ascii.isHex(c)) return error.BadID;
 }
+fn shortName(name: []const u8) bool {
+    if(name.len!=8 or !std.ascii.eqlIgnoreCase(name[0..5],"Test-")) return false;
+    for(name[5..]) |c| if(c<'0' or c>'9') return false;
+    return !std.mem.eql(u8,name[5..],"000");
+}
+fn validateSession(data: []const u8, name: []const u8) !void {
+    const id=try value(data,"session_id"); try hexID(id,32);
+    if(shortName(name)) {
+        if(!std.ascii.eqlIgnoreCase(name,try value(data,"folder_name"))) return error.SessionMismatch;
+    } else if(!std.ascii.eqlIgnoreCase(name,id)) return error.SessionMismatch;
+}
 pub fn directory(path: []const u8, out: []u16) ![]const u16 {
     const prefix = "\\EFI\\WinDeploy\\Diagnostics\\";
-    if (path.len < prefix.len + 33 or !std.ascii.eqlIgnoreCase(path[0..prefix.len], prefix)) return error.WrongDirectory;
-    try hexID(path[prefix.len..][0..32], 32);
-    const end = prefix.len + 32;
-    if (path[end] != '\\') return error.WrongDirectory;
+    if (path.len <= prefix.len or !std.ascii.eqlIgnoreCase(path[0..prefix.len], prefix)) return error.WrongDirectory;
+    const length = std.mem.indexOfScalar(u8,path[prefix.len..],'\\') orelse return error.WrongDirectory;
+    const end = prefix.len + length;
+    const name = path[prefix.len..end];
+    if (!shortName(name)) hexID(name,32) catch return error.WrongDirectory;
     const leaf = path[end + 1 ..];
     if (!std.ascii.eqlIgnoreCase(leaf, "ACPI.efi") and !std.ascii.eqlIgnoreCase(leaf, "PCI.efi")) return error.WrongCollector;
     if (out.len <= end) return error.PathTooLong;
@@ -99,8 +111,8 @@ pub fn open(root: *File, image: *u.protocol.LoadedImage) !*File {
     var extra: [1]u8 = undefined; if (try file.read(&extra) != 0) return error.BadContextSize;
     const data = context[0..context_len];
     if (!std.mem.startsWith(u8, data, "WinDeploy read-only hardware report v1\n")) return error.BadContext;
-    const id = try value(data, "session_id"); try hexID(id, 32);
-    if (!std.mem.eql(u8, path[parent.len - 32 .. parent.len], id)) return error.SessionMismatch;
+    const prefix="\\EFI\\WinDeploy\\Diagnostics\\";
+    try validateSession(data,path[prefix.len..parent.len]);
     const bs = u.system_table.boot_services orelse return error.NoBootServices;
     const dp = (try bs.handleProtocol(u.protocol.DevicePath, image.device_handle orelse return error.NoDevice)) orelse return error.NoDevicePath;
     if (!try matchesEsp(dp, try value(data, "esp_guid"))) return error.EspMismatch;
@@ -139,4 +151,18 @@ test "report destination must be the exact GPT ESP GUID" {
     path[41] = 1;
     try std.testing.expectError(error.NotGPT,matchesEsp(@ptrCast(&path),id));
     try std.testing.expectError(error.BadGuid,matchesEsp(@ptrCast(&path),"bad-guid"));
+}
+
+
+
+test "short numbered folders preserve session and destination binding" {
+    var out: [256]u16=undefined;
+    const base="\\EFI\\WinDeploy\\Diagnostics\\Test-001";
+    try std.testing.expectEqual(@as(usize,base.len),(try directory(base++"\\PCI.efi",&out)).len);
+    for([_] []const u8{"Test-000","Test-01","Test-0010","Test-../x"}) |name| try std.testing.expect(!shortName(name));
+    const data="session_id=0123456789abcdef0123456789abcdef\nfolder_name=Test-001\n";
+    try validateSession(data,"TEST-001");
+    try std.testing.expectError(error.SessionMismatch,validateSession(data,"Test-002"));
+    try std.testing.expectError(error.MissingField,validateSession("session_id=0123456789abcdef0123456789abcdef\n","Test-001"));
+    try validateSession("session_id=0123456789abcdef0123456789abcdef\n","0123456789abcdef0123456789abcdef");
 }

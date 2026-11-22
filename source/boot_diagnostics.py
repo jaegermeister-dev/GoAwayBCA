@@ -35,13 +35,25 @@ def instructions(folder,title,esp_guid):
         'is available; this is not a Windows kernel debugger. Returned EFI errors are recorded.\n\n'
         '7. Return to macOS. In GoAwayBCA, use Advanced > Mount / Unmount EFI and select the EFI partition above. '
         'Copy this entire diagnostic folder, including boot-*.log and PCI/ACPI reports. Each run uses a new log. '
-        'Review the files before attaching them to your GitHub issue. Nothing is uploaded automatically.\n')
+        'Review the files before attaching them to your GitHub issue. Nothing is uploaded automatically.\n\n'
+        'Creating this tool again makes a separate numbered Test folder. Existing tools and reports are preserved. '
+        'Use the folder listed in these instructions for this test; older tools keep their original target and behaviour.\n')
 
 class BootDiagnostics(InstallationManager):
     def execute(self):
         self.begin();phase(self.note,'Finding Windows partitions for targeted EFI diagnostics')
-        scan=self.discover();rows=scan['installations']
-        require(rows,'No readable Windows installations found. No diagnostic tool was written.')
+        scan=self.discover(verify_filesystem=True);rows=scan['installations']
+        scan_path=self.session/'diagnostic-scan.json'
+        write_receipt(scan_path,scan)
+        for failure in scan.get('scan_failures',[]):
+            self.note('Could not inspect '+failure['partition']+': '+failure['error'])
+        self.note('EFI diagnostic scan: %d Windows installation(s) found; %d partition(s) could not be inspected.' %
+            (len(rows),len(scan.get('scan_failures',[]))))
+        self.note('Diagnostic scan report: '+str(scan_path))
+        require(rows,('Windows partitions could not be read. Check the scan errors in the log and include the saved diagnostic scan report when reporting the problem.'
+            if scan.get('scan_failures') else
+            'No readable Windows installations found. Check that the Windows drive is connected and accessible. If Windows was just installed, include the saved diagnostic scan report when reporting the problem.')+
+            '\nNo diagnostic tool was written.\nScan report: '+str(scan_path))
         selected=rows[self.choose('Which Windows installation fails to boot? The diagnostic EFI will target '
             'this partition by its persistent identifier, including if its current disk number changes.',
             [r['title']+'\n'+r['summary'] for r in rows])]
@@ -53,11 +65,13 @@ class BootDiagnostics(InstallationManager):
             require(not self.close_esp(),'Could not close the previous diagnostic scan mount.')
         root=self.mount_esp(target['esp'],readonly=True);before=tree_manifest(root)
         session=uuid.uuid4()
-        # Folder bytes deliberately match the embedded UUID's little-endian wire representation.
-        session_id=session.bytes_le.hex();folder=PREFIX+session_id
+        session_id=session.bytes_le.hex()
+        diagnostic_root=root/PREFIX
+        existing=sorted(p.name for p in diagnostic_root.iterdir()) if diagnostic_root.exists() else []
+        folder_name=binding.next_folder(existing);folder=PREFIX+folder_name
         version=plistlib.loads((ROOT.parent/'Info.plist').read_bytes()).get('CFBundleShortVersionString','unknown')
         report=dict(schema=1,kind='targeted-windows-boot',session_id=session_id,app_version=version,
-            model=model,target=selected['observed'],esp_guid=esp['guid'],sector_size=layout['sector_size'],
+            folder_name=folder_name,model=model,target=selected['observed'],esp_guid=esp['guid'],sector_size=layout['sector_size'],
             current_device_names=dict(windows=target['partition']['DeviceIdentifier'],esp=target['esp']),
             menu_title=selected['title'],scan_failures=scan.get('scan_failures',[]),
             automatic_fixes=False,automatic_upload=False)
@@ -66,10 +80,10 @@ class BootDiagnostics(InstallationManager):
         report['boot_environment']=report_metadata.boot_environment(root,report_metadata.nvram_version())
         collectors={name:(ROOT/'diagnostic-efi'/name).read_bytes() for name in ('PCI.efi','ACPI.efi')}
         config=binding.configuration(str(session),layout['guid'],esp['guid'],win['guid'],layout['sector_size'],
-            hashlib.sha256(collectors['PCI.efi']).hexdigest(),hashlib.sha256(collectors['ACPI.efi']).hexdigest(),model)
+            hashlib.sha256(collectors['PCI.efi']).hexdigest(),hashlib.sha256(collectors['ACPI.efi']).hexdigest(),model,folder_name=folder_name)
         program=binding.bind((ROOT/'diagnostic-efi/WindowsDiagnostics.template.efi').read_bytes(),config)
         context=('WinDeploy read-only hardware report v1\nsession_id='+session_id+'\nesp_guid='+esp['guid']+
-                 '\nmacos_model='+model+'\nwindows_disk_guid='+layout['guid']+'\nwindows_partition_guid='+win['guid']+'\n').encode('ascii')
+                 '\nfolder_name='+folder_name+'\nmacos_model='+model+'\nwindows_disk_guid='+layout['guid']+'\nwindows_partition_guid='+win['guid']+'\n').encode('ascii')
         guide=instructions(folder,selected['title'],esp['guid'])
         files=dict(collectors,**{'WindowsDiagnostics.efi':program,'context.txt':context,
             'ALLOW-ACPI.txt':b'WinDeploy readonly ACPI collection 20261008 v1\n',
@@ -77,7 +91,9 @@ class BootDiagnostics(InstallationManager):
             'OPEN-SHELL-INSTRUCTIONS.txt':guide.encode('utf8'),
             'macos-report.json':(json.dumps(report,indent=2)+'\n').encode('utf8')})
         require(self.approve('review','Create an OpenShell diagnostic tool for “'+selected['title']+'”?\n\n'
-            'This adds a new diagnostic folder to '+target['esp']+'. It does not fix or replace boot files. '
+            'New folder: '+folder_name+' on '+target['esp']+'.\n'
+            'Existing diagnostic folders and logs will be kept. Creating a new tool does not update or remove earlier tools; use this new folder for the latest test.\n\n'
+            'It does not fix or replace boot files. '
             'You run it yourself in OpenShell. Option 1 collects reports only; option 2 also uses normal Windows '
             'BCD selection to attempt this Windows boot. Logs are saved on EFI before handoff. No automatic upload.',
             details=guide),'Diagnostic preparation cancelled.')

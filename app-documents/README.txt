@@ -1,4 +1,4 @@
-GoAwayBCA Beta 2
+GoAwayBCA Beta 3
 
 Install and manage Windows 8.1, Windows 10 and Windows 11 from Intel macOS, using an existing internal or experimental USB GPT partition and pure EFI booting. A USB installer is not required.
 Windows 7 and Windows 8 are not yet supported. Support is being actively developed for a future update.
@@ -22,7 +22,7 @@ Tools include installation management, Windows boot-menu rebuild/rename, EFI mou
 
 Host range: Intel OS X Lion 10.7 through macOS Tahoe. Testing has included Mavericks, Mojave, Monterey and Tahoe across MacBookPro11,3, 11,4 and 11,5; this does not mean every host/Windows/model combination was tested. Windows 8.1 and 10 installations and menu coexistence have been tested on these Macs, including 4096-byte logical-sector storage on the 11,4. Windows 11 is available with compatibility guidance, but was not part of that installation test matrix. Older hosts and other models may need fixes based on reports.
 
-New in Beta 2: experimental USB destinations, Windows partition backup/restore, and targeted OpenShell diagnostics under Advanced. Not included: Leopard support or installation support for 32-bit EFI Macs. Further installation optimisations and Linux/GRUB interaction testing are future work.
+Beta 3 fixes Windows detection when creating EFI diagnostics, prevents diagnostic scans from waiting indefinitely, and uses short Test-001, Test-002 folders. Existing diagnostic tools and logs are preserved. PCI reports distinguish unavailable devices from actual read failures. Experimental USB destinations and Windows partition backup/restore remain available. Not included: Leopard support or installation support for 32-bit EFI Macs. Further installation optimisations and Linux/GRUB interaction testing are future work.
 
 Linux/GRUB coexistence is untested. Installing another OS or changing bootloaders can affect which entries appear or boot. Try the native Option/Alt picker and OpenCore where available; their behaviour can differ. OpenShell may help launch an existing EFI loader, but is not a guaranteed repair. Back up first and report your installation order and results.
 

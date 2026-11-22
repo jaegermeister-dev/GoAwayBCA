@@ -1,12 +1,12 @@
 {
   "Contents/Info.plist": {
     "bytes": 842,
-    "sha256": "f207adc4dbafe097fd9ec040370de7dd982688818527fdca3e4f2619a0aeb7d9",
+    "sha256": "360c5e2d4db5af6be0231f6c460a6a2b1556b954ed8312cc2fb5ce860c793039",
     "mode": 420
   },
   "Contents/MacOS/WindowsDeployer": {
-    "bytes": 211272,
-    "sha256": "51badf59e57d3d094900884a1201d3f9febf487506bdd2ac303f51a948a19200",
+    "bytes": 211336,
+    "sha256": "4e3573e5d5239126367e9996575ec32af5ee99c87cd8f025376a9e507e1c761c",
     "mode": 493
   },
   "Contents/Resources/BCD.template": {
@@ -35,13 +35,13 @@
     "mode": 420
   },
   "Contents/Resources/CURRENT-SCOPE.txt": {
-    "bytes": 619,
-    "sha256": "87be8fb081d212a7ae4eae05908dff5a9e48fc37cfcc09d307ee183a5eaba714",
+    "bytes": 613,
+    "sha256": "453d3e797b169d3583fd634b1612fad47fac96a28cb9b8453a379db8e8ce12a6",
     "mode": 420
   },
   "Contents/Resources/DEPENDENCIES.txt": {
-    "bytes": 1296,
-    "sha256": "d905534eb2ba46ad7d50ae492ecce683efde51a797aaa337c528e64f0db131ca",
+    "bytes": 1287,
+    "sha256": "0ab6ead1b3c9377e4d68a2bafa5e5107b824f37c3024a169ddc646ab018757d9",
     "mode": 420
   },
   "Contents/Resources/DRIVER-GUIDANCE.txt": {
@@ -75,8 +75,8 @@
     "mode": 420
   },
   "Contents/Resources/README.txt": {
-    "bytes": 3977,
-    "sha256": "2c5115324eb23ca061faa89ebbd1a665988cc571d8d3ef2418951b1c5be9e2f7",
+    "bytes": 4179,
+    "sha256": "8e74b52c754a35e50b2de1f017577022d6b0853c2f4ecce0b997b5b966736bc2",
     "mode": 420
   },
   "Contents/Resources/SECURITY-CHIP-MODELS.txt": {
@@ -525,13 +525,13 @@
     "mode": 420
   },
   "Contents/Resources/boot_diagnostic_binding.py": {
-    "bytes": 2106,
-    "sha256": "a322c74a9b281d2628e55d12c38679640603b506cff1bf756ffcaf4cf58cb7a1",
+    "bytes": 2755,
+    "sha256": "487700a0ea1ed0a55b11be1b6b31dcc8b189c59f40891856c9b8a014b47a77ff",
     "mode": 420
   },
   "Contents/Resources/boot_diagnostics.py": {
-    "bytes": 8483,
-    "sha256": "6451563cfff2546766cf8d0c4d59e5cf6d0395012c63b214ee8b5d0fa3c20837",
+    "bytes": 9980,
+    "sha256": "46125be6a26ed117d9514062dd0444067305f82b1531e840412ff1b5c13a23ec",
     "mode": 420
   },
   "Contents/Resources/bootcamp_download.py": {
@@ -600,8 +600,8 @@
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/ACPI.efi": {
-    "bytes": 45056,
-    "sha256": "979881423129fcbadfea3bcbe01461a25dc85190fc991c467d1d23c1b1f7db38",
+    "bytes": 109568,
+    "sha256": "9526bd9b44b9a14921ebbaf0831a51caaad187948be9be558bd00353fb10c672",
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/ACPI.pdb": {
@@ -610,8 +610,8 @@
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/PCI.efi": {
-    "bytes": 33280,
-    "sha256": "48639dedf04fab5b65ed03f548ad3c79ff593422f3763550be725b6c529e502a",
+    "bytes": 100864,
+    "sha256": "0e6ade7e80906d6ce5274ad79b17f3b80596c99d0b9ff9696ee26a0c236bbb8b",
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/PCI.pdb": {
@@ -620,8 +620,8 @@
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/WindowsDiagnostics.template.efi": {
-    "bytes": 298496,
-    "sha256": "877f133360b30a457bbfc1c81ec3a7125256f4774803b1e0e360df40ebea06a9",
+    "bytes": 302080,
+    "sha256": "8fe2deefde7d40ed17d3ebe23d4a2d38d36c71f89d225e341fd0768488a4edc7",
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/acpi_collector.zig": {
@@ -640,13 +640,13 @@
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/diagnostic_context.zig": {
-    "bytes": 7949,
-    "sha256": "b44f426fa5aa0d4d1bd9068667673ca30207fc54a13e631557c21319c436d4f6",
+    "bytes": 9416,
+    "sha256": "0d984fe51174fddf10a3ff48fee74051b04a050230f698e47ba96bb835c6592f",
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/pci_collector.zig": {
-    "bytes": 9789,
-    "sha256": "cac782e44692eaadc2447824d54373b7e7d88f80fd4da4dcdfaf6f02fe43d3ff",
+    "bytes": 11262,
+    "sha256": "193b89518c45f0e422412a78220ca6562d8da756ffee81dbfe60a109ed4b41dc",
     "mode": 420
   },
   "Contents/Resources/diagnostics.py": {
@@ -900,8 +900,8 @@
     "mode": 420
   },
   "Contents/Resources/manage_installations.py": {
-    "bytes": 13650,
-    "sha256": "bc45d2f8d6bdd27035fc4d115e5bbf3ad72390a2b2675da7a4e1bf358b6f3929",
+    "bytes": 14880,
+    "sha256": "36340b9551b33173bbdeb1a3e6440e08ed595b745c6a5863a5a0b0dd4fed8832",
     "mode": 420
   },
   "Contents/Resources/menu_assets.py": {
@@ -935,8 +935,8 @@
     "mode": 420
   },
   "Contents/Resources/ntfs_read.py": {
-    "bytes": 13772,
-    "sha256": "6908d96e818b75b9f39c36542daa4c90dd8eb74e7a1b0340f3c4131fa7ea99fd",
+    "bytes": 17835,
+    "sha256": "34bab19bd7ad75dbd01d9c4c1c3af1115cae93950229efdbbb0b6ed6cf155a54",
     "mode": 420
   },
   "Contents/Resources/ntfsclone_image.py": {
@@ -15496,7 +15496,7 @@
   },
   "Contents/Resources/runtime-profiles.plist": {
     "bytes": 556978,
-    "sha256": "aebe083debd20debeba5de65f437b3310f3e0b5d623e93c44ddff68f326cfb6c",
+    "sha256": "5dad08dc58f347aa1eb76dcbd46982a77a61bf9de5de1f154c8445b0fd3c317c",
     "mode": 420
   },
   "Contents/Resources/runtime_profiles.py": {

@@ -38,6 +38,14 @@
 
 
 
+static NSString *VersionTitle(NSString *version) {
+    return [NSString stringWithFormat:@"GoAwayBCA — %@",[version length] ? version : @"version unavailable"];
+}
+
+static NSString *ApplicationTitle(void) {
+    return VersionTitle([[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]);
+}
+
 static NSString *Resources;
 
 static BOOL DemoMode = NO;
@@ -90,7 +98,7 @@ static NSAlert *SupportAlert(void) {
 
     [alert setMessageText:@"GoAwayBCA support"];
 
-    [alert setInformativeText:@"GoAwayBCA Beta 2. For help or to report a problem, open a GitHub issue and include the saved log and diagnostic report. Review reports for personal information before sharing them.\n\nReddit opens r/GoAwayBCA. The GitHub link opens the GoAwayBCA repository. No logs or hardware reports are uploaded automatically."];
+    [alert setInformativeText:[ApplicationTitle() stringByAppendingString:@". For help or to report a problem, open a GitHub issue and include the saved log and diagnostic report. Review reports for personal information before sharing them.\n\nReddit opens r/GoAwayBCA. The GitHub link opens the GoAwayBCA repository. No logs or hardware reports are uploaded automatically."]];
 
     [alert addButtonWithTitle:@"GitHub"];
 
@@ -995,11 +1003,8 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 
         backing:NSBackingStoreBuffered defer:NO];
 
-    [window setTitle:DemoMode ? @"GoAwayBCA — UI simulation (no disks accessed)" :
-
-        ([[configuration objectForKey:@"installation_enabled"] boolValue] ?
-
-            @"GoAwayBCA — Beta 2" : @"GoAwayBCA — installation unavailable")];
+    [window setTitle:DemoMode ? [ApplicationTitle() stringByAppendingString:@" — UI simulation (no disks accessed)"] :
+        ([[configuration objectForKey:@"installation_enabled"] boolValue] ? ApplicationTitle() : [ApplicationTitle() stringByAppendingString:@" — installation unavailable"])];
 
     [window setReleasedWhenClosed:NO]; [window setDelegate:(id)self];
 
@@ -1158,7 +1163,7 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
     [backupButton setAutoresizingMask:NSViewMinYMargin];
     [advancedButton setAutoresizingMask:NSViewMinYMargin];
 
-    [self appendLog:@"GoAwayBCA Beta 2. Choose a Windows 8.1, 10 or 11 ISO to begin."];
+    [self appendLog:[ApplicationTitle() stringByAppendingString:@". Choose a Windows 8.1, 10 or 11 ISO to begin."]];
 
     if (![[configuration objectForKey:@"installation_enabled"] boolValue])
 
@@ -2582,6 +2587,8 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 }
 
 - (int)selfTest {
+    if (![VersionTitle(@"0.3.0-beta.3-test.2") isEqual:@"GoAwayBCA — 0.3.0-beta.3-test.2"] ||
+        ![VersionTitle(@"0.9.0-beta.9") isEqual:@"GoAwayBCA — 0.9.0-beta.9"]) return 97;
 
     /* Stable offscreen QA appearance only; normal launches inherit the OS.
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0-beta.3 — 22 November 2026
+
+- Fix Windows detection when creating EFI diagnostics, including immediately after an installation and after reopening the app.
+- Bound registry-header reads and helper cleanup so the diagnostic scan cannot wait indefinitely; report the current scan stage.
+- Show the packaged version in the application window title.
+- Use short diagnostic folders such as `Test-001`. Creating a new tool preserves earlier tools and logs; use the newly generated folder for the latest test.
+- Report unavailable PCI devices as a partial inventory with their addresses and counts. Genuine read/save failures remain errors, and the main boot log includes the PCI result.
+- Keep the existing Windows installation, driver, uninstall and normal boot-menu behaviour. This release does not add Windows 7 or Windows 8 support.
+
+The updated tool was created through the actual app and both diagnostic options were exercised on MacBookPro11,5. The boot-attempt log reached the selected Windows loader without a returned EFI error. Additional checks cover both bundled Python runtimes and isolated firmware environments with 512/4096-byte logical sectors and EFI 1.10. These results do not establish that the older Mac from a community report can now boot Windows: Beta 3 provides the corrected diagnostic collection needed to investigate it.
+
 ## 0.2.0-beta.2 — 19 November 2026
 
 - Add Windows-partition-specific OpenShell EFI diagnostics: collect only, or collect and attempt the selected Windows boot, with logs flushed before handoff.

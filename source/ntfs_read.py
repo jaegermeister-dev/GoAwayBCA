@@ -6,11 +6,13 @@ reads keep a crafted marker/path from escaping the selected partition.
 """
 import os
 import json
+import select
 from pathlib import Path
 import stat
 import subprocess
 import sys
 import tempfile
+import time
 
 if __name__ == '__main__':
     # Isolated bundled-Python child: import only the adjacent audited modules.
@@ -115,6 +117,48 @@ def raw_read(tool, raw, path, limit):
             return data
 
 
+def raw_ntfs_signature(partition):
+    """Read one sector of this unmounted partition, never its whole disk.
+
+    Disk Arbitration can retain the old exFAT label after mkntfs. This is only
+    a discovery hint: the NTFS reader must still open and verify Windows files.
+    Keep the original diskutil identity unchanged for all later write guards.
+    """
+    device = partition.get('DeviceIdentifier')
+    require(PART_RE.fullmatch(str(device)) and partition.get('MountPoint') == '',
+            'Filesystem probing requires an identified, unmounted partition')
+    size = partition.get('DeviceBlockSize')
+    require(type(size) is int and size in (512, 4096), 'Unknown partition sector size')
+    raw = '/dev/' + device
+    node = os.stat(raw)
+    require(stat.S_ISBLK(node.st_mode) and node.st_rdev > 0, 'Expected a partition block device')
+    fd = os.open(raw, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    try:
+        opened = os.fstat(fd)
+        require(stat.S_ISBLK(opened.st_mode) and opened.st_rdev == node.st_rdev,
+                'Partition device changed during filesystem probing')
+        data = os.read(fd, size)
+        require(len(data) == size, 'Could not read the partition filesystem header')
+    finally:
+        os.close(fd)
+    return data[3:11] == b'NTFS    ' and data[510:512] == b'\x55\xaa'
+
+
+def raw_names(tool, raw):
+    """Bounded NTFS root listing inside an already checked Probe batch."""
+    with tempfile.TemporaryFile() as errors:
+        with subprocess.Popen([str(tool), '-a', '-p', '/', raw], stdout=subprocess.PIPE,
+                stderr=errors, env=dict(os.environ, LC_ALL='C')) as child:
+            data = child.stdout.read(1024**2 + 1)
+            if len(data) > 1024**2:
+                child.kill(); child.wait()
+                raise Refusal('NTFS root listing exceeds limit')
+            code = child.wait(); errors.seek(0)
+            require(code == 0, 'Read-only NTFS directory inspection failed: ' +
+                    errors.read(3000).decode('utf-8', 'replace'))
+            return data.decode('utf-8').splitlines()
+
+
 def _mounted_names(mount,device_id,isolated_cwd=False):
     require(Path(mount).is_absolute() and str(Path(mount).resolve())==mount,'Noncanonical NTFS mount')
     descriptor=os.open(mount,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW|os.O_NONBLOCK)
@@ -189,23 +233,72 @@ def read_file(partition, path, tool, limit):
     return data
 
 
+def stop_reader(child):
+    """Close the pipe and reap only this read-only helper, with bounded waits."""
+    child.stdout.close()
+    if child.poll() is None:
+        try:child.terminate()
+        except ProcessLookupError:pass
+    try:child.wait(timeout=1)
+    except subprocess.TimeoutExpired:
+        try:child.kill()
+        except ProcessLookupError:pass
+        try:child.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            raise Refusal('The read-only NTFS helper could not be stopped. Close this operation and retry.')
+
+
+def raw_prefix_read(tool,raw,path,limit,timeout=60):
+    """ntfscat has no range option; never wait indefinitely on its full output."""
+    components(path)
+    require(type(limit) is int and 0<limit<=16*1024**2,'Invalid discovery read limit')
+    deadline=time.monotonic()+timeout
+    with tempfile.TemporaryFile() as errors:
+        child=subprocess.Popen([str(tool),raw,path],stdout=subprocess.PIPE,stderr=errors,bufsize=0)
+        try:
+            data=bytearray()
+            while len(data)<limit:
+                remaining=deadline-time.monotonic()
+                require(remaining>0,'Timed out reading the Windows registry header from '+raw)
+                ready,_,_=select.select([child.stdout],[],[],remaining)
+                require(ready,'Timed out reading the Windows registry header from '+raw)
+                part=os.read(child.stdout.fileno(),limit-len(data))
+                if not part:break
+                data.extend(part)
+            if len(data)<limit:
+                try:code=child.wait(timeout=max(0.01,deadline-time.monotonic()))
+                except subprocess.TimeoutExpired:
+                    raise Refusal('Timed out waiting for the read-only NTFS helper on '+raw)
+                errors.seek(0)
+                require(code==0,'NTFS header read failed: '+errors.read(3000).decode('utf-8','replace'))
+            return bytes(data)
+        finally:stop_reader(child)
+
+
 class Probe:
     """One short read-only discovery batch, with identity/mount checks at both ends.
 
     These are display hints, never destructive-operation authority. Do not keep
     this context open across GUI questions or use it to cache a write guard.
     """
-    def __init__(self,partition,tool):
+    def __init__(self,partition,tool,verify_filesystem=False):
         self.partition=partition;self.tool=tool
+        self.verify_filesystem=verify_filesystem
 
     def __enter__(self):
         device=self.partition.get('DeviceIdentifier')
         require(PART_RE.fullmatch(str(device)),'Invalid NTFS partition device')
         self.device=device;self.before=info(device)
-        require(filesystem(self.before)=='ntfs' and
+        reported=filesystem(self.before)
+        require(reported in (('ntfs','exfat') if self.verify_filesystem else ('ntfs',)) and
             partition_identity(self.before)==partition_identity(self.partition),'NTFS identity changed')
         self.mount=self.before.get('MountPoint')
         require(type(self.mount) is str and self.mount!='/','Unknown NTFS mount state')
+        self.is_ntfs=reported=='ntfs'
+        self.stale_filesystem=False
+        if not self.is_ntfs and not self.mount:
+            self.is_ntfs=raw_ntfs_signature(self.before)
+            self.stale_filesystem=self.is_ntfs
         if self.mount:
             node=os.stat('/dev/'+device)
             require(stat.S_ISBLK(node.st_mode) and node.st_rdev>0,'Expected NTFS partition block device')
@@ -220,27 +313,19 @@ class Probe:
             'NTFS identity or mount state changed during discovery')
 
     def read(self,path,limit,prefix=False):
+        require(self.is_ntfs,'The selected partition was not identified as NTFS')
         components(path)
         require(type(limit) is int and 0<limit<=16*1024**2,'Invalid discovery read limit')
         if self.mount:
             return mounted_read(self.mount,path,self.device_id,limit,prefix=prefix)
         if not prefix:return raw_read(self.tool,'/dev/'+self.device,path,limit)
-        # ntfscat has no range option. Read only the requested header and stop
-        # only our own read-only child, never the user's processes or mounts.
-        with tempfile.TemporaryFile() as errors:
-            with subprocess.Popen([str(self.tool),'/dev/'+self.device,path],
-                    stdout=subprocess.PIPE,stderr=errors) as child:
-                data=child.stdout.read(limit)
-                if len(data)==limit:
-                    if child.poll() is None:child.terminate()
-                    child.wait()
-                else:
-                    code=child.wait();errors.seek(0)
-                    require(code==0,'NTFS header read failed: '+errors.read(3000).decode('utf-8','replace'))
-                return data
+        return raw_prefix_read(self.tool,'/dev/'+self.device,path,limit)
 
     def names(self):
+        require(self.is_ntfs,'The selected partition was not identified as NTFS')
         if not self.mount:
+            if self.stale_filesystem:
+                return raw_names(Path(self.tool).with_name('ntfsls'),'/dev/'+self.device)
             return root_names(self.before,Path(self.tool).with_name('ntfsls'))
         if os.listdir in os.supports_fd:return _mounted_names(self.mount,self.device_id)
         result=subprocess.run([sys.executable,'-I','-B',str(Path(__file__).resolve()),

@@ -34,7 +34,6 @@ fn readHeader(io: *PciIo) !Snapshot {
     if (loc.segment > 65535 or loc.bus > 255 or loc.device > 31 or loc.function > 7) return error.InvalidLocation;
     // Uint8 width, offset zero, exactly the conventional 64-byte config header.
     if (io.read_config(io, 0, 0, snap.header.len, &snap.header) != .success) return error.ConfigReadFailed;
-    if (snap.header[0] == 0xff and snap.header[1] == 0xff) return error.DeviceAbsent;
     return snap;
 }
 fn word(h: []const u8, at: usize) !u16 {
@@ -99,6 +98,11 @@ fn save(dir: *File) !void {
     }
     return error.NoUnusedReportName;
 }
+fn inventoryResult(count: usize, unavailable: usize, failures: usize) []const u8 {
+    if(failures!=0 or count==0) return "ERROR: incomplete inventory; see read errors above.";
+    if(unavailable!=0) return "WARNING: partial inventory saved. Unavailable devices were skipped; this is not a Windows boot failure.";
+    return "Complete inventory saved.";
+}
 fn run() !void {
     const bs = u.system_table.boot_services orelse return error.NoBootServices;
     const image = (try bs.handleProtocol(u.protocol.LoadedImage, u.handle)) orelse return error.NoLoadedImage;
@@ -120,16 +124,25 @@ fn run() !void {
     try append("WinDeploy read-only PCI inventory v1. Existing protocol handles only.\r\nNo PCI/MMIO writes, BAR sizing, ACPI/NVRAM/boot changes or resets.\r\n", .{});
     try append("{s}", .{context.reportHeader()});
     var failures: usize = 0;
+    var unavailable: usize = 0;
     var count: usize = 0;
     for (handles, 0..) |handle, index| {
         const io = (try bs.handleProtocol(PciIo, handle)) orelse { failures += 1; continue; };
         const snap = readHeader(io) catch |err| { failures += 1; try append("READ_FAILED index={d} error={s}\r\n", .{ index, @errorName(err) }); continue; };
+        if (try word(&snap.header,0)==0xffff) {
+            unavailable+=1;
+            const l=snap.location;
+            try append("UNAVAILABLE index={d} BDF={x}:{x}:{x}.{x} vendor=ffff config_read_status=Success. Firmware handle exists but device is not responding; skipped.\r\n",.{index,l.segment,l.bus,l.device,l.function});
+            continue;
+        }
         try record(snap);
         count += 1;
     }
-    try append("END handles={d} read={d} failed={d}. Hardware fix NOT applied.\r\n", .{ handles.len, count, failures });
+    try append("END handles={d} read={d} unavailable={d} failed={d}. Hardware fix NOT applied.\r\n", .{ handles.len, count, unavailable, failures });
+    try append("RESULT {s}\r\n",.{inventoryResult(count,unavailable,failures)});
     try save(dir);
-    if (failures != 0) return error.IncompleteInventory;
+    if (failures != 0 or count==0) return error.IncompleteInventory;
+    if(unavailable!=0) message("PCI WARNING: partial inventory saved; unavailable devices were skipped. See PCI report for counts and addresses.\r\n");
 }
 pub fn main() u.Status {
     message("WinDeploy: PCI header inventory only. No hardware changes.\r\n");
@@ -151,6 +164,12 @@ const Mock = struct {
 test "UEFI x64 ABI read-only prefix offsets" { try std.testing.expectEqual(@as(usize, 48), @offsetOf(PciIo, "read_config")); try std.testing.expectEqual(@as(usize, 112), @offsetOf(PciIo, "get_location")); }
 test "exactly one conventional header read and no other methods" { Mock.init(); const s = try readHeader(&Mock.pci); try std.testing.expectEqual(@as(usize, 1), Mock.reads); try std.testing.expectEqual(@as(u16, 0x8086), try word(&s.header, 0)); }
 test "invalid BDF rejected before config access" { Mock.init(); Mock.bad_location = true; try std.testing.expectError(error.InvalidLocation, readHeader(&Mock.pci)); try std.testing.expectEqual(@as(usize, 0), Mock.reads); }
-test "read failure and absent device stop" { Mock.init(); Mock.fail_read = true; try std.testing.expectError(error.ConfigReadFailed, readHeader(&Mock.pci)); Mock.init(); Mock.header[0] = 255; Mock.header[1] = 255; try std.testing.expectError(error.DeviceAbsent, readHeader(&Mock.pci)); }
+test "read failure remains an error but absent device retains BDF" { Mock.init(); Mock.fail_read = true; try std.testing.expectError(error.ConfigReadFailed, readHeader(&Mock.pci)); Mock.init(); Mock.header[0] = 255; Mock.header[1] = 255; const snap=try readHeader(&Mock.pci); try std.testing.expectEqual(@as(u16,0xffff),try word(&snap.header,0)); try std.testing.expectEqual(@as(usize,7),snap.location.bus); }
+test "partial and failed inventories cannot claim full success" {
+    try std.testing.expect(std.mem.startsWith(u8,inventoryResult(34,1,0),"WARNING:"));
+    try std.testing.expect(std.mem.startsWith(u8,inventoryResult(34,0,1),"ERROR:"));
+    try std.testing.expect(std.mem.startsWith(u8,inventoryResult(0,35,0),"ERROR:"));
+    try std.testing.expect(std.mem.startsWith(u8,inventoryResult(35,0,0),"Complete"));
+}
 test "one and four MiB bridge windows decode correctly" { var h: [64]u8 = @splat(0); h[14] = 1; h[0x20] = 0xe0; h[0x21] = 0xb4; h[0x22] = 0xe0; h[0x23] = 0xb4; var w = try memoryWindow(&h); try std.testing.expect(w.enabled); try std.testing.expectEqual(@as(u64, 0x100000), w.limit - w.base + 1); h[0x20] = 0xc0; h[0x22] = 0xf0; w = try memoryWindow(&h); try std.testing.expectEqual(@as(u64, 0x400000), w.limit - w.base + 1); }
 test "disabled bridge and wrong header are not valid ranges" { var h: [64]u8 = @splat(0); try std.testing.expectError(error.NotBridge, memoryWindow(&h)); h[14] = 1; h[0x21] = 0xb5; h[0x23] = 0xb4; try std.testing.expect(!(try memoryWindow(&h)).enabled); try std.testing.expectError(error.ShortHeader, word(&h, 64)); }

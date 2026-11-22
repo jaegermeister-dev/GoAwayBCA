@@ -141,26 +141,36 @@ class InstallationManager(Installer):
                     scan_complete=not failures, scope='internal-physical-GPT-NTFS',
                     physical_writes=False)
 
-    def discover(self):
+    def discover(self,verify_filesystem=False):
         """Quick list only. Full scan() remains mandatory for action planning."""
         rows,failures,non_windows=[],[],[]
         gpts={};metadata={}
         for target in discovery_inventory():
             p=target['partition']
-            if filesystem(p)!='ntfs':continue
+            if filesystem(p) not in (('ntfs','exfat') if verify_filesystem else ('ntfs',)):continue
             device=p['DeviceIdentifier']
             try:
-                with Probe(p,self.ntfscat) as probe:
+                candidate=(Probe(p,self.ntfscat,verify_filesystem=True) if verify_filesystem else Probe(p,self.ntfscat))
+                with candidate as probe:
+                    if verify_filesystem and not probe.is_ntfs:
+                        non_windows.append(dict(partition=device,reason='Not identified as NTFS; no Windows file inspection attempted'))
+                        continue
+                    stale_filesystem=verify_filesystem and probe.stale_filesystem
+                    if stale_filesystem:
+                        self.note(device+': macOS still reports exFAT; the partition header identifies NTFS. Checking Windows files read-only.')
                     if not any(n.casefold()=='windows' for n in probe.names()):
                         non_windows.append(dict(partition=device,reason='No Windows directory in root listing'))
                         continue
+                    if verify_filesystem:self.note(device+': Reading Windows EFI loader...')
                     loader=probe.read('/Windows/System32/winload.efi',8*1024**2)
+                    if verify_filesystem:self.note(device+': Reading Windows registry header...')
                     header=probe.read('/Windows/System32/config/SYSTEM',4096,prefix=True)
                     require(len(loader)>1024 and loader[:2]==b'MZ' and
                         len(header)==4096 and header[:4]==b'regf','Windows files not identified')
                     marker=None
                     try:marker=bounded_json(probe.read(MARKER,1024**2))
                     except (OSError,Refusal,ValueError,UnicodeError):pass
+                if verify_filesystem:self.note(device+': Windows files found. Checking partition identity and EFI records...')
                 disk=target['disk']['DeviceIdentifier']
                 if disk not in gpts:gpts[disk]=gpt_for(target)
                 gpt=gpts[disk];win,esp=match_gpt(target,gpt)
@@ -180,7 +190,9 @@ class InstallationManager(Installer):
                     esp_guid=esp['guid'],ownership=recorded_origin(observed,marker,record),
                     title=name+' — '+(p.get('VolumeName') or 'Unlabelled partition'),
                     windows_version=version,version_label=label,display_only=True,
-                    summary=partition_summary(p,target['disk'],multiline=True)+'\n'+label))
+                    reported_filesystem=filesystem(p),detected_filesystem='ntfs',
+                    summary=partition_summary(p,target['disk'],multiline=True)+'\n'+label+
+                        ('\nNTFS verified on disk; macOS still reports the previous exFAT format.' if stale_filesystem else '')))
             except (OSError,Refusal,ValueError) as error:
                 failures.append(dict(partition=device,error=str(error)))
         return dict(schema=1,installations=rows,scan_failures=failures,non_windows=non_windows,

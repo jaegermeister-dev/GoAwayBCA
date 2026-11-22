@@ -59,12 +59,20 @@ fn key() !u16 {
 fn loadBinding() !void {
     const bytes: *volatile [512]u8=&diagnostic_binding;
     for (0..512) |i| config[i]=bytes[i];
-    if (std.mem.readInt(u32,config[32..36],.little)!=1) return error.UnboundDiagnosticTemplate;
+    const version=std.mem.readInt(u32,config[32..36],.little);
+    if (version!=1 and version!=2) return error.UnboundDiagnosticTemplate;
     var digest=std.crypto.hash.sha2.Sha256.init(.{});digest.update(config[0..168]);digest.update(config[200..]);
     var expected: [32]u8=undefined;digest.final(&expected);
     if (!std.mem.eql(u8,&expected,config[168..200])) return error.InvalidDiagnosticBinding;
     const sector=std.mem.readInt(u32,config[36..40],.little);
     if (sector!=512 and sector!=4096) return error.InvalidSectorSize;
+}
+fn shortFolder(bytes: []const u8) ![]const u8 {
+    if(bytes.len!=16 or !std.mem.eql(u8,bytes[0..5],"Test-") or bytes[8]!=0) return error.InvalidDiagnosticFolder;
+    for(bytes[5..8]) |c| if(c<'0' or c>'9') return error.InvalidDiagnosticFolder;
+    if(std.mem.eql(u8,bytes[5..8],"000")) return error.InvalidDiagnosticFolder;
+    for(bytes[8..]) |c| if(c!=0) return error.InvalidDiagnosticFolder;
+    return bytes[0..8];
 }
 fn openLog(own: u.Handle) !void {
     const bs=u.system_table.boot_services orelse return error.NoBootServices;
@@ -77,7 +85,8 @@ fn openLog(own: u.Handle) !void {
     var session: [32]u8=undefined;
     for (config[40..56],0..) |c,i| {session[i*2]=hex[c>>4];session[i*2+1]=hex[c&15];}
     var path: [180]u8=undefined;
-    const folder=try std.fmt.bufPrint(&path,"\\EFI\\WinDeploy\\Diagnostics\\{s}",.{session});
+    const session_folder=if(std.mem.readInt(u32,config[32..36],.little)==2) try shortFolder(config[264..280]) else &session;
+    const folder=try std.fmt.bufPrint(&path,"\\EFI\\WinDeploy\\Diagnostics\\{s}",.{session_folder});
     for (folder,0..) |c,i| folder_name[i]=c;folder_name[folder.len]=0;
     const directory=try root.open(@ptrCast(&folder_name),.read,.{});defer directory.close() catch {};
     for (0..1000) |number| {
@@ -115,6 +124,34 @@ fn inventory(own: u.Handle) !void {
     if (block.media.block_size!=std.mem.readInt(u32,config[36..40],.little)) return error.SectorSizeChanged;
     diagnosticTrace("Selected disk and Windows partition verified.\r\n");
 }
+fn reportDirectory(own: u.Handle) !*File {
+    const bs=u.system_table.boot_services orelse return error.NoBootServices;
+    const fs=(try bs.handleProtocol(u.protocol.SimpleFileSystem,own)) orelse return error.NoEspFilesystem;
+    const root=try fs.openVolume();defer root.close() catch {};
+    return root.open(@ptrCast(&folder_name),.read,.{});
+}
+fn nextPciReport(dir: *File) ![32:0]u16 {
+    for(0..100) |number| {
+        var ascii: [32]u8=undefined;var wide: [32:0]u16=@splat(0);
+        const name=try std.fmt.bufPrint(&ascii,"pci-{d:0>3}.txt",.{number});
+        for(name,0..) |c,i| wide[i]=c;
+        if(dir.open(@ptrCast(&wide),.read,.{})) |file| {try file.close();} else |err| {
+            if(err==error.NotFound) return wide;return err;
+        }
+    }
+    return error.NoUnusedReportName;
+}
+fn pciSummary(dir: *File,name: *const [32:0]u16) !void {
+    const data=try loader.read(dir,@ptrCast(name),256*1024);
+    var lines=std.mem.splitScalar(u8,data,'\n');var found=false;
+    while(lines.next()) |line| {
+        if(std.mem.startsWith(u8,line,"END handles=") or std.mem.startsWith(u8,line,"RESULT ")) {
+            if(line.len>512) return error.InvalidReportSummary;
+            record("PCI: {s}\n",.{line});found=true;
+        }
+    }
+    if(!found) return error.MissingReportSummary;
+}
 fn collect(own: u.Handle,comptime name: []const u8,expected: *const [32]u8) !void {
     const length=std.mem.sliceTo(&folder_name,0).len;
     var wide: [256:0]u16=undefined;@memcpy(wide[0..length],folder_name[0..length]);wide[length]='\\';
@@ -123,9 +160,14 @@ fn collect(own: u.Handle,comptime name: []const u8,expected: *const [32]u8) !voi
     const child=try loader.load(own,@ptrCast(&wide),expected);
     const bs=u.system_table.boot_services orelse return error.NoBootServices;
     defer _=bs.unloadImage(child) catch .aborted;
+    const report_dir=if(std.mem.eql(u8,name,"PCI.efi")) try reportDirectory(own) else null;
+    defer if(report_dir) |dir| dir.close() catch {};
+    const report_name=if(report_dir) |dir| try nextPciReport(dir) else null;
     record("Collector {s}: StartImage\r\n",.{name});
-    const result=try bs.startImage(child);try result.code.err();
-    record("Collector {s}: completed\r\n",.{name});
+    const result=try bs.startImage(child);
+    if(report_dir) |dir| pciSummary(dir,&report_name.?) catch |err| record("PCI report summary unavailable: {s}; inspect the collector report.\r\n",.{@errorName(err)});
+    try result.code.err();
+    record("Collector {s}: completed; see its report for coverage and unavailable devices\r\n",.{name});
 }
 fn boot(own: u.Handle) !void {
     const bs=u.system_table.boot_services orelse return error.NoBootServices;
