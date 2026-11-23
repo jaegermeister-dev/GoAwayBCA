@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0-beta.4 — 23 November 2026
+
+- Create `Test1.efi`, `Test2.efi` and `Test3.efi` for the exact Windows partition selected by the user.
+- Each EFI automatically collects reports and attempts Windows immediately when launched; no numbered menu or start prompt.
+- Compare current memory loading, firmware file-path loading, and EFI-partition boot context using the same selected Windows loader.
+- Save separate numbered logs, raw returned EFI status and bounded exit text; report the underlying ACPI collection error and last table visited.
+- Preserve every older diagnostic folder and log. New instructions identify the new folder and require a restart between tests.
+- Keep Windows deployment, drivers, management, the normal boot menu and OpenCore handling unchanged. This is diagnostic functionality, not a confirmed boot fix for the reported older Mac.
+
 ## 0.3.0-beta.3 — 22 November 2026
 
 - Fix Windows detection when creating EFI diagnostics, including immediately after an installation and after reopening the app.

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "product": "GoAwayBCA",
-  "version": "0.3.0-beta.3",
+  "version": "0.4.0-beta.4",
   "copies": {
     "Contents/Info.plist": {
       "mode": 420,
@@ -1489,7 +1489,7 @@
         0,
         0
       ],
-      "input": "Contents/Resources/diagnostic-efi/acpi_collector.zig"
+      "source": "source/diagnostic-efi/acpi_collector.zig"
     },
     "Contents/Resources/diagnostic-efi/acpi_parse.zig": {
       "mode": 420,
@@ -37586,6 +37586,30 @@
         0
       ],
       "source": "source/windows_images.py"
+    },
+    "Contents/Resources/diagnostic-efi/WindowsDiagnostics-path.template.efi": {
+      "mode": 420,
+      "timestamp": [
+        2026,
+        11,
+        23,
+        0,
+        0,
+        0
+      ],
+      "source": "source/diagnostic-efi/WindowsDiagnostics-path.template.efi"
+    },
+    "Contents/Resources/diagnostic-efi/WindowsDiagnostics-esp.template.efi": {
+      "mode": 420,
+      "timestamp": [
+        2026,
+        11,
+        23,
+        0,
+        0,
+        0
+      ],
+      "source": "source/diagnostic-efi/WindowsDiagnostics-esp.template.efi"
     }
   },
   "links": {
@@ -37614,7 +37638,7 @@
     "Contents/MacOS/WindowsDeployer",
     "Contents/Resources/bin/cpu-probe"
   ],
-  "input_archive": "GoAwayBCA-Beta-3-Build-Inputs.zip",
+  "input_archive": "GoAwayBCA-Beta-4-Build-Inputs.zip",
   "input_bytes": 66283361,
   "input_sha256": "cd12dde7d73ecc9bf4e96ddfd3ac6c36259d98e7c8d6caea13ad5399d32c8885",
   "superseded_input_entries": [
@@ -37622,6 +37646,7 @@
     "Contents/Resources/diagnostic-efi/ACPI.efi",
     "Contents/Resources/diagnostic-efi/WindowsDiagnostics.template.efi",
     "Contents/Resources/diagnostic-efi/diagnostic_context.zig",
-    "Contents/Resources/diagnostic-efi/pci_collector.zig"
+    "Contents/Resources/diagnostic-efi/pci_collector.zig",
+    "Contents/Resources/diagnostic-efi/acpi_collector.zig"
   ]
 }

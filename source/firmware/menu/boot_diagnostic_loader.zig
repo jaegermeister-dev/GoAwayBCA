@@ -111,11 +111,11 @@ pub fn partition(guid: *const [16]u8) !u.Handle {
 }
 
 pub fn load(device: u.Handle, path: [*:0]const u16, expected: ?*const [32]u8) !u.Handle {
-    return loadLogical(device,path,expected,device,path);
+    return loadLogical(device,path,expected,device,path,false);
 }
 
 fn loadLogical(device: u.Handle, path: [*:0]const u16, expected: ?*const [32]u8,
-    logical_device: u.Handle, logical_path: [*:0]const u16) !u.Handle {
+    logical_device: u.Handle, logical_path: [*:0]const u16, file_mode: bool) !u.Handle {
     const bs = u.system_table.boot_services orelse return error.NoBootServices;
     const dp = (try bs.handleProtocol(u.protocol.DevicePath,logical_device)) orelse return error.NoPath;
     const fs = (try bs.handleProtocol(u.protocol.SimpleFileSystem,device)) orelse return error.NoFilesystem;
@@ -127,7 +127,9 @@ fn loadLogical(device: u.Handle, path: [*:0]const u16, expected: ?*const [32]u8,
     const file_dp = try dp.createFileDevicePath(u.pool_allocator,std.mem.sliceTo(logical_path,0));
     // Keep its device path alive for the loaded child's lifetime.
     var child: u.Handle = undefined;
-    try bs._loadImage(false,u.handle,file_dp,data.ptr,data.len,&child).err();
+    const status=bs._loadImage(false,u.handle,file_dp,if(file_mode) null else data.ptr,if(file_mode) 0 else data.len,&child);
+    @import("root").record("LoadImage: file-mode={} source-bytes={d} status=0x{x}\r\n",.{file_mode,data.len,@intFromEnum(status)});
+    try status.err();
     errdefer _ = bs.unloadImage(child) catch .aborted;
     const loaded = (try bs.handleProtocol(u.protocol.LoadedImage,child)) orelse return error.NoChildInfo;
     if (loaded.device_handle != logical_device) return error.WrongChildVolume;
@@ -183,14 +185,18 @@ pub fn launch(comptime vm: bool, own: u.Handle, item: *const p.Entry,menu_bytes:
         trace(vm,"CHOOSER: NTFS access ready\n");
     }
     trace(vm,"CHOOSER: loading selected EFI image\n");
-    // Developer-only experiment: source remains the pinned stock NTFS loader,
-    // but its logical system device is the synthetic ESP containing its BCD.
-    // No store activation/writes are implemented or enabled in production.
-    const child = if (vm and logical_esp_probe) blk: {
-        trace(vm,"CHOOSER: diagnostic ESP logical boot path\n");
-        break :blk try loadLogical(target,@ptrCast(&item.path),&item.digest,
-            own,utf16("\\EFI\\Microsoft\\Boot\\bootmgfw.efi"));
-    } else try load(target,@ptrCast(&item.path),if (item.hashLocked()) &item.digest else null);
+    const mode=@import("boot_diagnostic.zig").variant;
+    const expected=if(item.hashLocked()) &item.digest else null;
+    var source_path: [512]u8=undefined;
+    var n: usize=0;
+    for(item.path) |c| {if(c==0) break;source_path[n]=if(c<=126) @intCast(c) else '?';n+=1;}
+    @import("root").record("Windows image: {s}; test={d}\r\n",.{source_path[0..n],mode});
+    const child = switch(mode) {
+        1 => try load(target,@ptrCast(&item.path),expected),
+        2 => try loadLogical(target,@ptrCast(&item.path),expected,target,@ptrCast(&item.path),true),
+        3 => try loadLogical(target,@ptrCast(&item.path),expected,own,utf16("\\EFI\\Microsoft\\Boot\\bootmgfw.efi"),false),
+        else => return error.InvalidTest,
+    };
     const bs = u.system_table.boot_services orelse return error.NoBootServices;
     defer _ = bs.unloadImage(child) catch .aborted;
     if (activate_stores) {
@@ -208,6 +214,5 @@ pub fn launch(comptime vm: bool, own: u.Handle, item: *const p.Entry,menu_bytes:
     }
     trace(vm,"CHOOSER: selected partition and loader verified; starting Windows\n");
     try @import("root").requireFlushedLog();
-    const result = try bs.startImage(child);
-    try result.code.err();
+    try @import("root").startLogged(child,"Windows");
 }

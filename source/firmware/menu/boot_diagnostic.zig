@@ -13,7 +13,32 @@ fn initialBinding() [512]u8 {
     @memcpy(value[0..27],"GoAwayBCA-EFI-DIAGNOSTIC-V1");
     return value;
 }
+pub const variant: u8 = if (@hasDecl(@import("root"),"diagnostic_variant")) @import("root").diagnostic_variant else 1;
 var config: [512]u8=undefined;
+
+// Use the raw API so the status and bounded exit buffer survive every return path.
+pub fn startLogged(child: u.Handle, label: []const u8) !void {
+    const bs=u.system_table.boot_services orelse return error.NoBootServices;
+    try requireFlushedLog();
+    var size: usize=0;
+    var data: [*]u16=undefined;
+    const status=bs._startImage(child,&size,&data);
+    record("{s}: StartImage returned status=0x{x}; exit-data-bytes={d}\r\n",.{label,@intFromEnum(status),size});
+    if(size>0) {
+        defer bs.freePool(@alignCast(@ptrCast(data))) catch {};
+        const n=@min(size/2,2048);
+        diagnosticTrace("EFI exit text (non-ASCII escaped): ");
+        for(data[0..n]) |c| {
+            if(c==0) break;
+            if(c>=32 and c<=126) {const b=[_]u8{@intCast(c)};diagnosticTrace(&b);}
+            else record("\\u{x:0>4}",.{c});
+        }
+        diagnosticTrace("\r\n");
+        if(size>4096) diagnosticTrace("EFI exit data truncated at 4096 bytes.\r\n");
+    }
+    try status.err();
+}
+
 var log: ?*File=null;
 var log_failed=false;
 var folder_name: [180:0]u16=undefined;
@@ -32,7 +57,7 @@ pub fn diagnosticTrace(text: []const u8) void {
     }
     output.flush() catch {log_failed=true;};
 }
-fn record(comptime format: []const u8,args: anytype) void {
+pub fn record(comptime format: []const u8,args: anytype) void {
     var bytes: [4096]u8=undefined;
     const text=std.fmt.bufPrint(&bytes,format,args) catch {diagnosticTrace("Record exceeded log bound\r\n");return;};
     diagnosticTrace(text);
@@ -91,7 +116,7 @@ fn openLog(own: u.Handle) !void {
     const directory=try root.open(@ptrCast(&folder_name),.read,.{});defer directory.close() catch {};
     for (0..1000) |number| {
         var narrow: [32]u8=undefined;var wide: [32:0]u16=undefined;
-        const name=try std.fmt.bufPrint(&narrow,"boot-{d:0>3}.log",.{number});
+        const name=try std.fmt.bufPrint(&narrow,"test{d}-{d:0>3}.log",.{variant,number});
         for(name,0..) |c,i| wide[i]=c;wide[name.len]=0;
         if (directory.open(@ptrCast(&wide),.read,.{})) |existing| {try existing.close();continue;} else |err| {
             if(err!=error.NotFound) return err;
@@ -104,7 +129,7 @@ fn openLog(own: u.Handle) !void {
 }
 fn inventory(own: u.Handle) !void {
     const bs=u.system_table.boot_services orelse return error.NoBootServices;
-    record("GoAwayBCA targeted boot diagnostic v1\r\nFirmware table revision={x}; firmware revision={x}\r\n",.{u.system_table.hdr.revision,u.system_table.firmware_revision});
+    record("GoAwayBCA targeted boot diagnostic v2\r\nFirmware table revision={x}; firmware revision={x}\r\n",.{u.system_table.hdr.revision,u.system_table.firmware_revision});
     record("Expected logical sectors={d}; inherited Mac model={s}\r\n",.{std.mem.readInt(u32,config[36..40],.little),std.mem.sliceTo(config[200..264],0)});
     diagnosticTrace("Binding bytes (GPT little-endian):\r\n");
     inline for (.{.{"disk",@as(usize,56)},.{"ESP",@as(usize,72)},.{"Windows",@as(usize,88)}}) |item| {
@@ -164,9 +189,10 @@ fn collect(own: u.Handle,comptime name: []const u8,expected: *const [32]u8) !voi
     defer if(report_dir) |dir| dir.close() catch {};
     const report_name=if(report_dir) |dir| try nextPciReport(dir) else null;
     record("Collector {s}: StartImage\r\n",.{name});
-    const result=try bs.startImage(child);
+    var start_error: ?anyerror=null;
+    startLogged(child,name) catch |err| {start_error=err;};
     if(report_dir) |dir| pciSummary(dir,&report_name.?) catch |err| record("PCI report summary unavailable: {s}; inspect the collector report.\r\n",.{@errorName(err)});
-    try result.code.err();
+    if(start_error) |err| return err;
     record("Collector {s}: completed; see its report for coverage and unavailable devices\r\n",.{name});
 }
 fn boot(own: u.Handle) !void {
@@ -194,15 +220,15 @@ fn run() !void {
     const own=image.device_handle orelse return error.NoOwnDevice;
     try openLog(own);
     defer {if(log) |file| {file.flush() catch {};file.close() catch {};log=null;}}
-    say("\r\nGoAwayBCA Windows EFI diagnostics\r\n1 - Collect diagnostics only\r\n2 - Collect diagnostics and try the selected Windows installation\r\nEsc - Return to OpenShell\r\n\r\nOption 2 uses normal per-Windows BCD selection, just like the boot menu.\r\nNo automatic patches, boot defaults or partition changes.\r\n");
-    var choice: u16=0;while(choice!='1' and choice!='2' and choice!=27) choice=try key();
-    if(choice==27) {diagnosticTrace("Cancelled before collection\r\n");return;}
-    record("Selected diagnostic option={c}\r\n",.{@as(u8,@intCast(choice))});
+    say("\r\nGoAwayBCA Windows EFI boot comparison\r\n");
+    record("Test number={d}; method={s}\r\n",.{variant,switch(variant){1=>"buffer-current",2=>"firmware-file-path",3=>"buffer-ESP-context",else=>"invalid"}});
+    say(switch(variant){1=>"Test 1: current loading method\r\n",2=>"Test 2: firmware file-path loading\r\n",3=>"Test 3: EFI-partition boot context\r\n",else=>return error.InvalidTest});
+    say("Collecting reports, then attempting the selected Windows installation automatically.\r\nRun only one test per restart. No automatic patches or default-boot changes.\r\n");
     var identity_ok=true;
     inventory(own) catch |err| {record("Inventory/identity error: {s}\r\n",.{@errorName(err)});identity_ok=false;};
     collect(own,"PCI.efi",config[104..136]) catch |err| record("PCI collector error: {s}\r\n",.{@errorName(err)});
     collect(own,"ACPI.efi",config[136..168]) catch |err| record("ACPI collector error: {s}\r\n",.{@errorName(err)});
-    if(choice=='2') {
+    {
         if(identity_ok) boot(own) catch |err| {
             record("Windows boot attempt failed: {s}\r\n",.{@errorName(err)});
             say("\r\nWindows boot returned: ");say(@errorName(err));say("\r\n");

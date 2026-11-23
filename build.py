@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce the Beta 3 app from matching source and pinned dependency inputs.
+"""Reproduce the Beta 4 app from matching source and pinned dependency inputs.
 
 This command never installs Windows, mounts EFI, or changes startup settings.
 """
@@ -64,8 +64,9 @@ def run(command, log, timeout=180):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--inputs', required=True, help='GoAwayBCA-Beta-3-Build-Inputs.zip')
+    parser.add_argument('--inputs', required=True, help='GoAwayBCA-Beta-4-Build-Inputs.zip')
     parser.add_argument('--output', required=True, help='A new directory outside this source tree')
+    parser.add_argument('--skip-ui-check', action='store_true', help='Rebuild and verify all bytes without opening a UI self-test window')
     args = parser.parse_args()
     require(sys.platform == 'darwin' and platform.machine() == 'x86_64' and os.geteuid() != 0,
             'Build using an ordinary account on Intel macOS, without sudo.')
@@ -78,7 +79,7 @@ def main():
     inputs = Path(args.inputs).expanduser().resolve(strict=True)
     recipe = json.loads((root / 'recipe/assembly.json').read_text())
     expected = json.loads((root / 'recipe/APP-FILE-HASHES.json').read_text())
-    require(recipe['schema'] == 1 and recipe['version'] == '0.3.0-beta.3', 'Unknown build recipe.')
+    require(recipe['schema'] == 1 and recipe['version'] == '0.4.0-beta.4', 'Unknown build recipe.')
     require(inputs.stat().st_size == recipe['input_bytes'] and sha(inputs) == recipe['input_sha256'], 'Dependency input checksum mismatch.')
     toolchain = json.loads((root / 'recipe/toolchain.json').read_text())
     compiler = subprocess.check_output(['/usr/bin/xcrun', 'clang', '--version'], universal_newlines=True)
@@ -132,18 +133,19 @@ from runtime_profiles import validate_payload
 resources=Path(sys.argv[1])
 config=plistlib.loads((resources/'runtime-profiles.plist').read_bytes())
 for profile in config['profiles']:validate_payload(resources,profile)
-suite=unittest.defaultTestLoader.loadTestsFromNames(['test_startup_storage','test_startup_user_automatic','test_gui_session','test_diagnostic_discovery','test_prefix_reader','test_diagnostic_folders'])
+suite=unittest.defaultTestLoader.loadTestsFromNames(['test_startup_storage','test_startup_user_automatic','test_gui_session','test_diagnostic_discovery','test_prefix_reader','test_diagnostic_folders','test_diagnostic_variants'])
 result=unittest.TextTestRunner(stream=sys.stdout,verbosity=2).run(suite)
 sys.exit(not result.wasSuccessful())
 '''
     for profile in ('legacy', 'modern'):
         run([resources / ('payloads/'+profile+'/python/bin/python3'), '-I', '-B', '-c', code, resources, root / 'tests'],
             output / (profile+'-checks.log'))
-    run([app / 'Contents/MacOS/WindowsDeployer', '--self-test'], output / 'native-checks.log')
+    if not args.skip_ui_check:
+        run([app / 'Contents/MacOS/WindowsDeployer', '--self-test'], output / 'native-checks.log')
     require(manifest(app) == expected, 'Checks changed the rebuilt app.')
     result = {'status':'PASS','app_entries':len(actual),'exact_app_match':True,
               'application_and_cpu_probe_compiled':True,'dependency_and_firmware_binaries_pinned':True,
-              'both_runtime_checks_passed':True,'native_ui_checks_passed':True,
+              'both_runtime_checks_passed':True,'native_ui_checks_passed':not args.skip_ui_check,
               'windows_installed':False,'boot_files_changed':False,
               'compiler':compiler,'sdk_version':sdk}
     (output / 'REBUILD-VERIFIED.json').write_text(json.dumps(result,indent=2)+'\n')

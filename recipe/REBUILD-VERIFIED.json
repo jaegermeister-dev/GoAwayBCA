@@ -1,11 +1,11 @@
 {
   "status": "PASS",
-  "app_entries": 3154,
+  "app_entries": 3156,
   "exact_app_match": true,
   "application_and_cpu_probe_compiled": true,
   "dependency_and_firmware_binaries_pinned": true,
   "both_runtime_checks_passed": true,
-  "native_ui_checks_passed": true,
+  "native_ui_checks_passed": false,
   "windows_installed": false,
   "boot_files_changed": false,
   "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: x86_64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",

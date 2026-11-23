@@ -16,28 +16,41 @@ from operation_progress import phase
 
 PREFIX='EFI/WinDeploy/Diagnostics/'
 
+VARIANTS = (
+    ('Test1.efi', 'WindowsDiagnostics.template.efi', 'Current loading method'),
+    ('Test2.efi', 'WindowsDiagnostics-path.template.efi', 'Firmware file-path loading'),
+    ('Test3.efi', 'WindowsDiagnostics-esp.template.efi', 'EFI-partition boot context'),
+)
+
+def bound_tests(resources, config):
+    return {name: binding.bind((resources/'diagnostic-efi'/template).read_bytes(), config)
+            for name, template, description in VARIANTS}
+
 def instructions(folder,title,esp_guid):
     path='\\'+folder.replace('/','\\')
-    return ('GoAwayBCA Windows EFI diagnostics\n\nSelected Windows entry: '+title+
+    return ('GoAwayBCA Windows EFI boot comparisons\n\nSelected Windows entry: '+title+
         '\nEFI partition GUID: '+esp_guid+'\nDiagnostic folder: '+path+'\n\n'
-        '1. Restart into OpenShell. In OpenCore this is normally under Tools (press Space if tools are hidden). '
-        'OpenShell must already be available in your boot environment; this feature does not install or change OpenCore.\n'
-        '2. Enter: map -r\n3. Inspect the fsN: mappings to find the EFI partition containing the exact folder above. '
-        'Do not assume fs0:. You can enter fs0:, then dir, and try another mapping as needed.\n'
-        '4. On the correct fsN: mapping, enter: cd '+path+'\n5. Enter: WindowsDiagnostics.efi\n'
-        '6. Press 1 to collect logs only, or 2 to collect logs and attempt this selected Windows installation.\n\n'
-        'Option 1 only creates diagnostic files. Option 2 also performs the existing menu\'s normal per-Windows '
-        'BCD selection before handing over to that installation. It does not apply a repair, add a menu entry, '
-        'change OpenCore, change the default startup disk or repartition anything. Windows itself may perform '
-        'its normal boot and setup writes. If its menu entry is missing or ambiguous, booting stops with a log.\n\n'
-        'The tool records firmware revision, device/sector information, hardware reports and each boot stage. '
-        'It flushes logs before handoff. If Windows hangs after control is handed over, the last flushed stage '
-        'is available; this is not a Windows kernel debugger. Returned EFI errors are recorded.\n\n'
-        '7. Return to macOS. In GoAwayBCA, use Advanced > Mount / Unmount EFI and select the EFI partition above. '
-        'Copy this entire diagnostic folder, including boot-*.log and PCI/ACPI reports. Each run uses a new log. '
-        'Review the files before attaching them to your GitHub issue. Nothing is uploaded automatically.\n\n'
-        'Creating this tool again makes a separate numbered Test folder. Existing tools and reports are preserved. '
-        'Use the folder listed in these instructions for this test; older tools keep their original target and behaviour.\n')
+        '1. Restart into OpenShell. This feature does not install or change OpenCore.\n'
+        '2. Enter: map -r\n'
+        '3. Find the fsN: mapping containing the exact folder above. Do not assume fs0:.\n'
+        '4. On that mapping enter: cd '+path+'\n'
+        '5. Run Test1.efi. It immediately collects reports and tries the selected Windows installation.\n'
+        '6. Restart before the next test, return to the same folder, then run Test2.efi. Repeat for Test3.efi. '
+        'Do not run the tests one after another without restarting, even if a failed test returns to OpenShell.\n\n'
+        'Test1.efi: current loading method.\n'
+        'Test2.efi: load the same Windows file through its firmware file path.\n'
+        'Test3.efi: load the same Windows file using the EFI partition as its boot context.\n\n'
+        'These are comparisons, not automatic fixes. Each confirms the selected disk and partition, collects '
+        'PCI/ACPI reports, and saves a numbered test1-*, test2-* or test3-* log before handing over to Windows. '
+        'If a test hangs, photograph the screen and report which test it was. The last saved stage remains useful; '
+        'this is not a Windows kernel debugger. Returned EFI status and any exit text are logged.\n\n'
+        'All three use the normal Windows menu per-Windows BCD selection. They do not replace the boot menu, '
+        'patch Windows, alter OpenCore, change the default startup disk or repartition. Windows itself may make '
+        'normal boot/setup writes. A missing or ambiguous menu entry stops that attempt.\n\n'
+        '7. Return to macOS and mount the indicated EFI partition. ZIP this entire Test folder, including '
+        'all logs and capture folders. Include the outcome of each test and whether OpenShell was started '
+        'through OpenCore or another route. Review reports before sharing; nothing uploads automatically.\n\n'
+        'Creating this set again uses a new numbered folder. Existing tools and logs are preserved.\n')
 
 class BootDiagnostics(InstallationManager):
     def execute(self):
@@ -81,21 +94,22 @@ class BootDiagnostics(InstallationManager):
         collectors={name:(ROOT/'diagnostic-efi'/name).read_bytes() for name in ('PCI.efi','ACPI.efi')}
         config=binding.configuration(str(session),layout['guid'],esp['guid'],win['guid'],layout['sector_size'],
             hashlib.sha256(collectors['PCI.efi']).hexdigest(),hashlib.sha256(collectors['ACPI.efi']).hexdigest(),model,folder_name=folder_name)
-        program=binding.bind((ROOT/'diagnostic-efi/WindowsDiagnostics.template.efi').read_bytes(),config)
+        programs=bound_tests(ROOT,config)
+        report['tests']=[dict(file=name,method=description) for name,template,description in VARIANTS]
         context=('WinDeploy read-only hardware report v1\nsession_id='+session_id+'\nesp_guid='+esp['guid']+
                  '\nfolder_name='+folder_name+'\nmacos_model='+model+'\nwindows_disk_guid='+layout['guid']+'\nwindows_partition_guid='+win['guid']+'\n').encode('ascii')
         guide=instructions(folder,selected['title'],esp['guid'])
-        files=dict(collectors,**{'WindowsDiagnostics.efi':program,'context.txt':context,
+        files=dict(collectors,**dict(programs,**{'context.txt':context,
             'ALLOW-ACPI.txt':b'WinDeploy readonly ACPI collection 20261008 v1\n',
             'ALLOW-PCI.txt':b'WinDeploy readonly PCI inventory 20261009 v1\n',
             'OPEN-SHELL-INSTRUCTIONS.txt':guide.encode('utf8'),
-            'macos-report.json':(json.dumps(report,indent=2)+'\n').encode('utf8')})
-        require(self.approve('review','Create an OpenShell diagnostic tool for “'+selected['title']+'”?\n\n'
+            'macos-report.json':(json.dumps(report,indent=2)+'\n').encode('utf8')}))
+        require(self.approve('review','Create three OpenShell boot tests for “'+selected['title']+'”?\n\n'
             'New folder: '+folder_name+' on '+target['esp']+'.\n'
             'Existing diagnostic folders and logs will be kept. Creating a new tool does not update or remove earlier tools; use this new folder for the latest test.\n\n'
             'It does not fix or replace boot files. '
-            'You run it yourself in OpenShell. Option 1 collects reports only; option 2 also uses normal Windows '
-            'BCD selection to attempt this Windows boot. Logs are saved on EFI before handoff. No automatic upload.',
+            'Run Test1.efi, Test2.efi and Test3.efi separately in OpenShell, restarting between tests. Each collects reports and '
+            'uses normal Windows BCD selection to attempt this Windows boot. Logs are saved on EFI before handoff. No automatic upload.',
             details=guide),'Diagnostic preparation cancelled.')
         assert_same_target(target,info(target['partition']['DeviceIdentifier']),info(target['disk']['DeviceIdentifier']))
         require(gpt_for(target)['digest']==layout['digest'],'The selected drive layout changed. Start again.')
@@ -118,5 +132,5 @@ class BootDiagnostics(InstallationManager):
             files={name:hashlib.sha256(data).hexdigest() for name,data in files.items()}))
         saved=Store(self.interaction.user_uid).report(output,self.note)
         self.note('Diagnostic EFI ready at '+folder+'. Instructions saved to '+saved['path']+'/Files.')
-        self.interaction.request('notice','The targeted EFI diagnostic tool is ready.\n\n'+guide,button_title='Done')
+        self.interaction.request('notice','The three targeted EFI boot tests are ready.\n\n'+guide,button_title='Done')
         self.interaction.request('open_folder','OpenShell instructions saved on your Desktop.',path=saved['path']+'/Files')

@@ -1,7 +1,7 @@
 {
   "Contents/Info.plist": {
     "bytes": 842,
-    "sha256": "360c5e2d4db5af6be0231f6c460a6a2b1556b954ed8312cc2fb5ce860c793039",
+    "sha256": "1d9b43274372a66ede32eec1a47fab48d5af62939135fb4dfa139a4ffbeb3684",
     "mode": 420
   },
   "Contents/MacOS/WindowsDeployer": {
@@ -36,12 +36,12 @@
   },
   "Contents/Resources/CURRENT-SCOPE.txt": {
     "bytes": 613,
-    "sha256": "453d3e797b169d3583fd634b1612fad47fac96a28cb9b8453a379db8e8ce12a6",
+    "sha256": "0721825808024310475f489eba4514a844f5c648f8c66c3e4a1bcd3d7ea4f810",
     "mode": 420
   },
   "Contents/Resources/DEPENDENCIES.txt": {
     "bytes": 1287,
-    "sha256": "0ab6ead1b3c9377e4d68a2bafa5e5107b824f37c3024a169ddc646ab018757d9",
+    "sha256": "e0bd9f6bedbb53e60b9f5540186ba1f4a08a58f541415acafb9ac43b02ed5b00",
     "mode": 420
   },
   "Contents/Resources/DRIVER-GUIDANCE.txt": {
@@ -75,8 +75,8 @@
     "mode": 420
   },
   "Contents/Resources/README.txt": {
-    "bytes": 4179,
-    "sha256": "8e74b52c754a35e50b2de1f017577022d6b0853c2f4ecce0b997b5b966736bc2",
+    "bytes": 3837,
+    "sha256": "402100c9ad1b1d5cbfd65487cacaf6dab0fcd1ffef6b08849ee9647abfad4671",
     "mode": 420
   },
   "Contents/Resources/SECURITY-CHIP-MODELS.txt": {
@@ -530,8 +530,8 @@
     "mode": 420
   },
   "Contents/Resources/boot_diagnostics.py": {
-    "bytes": 9980,
-    "sha256": "46125be6a26ed117d9514062dd0444067305f82b1531e840412ff1b5c13a23ec",
+    "bytes": 10487,
+    "sha256": "6a2ab8ee82baadc88c15d3353b5d9b25bc2dd1b33af9a4a5c12e1c7fe53d55eb",
     "mode": 420
   },
   "Contents/Resources/bootcamp_download.py": {
@@ -600,8 +600,8 @@
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/ACPI.efi": {
-    "bytes": 109568,
-    "sha256": "9526bd9b44b9a14921ebbaf0831a51caaad187948be9be558bd00353fb10c672",
+    "bytes": 111104,
+    "sha256": "4311d2c4a72d5531c4963784023fc553603aab8b6475627e59fae801c3dbdd98",
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/ACPI.pdb": {
@@ -619,14 +619,24 @@
     "sha256": "086cf45468cf613d9f400304c648010b2390a5899fa9d9adca94f9fbb140fc26",
     "mode": 420
   },
+  "Contents/Resources/diagnostic-efi/WindowsDiagnostics-esp.template.efi": {
+    "bytes": 305152,
+    "sha256": "9dbf228fe0ef730f4774c9711e624192b94904c09116d00d9256c8c3f4111539",
+    "mode": 420
+  },
+  "Contents/Resources/diagnostic-efi/WindowsDiagnostics-path.template.efi": {
+    "bytes": 304640,
+    "sha256": "6074c1bec94603d32635fc1929f98c268ff88b53cb0c3bc62a98c4bcb9f10964",
+    "mode": 420
+  },
   "Contents/Resources/diagnostic-efi/WindowsDiagnostics.template.efi": {
-    "bytes": 302080,
-    "sha256": "8fe2deefde7d40ed17d3ebe23d4a2d38d36c71f89d225e341fd0768488a4edc7",
+    "bytes": 305152,
+    "sha256": "19fcdbeb7057907bc45fb35c031a0e5562ebad30b7a3d6fb729d786357e88c86",
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/acpi_collector.zig": {
-    "bytes": 15174,
-    "sha256": "a039c9e44903e03c244761dc01026ef4f1ae167ef4d17c73eeccb1f16ad174bb",
+    "bytes": 15797,
+    "sha256": "b2a0631eeba29e902d359a4ae1f0f59286f648466a3f213cbcf177813d8a6d8b",
     "mode": 420
   },
   "Contents/Resources/diagnostic-efi/acpi_parse.zig": {
@@ -15495,8 +15505,8 @@
     "mode": 420
   },
   "Contents/Resources/runtime-profiles.plist": {
-    "bytes": 556978,
-    "sha256": "5dad08dc58f347aa1eb76dcbd46982a77a61bf9de5de1f154c8445b0fd3c317c",
+    "bytes": 557588,
+    "sha256": "64f7ff95e8ab199612084eb4f339d4fb4206abae4df1d480f0af2db1669f6bce",
     "mode": 420
   },
   "Contents/Resources/runtime_profiles.py": {

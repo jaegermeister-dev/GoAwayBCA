@@ -103,6 +103,9 @@ fn save(name: []const u8, data: []const u8) !void {
 fn visit(address: u64) anyerror!void {
     for (seen[0..seen_count]) |a| if (a == address) return;
     if (seen_count == seen.len) return error.TooManyTables;
+    var pending: [96]u8=undefined;
+    try writeAll(inventory,try std.fmt.bufPrint(&pending,"VISITING\t0x{x}\r\n",.{address}));
+    try inventory.flush();
     const data = try table(address);
     seen[seen_count] = address;
     seen_count += 1;
@@ -187,6 +190,17 @@ fn run() !void {
     defer out.close() catch {};
     inventory = try newFile(out, "inventory.txt");
     defer inventory.close() catch {};
+    collectTables() catch |err| {
+        var reason: [160]u8=undefined;
+        const line=std.fmt.bufPrint(&reason,"STOPPED\terror={s}\ttables={d}\tfiles={d}\r\n",.{@errorName(err),seen_count,saved_count}) catch "STOPPED\terror-record-overflow\r\n";
+        writeAll(inventory,line) catch {};
+        inventory.flush() catch {};
+        return err;
+    };
+}
+fn collectTables() !void {
+    const bs = u.system_table.boot_services orelse return error.NoBootServices;
+
     try writeAll(inventory, "WinDeploy ACPI readonly collector v1\r\nNo firmware changes; no method evaluation.\r\n");
     try writeAll(inventory, context.reportHeader());
     memory = try bs.getMemoryMap(&map_storage);

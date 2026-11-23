@@ -1,0 +1,47 @@
+{
+  "version": "0.4.0-beta.4",
+  "build": 8,
+  "baseline": "0.3.0-beta.3",
+  "changed_app_paths": [
+    "Contents/Info.plist",
+    "Contents/Resources/CURRENT-SCOPE.txt",
+    "Contents/Resources/DEPENDENCIES.txt",
+    "Contents/Resources/README.txt",
+    "Contents/Resources/boot_diagnostics.py",
+    "Contents/Resources/diagnostic-efi/ACPI.efi",
+    "Contents/Resources/diagnostic-efi/WindowsDiagnostics-esp.template.efi",
+    "Contents/Resources/diagnostic-efi/WindowsDiagnostics-path.template.efi",
+    "Contents/Resources/diagnostic-efi/WindowsDiagnostics.template.efi",
+    "Contents/Resources/diagnostic-efi/acpi_collector.zig",
+    "Contents/Resources/runtime-profiles.plist"
+  ],
+  "normal_windows_installation_and_menu_unchanged": true,
+  "automatic_diagnostic_start": true,
+  "numbered_options_removed": true,
+  "new_folders_preserve_existing_tools": true,
+  "isolated_firmware_cases": 8,
+  "sector_sizes": [
+    512,
+    4096
+  ],
+  "efi_revision": "1.10",
+  "returned_exit_text_checked": true,
+  "acpi_error_details_checked": true,
+  "affected_mac_boot_not_yet_confirmed": true,
+  "background_actual_disk_review": "PASS; cancelled before EFI writes",
+  "initial_native_ui_check": "PASS",
+  "final_ui_check": "not repeated at owner request; native executable unchanged",
+  "exact_app_reproduction": {
+    "status": "PASS",
+    "app_entries": 3156,
+    "exact_app_match": true,
+    "application_and_cpu_probe_compiled": true,
+    "dependency_and_firmware_binaries_pinned": true,
+    "both_runtime_checks_passed": true,
+    "native_ui_checks_passed": false,
+    "windows_installed": false,
+    "boot_files_changed": false,
+    "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: x86_64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "sdk_version": "26.5"
+  }
+}

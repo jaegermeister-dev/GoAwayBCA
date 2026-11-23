@@ -1,4 +1,4 @@
-GoAwayBCA Beta 3
+GoAwayBCA Beta 4
 
 Install and manage Windows 8.1, Windows 10 and Windows 11 from Intel macOS, using an existing internal or experimental USB GPT partition and pure EFI booting. A USB installer is not required.
 Windows 7 and Windows 8 are not yet supported. Support is being actively developed for a future update.
@@ -22,10 +22,6 @@ Tools include installation management, Windows boot-menu rebuild/rename, EFI mou
 
 Host range: Intel OS X Lion 10.7 through macOS Tahoe. Testing has included Mavericks, Mojave, Monterey and Tahoe across MacBookPro11,3, 11,4 and 11,5; this does not mean every host/Windows/model combination was tested. Windows 8.1 and 10 installations and menu coexistence have been tested on these Macs, including 4096-byte logical-sector storage on the 11,4. Windows 11 is available with compatibility guidance, but was not part of that installation test matrix. Older hosts and other models may need fixes based on reports.
 
-Beta 3 fixes Windows detection when creating EFI diagnostics, prevents diagnostic scans from waiting indefinitely, and uses short Test-001, Test-002 folders. Existing diagnostic tools and logs are preserved. PCI reports distinguish unavailable devices from actual read failures. Experimental USB destinations and Windows partition backup/restore remain available. Not included: Leopard support or installation support for 32-bit EFI Macs. Further installation optimisations and Linux/GRUB interaction testing are future work.
+Beta 4 creates Test1.efi, Test2.efi and Test3.efi for a selected Windows installation. Each automatically collects logs and attempts its boot using a different loading method. Restart between tests. A new numbered diagnostic folder is always used; old tools and logs are preserved. See the saved OpenShell instructions. Returned EFI status/exit text and ACPI collection errors provide more detailed troubleshooting. This update does not claim a boot fix for a specific Mac. Windows installation and the normal menu are unchanged.
 
-Linux/GRUB coexistence is untested. Installing another OS or changing bootloaders can affect which entries appear or boot. Try the native Option/Alt picker and OpenCore where available; their behaviour can differ. OpenShell may help launch an existing EFI loader, but is not a guaranteed repair. Back up first and report your installation order and results.
-
-Support: https://github.com/jaegermeister-dev/GoAwayBCA/issues
-Community: https://www.reddit.com/r/GoAwayBCA/
-Include a diagnostic report and saved log after reviewing them for personal information. Reports are never uploaded automatically.
+Experimental USB destinations and Windows partition backup/restore remain available. Leopard support and installation support for 32-bit EFI Macs are not included. Further installation optimisations and Linux/GRUB interaction testing remain future work.
