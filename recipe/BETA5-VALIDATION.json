@@ -1,0 +1,45 @@
+{
+  "version": "0.5.0-beta.5",
+  "build": 9,
+  "baseline": "0.4.0-beta.4",
+  "changed_app_paths": [
+    "Contents/Info.plist",
+    "Contents/Resources/CURRENT-SCOPE.txt",
+    "Contents/Resources/DEPENDENCIES.txt",
+    "Contents/Resources/README.txt",
+    "Contents/Resources/boot_diagnostics.py",
+    "Contents/Resources/diagnostic-efi/WindowsDiagnostics-esp.template.efi",
+    "Contents/Resources/diagnostic-efi/WindowsDiagnostics-path.template.efi",
+    "Contents/Resources/diagnostic-efi/WindowsDiagnostics.template.efi",
+    "Contents/Resources/runtime-profiles.plist"
+  ],
+  "normal_windows_installation_and_menu_unchanged": true,
+  "diagnostic_partition_scanning_unchanged": true,
+  "original_loader_hash_verified_and_known_helper_bypassed": true,
+  "unknown_helpers_not_executed": true,
+  "new_folders_preserve_existing_tools": true,
+  "isolated_firmware_cases": 16,
+  "sector_sizes": [
+    512,
+    4096
+  ],
+  "efi_revision": "1.10",
+  "synthetic_child_handoff_not_physical_windows_boot": true,
+  "all_five_firmware_binaries_reproduce": true,
+  "affected_mac_boot_not_yet_confirmed": true,
+  "reported_repeat_creation_failure_not_claimed_fixed": true,
+  "native_ui_check": "Skipped at owner request; native executable byte-identical to Beta 4",
+  "exact_app_reproduction": {
+    "status": "PASS",
+    "app_entries": 3156,
+    "exact_app_match": true,
+    "application_and_cpu_probe_compiled": true,
+    "dependency_and_firmware_binaries_pinned": true,
+    "both_runtime_checks_passed": true,
+    "native_ui_checks_passed": false,
+    "windows_installed": false,
+    "boot_files_changed": false,
+    "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: x86_64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "sdk_version": "26.5"
+  }
+}

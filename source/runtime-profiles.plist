@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build_id</key>
-	<string>beta-4</string>
+	<string>beta-5</string>
 	<key>idempotent_unmount_revision</key>
 	<integer>1</integer>
 	<key>installation_enabled</key>
@@ -44,9 +44,9 @@
 				<key>BackToSeven.icns</key>
 				<string>a0d3d242b8c90cb6b3b319c2e0f3a03724064dd22e636172daacb8b71fd93915</string>
 				<key>CURRENT-SCOPE.txt</key>
-				<string>0721825808024310475f489eba4514a844f5c648f8c66c3e4a1bcd3d7ea4f810</string>
+				<string>4ca34974804ccda868a7297ddec96dcd79243fbeeade89ac6d8c1163ab2f9ab5</string>
 				<key>DEPENDENCIES.txt</key>
-				<string>e0bd9f6bedbb53e60b9f5540186ba1f4a08a58f541415acafb9ac43b02ed5b00</string>
+				<string>756ebebb0d92577443f6a9f86292035b68251f4b718732a36460cf975764914f</string>
 				<key>DRIVER-GUIDANCE.txt</key>
 				<string>8bdf1a14d53c4b496b4a46da9cd7b6377cfa25cd2f9398237a05ff085a70a11c</string>
 				<key>GoAwayBCA.icns</key>
@@ -58,7 +58,7 @@
 				<key>MANUAL-EFI-CLEANUP.txt</key>
 				<string>10df83dd32992c417e75fe24326b924b75ff37e3f0f83694e1e017297c25f039</string>
 				<key>README.txt</key>
-				<string>402100c9ad1b1d5cbfd65487cacaf6dab0fcd1ffef6b08849ee9647abfad4671</string>
+				<string>9e034427f1a84638e19dccc3f8b7ef0938444b75164a03307e1d390796d433ec</string>
 				<key>SECURITY-CHIP-MODELS.txt</key>
 				<string>c493a72925abcb81db634ad6aff03e0ee2967da5f6c46aca5e189fcb96047bad</string>
 				<key>ThirdParty/Notices/7zip/7zip-License.txt</key>
@@ -240,7 +240,7 @@
 				<key>boot_diagnostic_binding.py</key>
 				<string>487700a0ea1ed0a55b11be1b6b31dcc8b189c59f40891856c9b8a014b47a77ff</string>
 				<key>boot_diagnostics.py</key>
-				<string>6a2ab8ee82baadc88c15d3353b5d9b25bc2dd1b33af9a4a5c12e1c7fe53d55eb</string>
+				<string>1ab067e1015b4e417aa8e88120f38c4f0562bce392e874e9f6c167d4ddaaf462</string>
 				<key>bootcamp_download.py</key>
 				<string>c67f2e68ea2bcb572b23a6f0d29c64cada9fa1c57d36f7850d6221d7eae8a1e8</string>
 				<key>chooser_config.py</key>
@@ -276,11 +276,11 @@
 				<key>diagnostic-efi/PCI.pdb</key>
 				<string>086cf45468cf613d9f400304c648010b2390a5899fa9d9adca94f9fbb140fc26</string>
 				<key>diagnostic-efi/WindowsDiagnostics-esp.template.efi</key>
-				<string>9dbf228fe0ef730f4774c9711e624192b94904c09116d00d9256c8c3f4111539</string>
+				<string>8b349a860112bee95808eaa6a777c93a2d180461b16c6508a9e04b963f1b6928</string>
 				<key>diagnostic-efi/WindowsDiagnostics-path.template.efi</key>
-				<string>6074c1bec94603d32635fc1929f98c268ff88b53cb0c3bc62a98c4bcb9f10964</string>
+				<string>0cdb8fb6eae6b98da4dd5b5212fb7f19691b7e8459614f1e0dc2b17a0005d173</string>
 				<key>diagnostic-efi/WindowsDiagnostics.template.efi</key>
-				<string>19fcdbeb7057907bc45fb35c031a0e5562ebad30b7a3d6fb729d786357e88c86</string>
+				<string>0c1ea8ca9bc9b3d65d7241173be87c73c2353b262ed04330668e43d1500cf210</string>
 				<key>diagnostic-efi/acpi_collector.zig</key>
 				<string>b2a0631eeba29e902d359a4ae1f0f59286f648466a3f213cbcf177813d8a6d8b</string>
 				<key>diagnostic-efi/acpi_parse.zig</key>
@@ -2291,9 +2291,9 @@
 				<key>BackToSeven.icns</key>
 				<string>a0d3d242b8c90cb6b3b319c2e0f3a03724064dd22e636172daacb8b71fd93915</string>
 				<key>CURRENT-SCOPE.txt</key>
-				<string>0721825808024310475f489eba4514a844f5c648f8c66c3e4a1bcd3d7ea4f810</string>
+				<string>4ca34974804ccda868a7297ddec96dcd79243fbeeade89ac6d8c1163ab2f9ab5</string>
 				<key>DEPENDENCIES.txt</key>
-				<string>e0bd9f6bedbb53e60b9f5540186ba1f4a08a58f541415acafb9ac43b02ed5b00</string>
+				<string>756ebebb0d92577443f6a9f86292035b68251f4b718732a36460cf975764914f</string>
 				<key>DRIVER-GUIDANCE.txt</key>
 				<string>8bdf1a14d53c4b496b4a46da9cd7b6377cfa25cd2f9398237a05ff085a70a11c</string>
 				<key>GoAwayBCA.icns</key>
@@ -2305,7 +2305,7 @@
 				<key>MANUAL-EFI-CLEANUP.txt</key>
 				<string>10df83dd32992c417e75fe24326b924b75ff37e3f0f83694e1e017297c25f039</string>
 				<key>README.txt</key>
-				<string>402100c9ad1b1d5cbfd65487cacaf6dab0fcd1ffef6b08849ee9647abfad4671</string>
+				<string>9e034427f1a84638e19dccc3f8b7ef0938444b75164a03307e1d390796d433ec</string>
 				<key>SECURITY-CHIP-MODELS.txt</key>
 				<string>c493a72925abcb81db634ad6aff03e0ee2967da5f6c46aca5e189fcb96047bad</string>
 				<key>ThirdParty/Notices/7zip/7zip-License.txt</key>
@@ -2487,7 +2487,7 @@
 				<key>boot_diagnostic_binding.py</key>
 				<string>487700a0ea1ed0a55b11be1b6b31dcc8b189c59f40891856c9b8a014b47a77ff</string>
 				<key>boot_diagnostics.py</key>
-				<string>6a2ab8ee82baadc88c15d3353b5d9b25bc2dd1b33af9a4a5c12e1c7fe53d55eb</string>
+				<string>1ab067e1015b4e417aa8e88120f38c4f0562bce392e874e9f6c167d4ddaaf462</string>
 				<key>bootcamp_download.py</key>
 				<string>c67f2e68ea2bcb572b23a6f0d29c64cada9fa1c57d36f7850d6221d7eae8a1e8</string>
 				<key>chooser_config.py</key>
@@ -2523,11 +2523,11 @@
 				<key>diagnostic-efi/PCI.pdb</key>
 				<string>086cf45468cf613d9f400304c648010b2390a5899fa9d9adca94f9fbb140fc26</string>
 				<key>diagnostic-efi/WindowsDiagnostics-esp.template.efi</key>
-				<string>9dbf228fe0ef730f4774c9711e624192b94904c09116d00d9256c8c3f4111539</string>
+				<string>8b349a860112bee95808eaa6a777c93a2d180461b16c6508a9e04b963f1b6928</string>
 				<key>diagnostic-efi/WindowsDiagnostics-path.template.efi</key>
-				<string>6074c1bec94603d32635fc1929f98c268ff88b53cb0c3bc62a98c4bcb9f10964</string>
+				<string>0cdb8fb6eae6b98da4dd5b5212fb7f19691b7e8459614f1e0dc2b17a0005d173</string>
 				<key>diagnostic-efi/WindowsDiagnostics.template.efi</key>
-				<string>19fcdbeb7057907bc45fb35c031a0e5562ebad30b7a3d6fb729d786357e88c86</string>
+				<string>0c1ea8ca9bc9b3d65d7241173be87c73c2353b262ed04330668e43d1500cf210</string>
 				<key>diagnostic-efi/acpi_collector.zig</key>
 				<string>b2a0631eeba29e902d359a4ae1f0f59286f648466a3f213cbcf177813d8a6d8b</string>
 				<key>diagnostic-efi/acpi_parse.zig</key>

@@ -1,4 +1,4 @@
-GoAwayBCA Beta 4
+GoAwayBCA Beta 5
 
 Install and manage Windows 8.1, Windows 10 and Windows 11 from Intel macOS, using an existing internal or experimental USB GPT partition and pure EFI booting. A USB installer is not required.
 Windows 7 and Windows 8 are not yet supported. Support is being actively developed for a future update.
@@ -22,6 +22,10 @@ Tools include installation management, Windows boot-menu rebuild/rename, EFI mou
 
 Host range: Intel OS X Lion 10.7 through macOS Tahoe. Testing has included Mavericks, Mojave, Monterey and Tahoe across MacBookPro11,3, 11,4 and 11,5; this does not mean every host/Windows/model combination was tested. Windows 8.1 and 10 installations and menu coexistence have been tested on these Macs, including 4096-byte logical-sector storage on the 11,4. Windows 11 is available with compatibility guidance, but was not part of that installation test matrix. Older hosts and other models may need fixes based on reports.
 
-Beta 4 creates Test1.efi, Test2.efi and Test3.efi for a selected Windows installation. Each automatically collects logs and attempts its boot using a different loading method. Restart between tests. A new numbered diagnostic folder is always used; old tools and logs are preserved. See the saved OpenShell instructions. Returned EFI status/exit text and ACPI collection errors provide more detailed troubleshooting. This update does not claim a boot fix for a specific Mac. Windows installation and the normal menu are unchanged.
+Beta 5 corrects the EFI diagnostic tests to launch the original Windows loader directly. If the selected menu entry uses the recognised experimental Fix.efi helper, each diagnostic test verifies the saved Original.efi against Entry.bin and bypasses the helper. Unknown helpers, missing originals and mismatched hashes stop the attempt; no helper is silently substituted. Logs identify both the configured menu executable and the actual executable launched, including its SHA256.
+
+Tests 1 and 2 use the original Windows loader's device/path through different loading methods. Test 3 uses an experimental EFI-partition context; it can fail even when the same Windows installation boots with Tests 1 and 2. Restart between tests. Each new diagnostic set gets a new short Test-### folder, preserving every previous tool and log.
+
+This is a diagnostic correction, not a confirmed fix for the reported older Mac. Windows installation, drivers, partition management and the normal boot menu are unchanged. If creating diagnostics reports an unreadable Windows partition, save the full app log and diagnostic-scan report; reinstalling Windows is not a required troubleshooting step. This update does not claim to fix that separately reported scan failure.
 
 Experimental USB destinations and Windows partition backup/restore remain available. Leopard support and installation support for 32-bit EFI Macs are not included. Further installation optimisations and Linux/GRUB interaction testing remain future work.

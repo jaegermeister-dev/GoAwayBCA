@@ -18,7 +18,7 @@ class VariantsTests(unittest.TestCase):
 
     def test_guide_identifies_all_tests_and_restart_boundary(self):
         text=d.instructions('EFI/WinDeploy/Diagnostics/Test-002','Named Windows','esp-guid')
-        for text_needed in ('Test1.efi','Test2.efi','Test3.efi','Restart before the next test','Named Windows','esp-guid','Test-002','all logs','Existing tools and logs are preserved'):
+        for text_needed in ('Test1.efi','Test2.efi','Test3.efi','Restart before the next test','Named Windows','esp-guid','Test-002','all logs','Existing tools and logs are preserved','bypass the recognised experimental Fix.efi','Entry.bin'):
             self.assertIn(text_needed,text)
         self.assertNotIn('WindowsDiagnostics.efi',text)
         self.assertNotIn('press Enter',text)

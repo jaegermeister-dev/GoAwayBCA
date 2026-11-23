@@ -1,4 +1,4 @@
-GoAwayBCA Beta 4 dependencies
+GoAwayBCA Beta 5 dependencies
 
 The application bundles its Python runtimes and filesystem/image helpers. End users do not need to install Python, a compiler, a package manager or a filesystem kernel extension.
 

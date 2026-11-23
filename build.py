@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce the Beta 4 app from matching source and pinned dependency inputs.
+"""Reproduce the Beta 5 app from matching source and pinned dependency inputs.
 
 This command never installs Windows, mounts EFI, or changes startup settings.
 """
@@ -64,7 +64,7 @@ def run(command, log, timeout=180):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--inputs', required=True, help='GoAwayBCA-Beta-4-Build-Inputs.zip')
+    parser.add_argument('--inputs', required=True, help='GoAwayBCA-Beta-5-Build-Inputs.zip')
     parser.add_argument('--output', required=True, help='A new directory outside this source tree')
     parser.add_argument('--skip-ui-check', action='store_true', help='Rebuild and verify all bytes without opening a UI self-test window')
     args = parser.parse_args()
@@ -79,7 +79,7 @@ def main():
     inputs = Path(args.inputs).expanduser().resolve(strict=True)
     recipe = json.loads((root / 'recipe/assembly.json').read_text())
     expected = json.loads((root / 'recipe/APP-FILE-HASHES.json').read_text())
-    require(recipe['schema'] == 1 and recipe['version'] == '0.4.0-beta.4', 'Unknown build recipe.')
+    require(recipe['schema'] == 1 and recipe['version'] == '0.5.0-beta.5', 'Unknown build recipe.')
     require(inputs.stat().st_size == recipe['input_bytes'] and sha(inputs) == recipe['input_sha256'], 'Dependency input checksum mismatch.')
     toolchain = json.loads((root / 'recipe/toolchain.json').read_text())
     compiler = subprocess.check_output(['/usr/bin/xcrun', 'clang', '--version'], universal_newlines=True)

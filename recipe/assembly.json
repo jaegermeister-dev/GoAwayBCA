@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "product": "GoAwayBCA",
-  "version": "0.4.0-beta.4",
+  "version": "0.5.0-beta.5",
   "copies": {
     "Contents/Info.plist": {
       "mode": 420,
@@ -37638,7 +37638,7 @@
     "Contents/MacOS/WindowsDeployer",
     "Contents/Resources/bin/cpu-probe"
   ],
-  "input_archive": "GoAwayBCA-Beta-4-Build-Inputs.zip",
+  "input_archive": "GoAwayBCA-Beta-5-Build-Inputs.zip",
   "input_bytes": 66283361,
   "input_sha256": "cd12dde7d73ecc9bf4e96ddfd3ac6c36259d98e7c8d6caea13ad5399d32c8885",
   "superseded_input_entries": [

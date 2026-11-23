@@ -17,9 +17,9 @@ from operation_progress import phase
 PREFIX='EFI/WinDeploy/Diagnostics/'
 
 VARIANTS = (
-    ('Test1.efi', 'WindowsDiagnostics.template.efi', 'Current loading method'),
-    ('Test2.efi', 'WindowsDiagnostics-path.template.efi', 'Firmware file-path loading'),
-    ('Test3.efi', 'WindowsDiagnostics-esp.template.efi', 'EFI-partition boot context'),
+    ('Test1.efi', 'WindowsDiagnostics.template.efi', 'Direct Windows loader from memory'),
+    ('Test2.efi', 'WindowsDiagnostics-path.template.efi', 'Direct Windows loader through firmware file path'),
+    ('Test3.efi', 'WindowsDiagnostics-esp.template.efi', 'Direct Windows loader with experimental EFI-partition context'),
 )
 
 def bound_tests(resources, config):
@@ -37,14 +37,14 @@ def instructions(folder,title,esp_guid):
         '5. Run Test1.efi. It immediately collects reports and tries the selected Windows installation.\n'
         '6. Restart before the next test, return to the same folder, then run Test2.efi. Repeat for Test3.efi. '
         'Do not run the tests one after another without restarting, even if a failed test returns to OpenShell.\n\n'
-        'Test1.efi: current loading method.\n'
-        'Test2.efi: load the same Windows file through its firmware file path.\n'
-        'Test3.efi: load the same Windows file using the EFI partition as its boot context.\n\n'
+        'Test1.efi: verified original Windows loader from memory.\n'
+        'Test2.efi: load that verified original Windows loader through its firmware file path.\n'
+        'Test3.efi: use the EFI partition as the original Windows loader\'s boot context. This experimental comparison may fail even when Test1 and Test2 work.\n\n'
         'These are comparisons, not automatic fixes. Each confirms the selected disk and partition, collects '
         'PCI/ACPI reports, and saves a numbered test1-*, test2-* or test3-* log before handing over to Windows. '
         'If a test hangs, photograph the screen and report which test it was. The last saved stage remains useful; '
         'this is not a Windows kernel debugger. Returned EFI status and any exit text are logged.\n\n'
-        'All three use the normal Windows menu per-Windows BCD selection. They do not replace the boot menu, '
+        'All three explicitly bypass the recognised experimental Fix.efi helper and verify its saved Original.efi against Entry.bin before loading it. A direct bootmgfw.efi entry stays direct. The log identifies the configured entry, actual executable and its SHA256. Missing or changed original files stop the test; it never falls back to running the helper. All three use the normal Windows menu per-Windows BCD selection. They do not replace the boot menu, '
         'patch Windows, alter OpenCore, change the default startup disk or repartition. Windows itself may make '
         'normal boot/setup writes. A missing or ambiguous menu entry stops that attempt.\n\n'
         '7. Return to macOS and mount the indicated EFI partition. ZIP this entire Test folder, including '
@@ -108,7 +108,7 @@ class BootDiagnostics(InstallationManager):
             'New folder: '+folder_name+' on '+target['esp']+'.\n'
             'Existing diagnostic folders and logs will be kept. Creating a new tool does not update or remove earlier tools; use this new folder for the latest test.\n\n'
             'It does not fix or replace boot files. '
-            'Run Test1.efi, Test2.efi and Test3.efi separately in OpenShell, restarting between tests. Each collects reports and '
+            'The tests bypass the recognised experimental EFI helper and start the verified original Windows loader. Test3 changes the boot context and may fail even when the other two work. Run Test1.efi, Test2.efi and Test3.efi separately in OpenShell, restarting between tests. Each collects reports and '
             'uses normal Windows BCD selection to attempt this Windows boot. Logs are saved on EFI before handoff. No automatic upload.',
             details=guide),'Diagnostic preparation cancelled.')
         assert_same_target(target,info(target['partition']['DeviceIdentifier']),info(target['disk']['DeviceIdentifier']))

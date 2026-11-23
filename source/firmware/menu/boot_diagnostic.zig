@@ -129,7 +129,7 @@ fn openLog(own: u.Handle) !void {
 }
 fn inventory(own: u.Handle) !void {
     const bs=u.system_table.boot_services orelse return error.NoBootServices;
-    record("GoAwayBCA targeted boot diagnostic v2\r\nFirmware table revision={x}; firmware revision={x}\r\n",.{u.system_table.hdr.revision,u.system_table.firmware_revision});
+    record("GoAwayBCA targeted boot diagnostic v3 - direct original Windows loader\r\nFirmware table revision={x}; firmware revision={x}\r\n",.{u.system_table.hdr.revision,u.system_table.firmware_revision});
     record("Expected logical sectors={d}; inherited Mac model={s}\r\n",.{std.mem.readInt(u32,config[36..40],.little),std.mem.sliceTo(config[200..264],0)});
     diagnosticTrace("Binding bytes (GPT little-endian):\r\n");
     inline for (.{.{"disk",@as(usize,56)},.{"ESP",@as(usize,72)},.{"Windows",@as(usize,88)}}) |item| {

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0-beta.5 — 23 November 2026
+
+- Correct all three EFI diagnostic tests to bypass the recognised experimental Fix.efi helper and directly load its hash-verified Original.efi. Direct bootmgfw.efi entries remain direct.
+- Record the configured menu executable, actual launched executable and its SHA256. Refuse unknown helpers or missing/mismatched original-loader records.
+- Keep the three loading-method comparisons, target identities, normal per-installation BCD selection and separate numbered diagnostic logs.
+- Explain that Test 3's experimental EFI-partition context can fail on an otherwise working installation. Preserve every older diagnostic folder.
+- Leave Windows deployment, drivers, partition management, the normal menu and diagnostic partition scanning unchanged. The separately reported repeat-creation failure still needs the failed app/scan report; a fix for it is not claimed.
+
 ## 0.4.0-beta.4 — 23 November 2026
 
 - Create `Test1.efi`, `Test2.efi` and `Test3.efi` for the exact Windows partition selected by the user.

@@ -5,6 +5,7 @@
 const std = @import("std");
 const u = std.os.uefi;
 const p = @import("chooser_parse.zig");
+const direct_windows = @import("direct_windows.zig");
 const utf16 = std.unicode.utf8ToUtf16LeStringLiteral;
 const File = u.protocol.File;
 const ConsoleSession = @import("console_session.zig").Session;
@@ -114,6 +115,48 @@ pub fn load(device: u.Handle, path: [*:0]const u16, expected: ?*const [32]u8) !u
     return loadLogical(device,path,expected,device,path,false);
 }
 
+fn logPath(label: []const u8, path: *const [256]u16) void {
+    var text: [256]u8 = undefined;
+    var n: usize = 0;
+    for (path) |c| { if (c == 0) break; text[n] = if (c <= 126) @intCast(c) else '?'; n += 1; }
+    @import("root").record("{s}{s}\r\n", .{label, text[0..n]});
+}
+
+fn directEntry(device: u.Handle, configured: *const p.Entry) !p.Entry {
+    const bs = u.system_table.boot_services orelse return error.NoBootServices;
+    const fs = (try bs.handleProtocol(u.protocol.SimpleFileSystem, device)) orelse return error.NoFilesystem;
+    const root = try fs.openVolume();
+    defer root.close() catch {};
+    logPath("Configured menu executable: ", &configured.path);
+    const selected_kind = try direct_windows.kind(std.mem.sliceTo(&configured.path, 0));
+    const configured_bytes = try read(root, @ptrCast(&configured.path), 15*1024*1024);
+    if (configured.hashLocked() and !hashMatches(configured_bytes, &configured.digest)) return error.LoaderHashChanged;
+    var entry = configured.*;
+    if (selected_kind == .helper) {
+        var known: [32]u8 = undefined;
+        _ = try std.fmt.hexToBytes(&known, direct_windows.helper_sha);
+        if (!hashMatches(configured_bytes, &known)) return error.UnrecognisedExperimentalHelper;
+        const record_path = try direct_windows.sibling(std.mem.sliceTo(&configured.path, 0), "Entry.bin");
+        const recorded_hash = try direct_windows.originalHash(try read(root, @ptrCast(&record_path), 40));
+        entry.path = try direct_windows.sibling(std.mem.sliceTo(&configured.path, 0), "Original.efi");
+        const original = try read(root, @ptrCast(&entry.path), 15*1024*1024);
+        if (!hashMatches(original, &recorded_hash)) return error.OriginalWindowsLoaderHashMismatch;
+        if (hashMatches(original, &known)) return error.OriginalLoaderIsExperimentalHelper;
+        try direct_windows.validateLoader(original);
+        entry.digest = recorded_hash;
+        @import("root").diagnosticTrace("Known experimental Fix.efi BYPASSED. Original.efi matches its saved Entry.bin SHA256. No helper executed.\r\n");
+    } else {
+        try direct_windows.validateLoader(configured_bytes);
+        std.crypto.hash.sha2.Sha256.hash(configured_bytes, &entry.digest, .{});
+        @import("root").diagnosticTrace("Direct bootmgfw.efi entry; no experimental helper selected.\r\n");
+    }
+    entry.flags |= 4; // Pin the exact verified bytes for the subsequent load.
+    logPath("Actual Windows executable: ", &entry.path);
+    const hex = std.fmt.bytesToHex(entry.digest, .lower);
+    @import("root").record("Actual Windows executable SHA256: {s}\r\n", .{&hex});
+    return entry;
+}
+
 fn loadLogical(device: u.Handle, path: [*:0]const u16, expected: ?*const [32]u8,
     logical_device: u.Handle, logical_path: [*:0]const u16, file_mode: bool) !u.Handle {
     const bs = u.system_table.boot_services orelse return error.NoBootServices;
@@ -186,15 +229,16 @@ pub fn launch(comptime vm: bool, own: u.Handle, item: *const p.Entry,menu_bytes:
     }
     trace(vm,"CHOOSER: loading selected EFI image\n");
     const mode=@import("boot_diagnostic.zig").variant;
-    const expected=if(item.hashLocked()) &item.digest else null;
+    const direct = try directEntry(target, item);
+    const expected = &direct.digest;
     var source_path: [512]u8=undefined;
     var n: usize=0;
-    for(item.path) |c| {if(c==0) break;source_path[n]=if(c<=126) @intCast(c) else '?';n+=1;}
+    for(direct.path) |c| {if(c==0) break;source_path[n]=if(c<=126) @intCast(c) else '?';n+=1;}
     @import("root").record("Windows image: {s}; test={d}\r\n",.{source_path[0..n],mode});
     const child = switch(mode) {
-        1 => try load(target,@ptrCast(&item.path),expected),
-        2 => try loadLogical(target,@ptrCast(&item.path),expected,target,@ptrCast(&item.path),true),
-        3 => try loadLogical(target,@ptrCast(&item.path),expected,own,utf16("\\EFI\\Microsoft\\Boot\\bootmgfw.efi"),false),
+        1 => try load(target,@ptrCast(&direct.path),expected),
+        2 => try loadLogical(target,@ptrCast(&direct.path),expected,target,@ptrCast(&direct.path),true),
+        3 => try loadLogical(target,@ptrCast(&direct.path),expected,own,utf16("\\EFI\\Microsoft\\Boot\\bootmgfw.efi"),false),
         else => return error.InvalidTest,
     };
     const bs = u.system_table.boot_services orelse return error.NoBootServices;

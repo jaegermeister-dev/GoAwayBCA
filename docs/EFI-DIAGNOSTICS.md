@@ -8,9 +8,15 @@ The new folder contains three EFI files:
 
 | File | Boot comparison |
 | --- | --- |
-| `Test1.efi` | Current method: verified Windows loader bytes with the selected loader's original device/path. |
-| `Test2.efi` | Ask firmware to load the same verified Windows file through its full device path. |
-| `Test3.efi` | Load the same verified Windows bytes with the EFI partition as the boot context. |
+| `Test1.efi` | Verified original Windows loader bytes with the original loader's device/path. |
+| `Test2.efi` | Ask firmware to load that same verified original Windows file through its full device path. |
+| `Test3.efi` | Load that same verified original Windows file with an experimental EFI-partition boot context; this may fail where Tests 1 and 2 succeed. |
+
+Beta 5 corrects the EFI diagnostic tests to launch the original Windows loader directly. If the selected menu entry uses the recognised experimental Fix.efi helper, each diagnostic test verifies the saved Original.efi against Entry.bin and bypasses the helper. Unknown helpers, missing originals and mismatched hashes stop the attempt; no helper is silently substituted. Logs identify both the configured menu executable and the actual executable launched, including its SHA256.
+
+Tests 1 and 2 use the original Windows loader's device/path through different loading methods. Test 3 uses an experimental EFI-partition context; it can fail even when the same Windows installation boots with Tests 1 and 2. Restart between tests. Each new diagnostic set gets a new short Test-### folder, preserving every previous tool and log.
+
+This is a diagnostic correction, not a confirmed fix for the reported older Mac. Windows installation, drivers, partition management and the normal boot menu are unchanged. If creating diagnostics reports an unreadable Windows partition, save the full app log and diagnostic-scan report; reinstalling Windows is not a required troubleshooting step. This update does not claim to fix that separately reported scan failure.
 
 Each file **automatically collects reports and attempts the selected Windows boot immediately when run**. There are no numbered choices or start prompt. These are diagnostic comparisons, not confirmed fixes for a particular Mac.
 
