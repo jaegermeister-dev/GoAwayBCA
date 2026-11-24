@@ -12,7 +12,7 @@ import install_windows7 as base
 from test_menu_lifecycle import D,E,PARTS
 
 class Workflow(unittest.TestCase):
-    def fixture(self,scenario,family='Windows 10',model='MacBookPro11,5',efi=False,unified=False):
+    def fixture(self,scenario,family='Windows 10',model='MacBookPro11,5',efi=False,unified=False,standard=False):
         with tempfile.TemporaryDirectory() as tmp,ExitStack() as stack:
             root=Path(tmp).resolve();media=root/'media';(media/'sources').mkdir(parents=True)
             wim=media/'sources/install.wim';wim.write_bytes(b'WIM');iso=root/'x.iso';iso.write_bytes(b'ISO')
@@ -99,7 +99,9 @@ class Workflow(unittest.TestCase):
                 if scenario in ('shared-diagnostic','critical-dependency'):
                     dependencies['EFI/Microsoft/Boot/memtest.efi']=b'ISO diagnostic'
                     dependencies['EFI/Microsoft/Boot/bootmgfw-w7dep-original.efi']=b'required loader'
-                return dict(wim=overlay,wim_sha256=base.sha256(overlay),files={'marker':base.sha256(overlay)},
+                boot=session/'overlay/EFI/Microsoft/Boot';boot.mkdir(parents=True,exist_ok=True)
+                (boot/'bootmgfw.efi').write_bytes(b'synthetic Microsoft loader')
+                return dict(root=session/'overlay',wim=overlay,wim_sha256=base.sha256(overlay),files={'marker':base.sha256(overlay)},
                     record=record,canonical_bcd=b'BCD',esp_files=dependencies,entry=app.stock_entry(record))
             def plan(*a,**kw):
                 assert kw['addition']['title']=='My Windows'
@@ -151,6 +153,9 @@ class Workflow(unittest.TestCase):
                 if str(path)=='/dev/disk99s3':return argparse.Namespace(st_mode=stat.S_IFBLK)
                 return original_stat(path,*a,**kw)
             stack.enter_context(patch.object(app,'ROOT',root))
+            if standard:
+                stack.enter_context(patch('standard_boot.choose',return_value=False))
+                stack.enter_context(patch('standard_boot.validate_efi_application'))
             # Native picker and fresh device probing have their own fixtures.
             # Preserve this workflow's explicit destination-selection event.
             stack.enter_context(patch('destination_picker.choose',side_effect=lambda owner,targets,family:
@@ -210,7 +215,14 @@ class Workflow(unittest.TestCase):
                     import json
                     receipt=json.loads((session/'receipt.json').read_text())
                     self.assertEqual(receipt['preserved_boot_dependencies'][0]['path'],'EFI/Microsoft/Boot/memtest.efi')
-            return caught,formatted,(esp_root/'EFI/WinDeploy/menu.bin').exists(),approvals,events
+            if standard:
+                self.assertFalse((esp_root/'EFI/WinDeploy/menu.bin').exists())
+                published=(esp_root/'EFI/Microsoft/Boot/bootmgfw.efi').exists()
+                if published:
+                    self.assertEqual((esp_root/'EFI/Microsoft/Boot/bootmgfw.efi').read_bytes(),b'synthetic Microsoft loader')
+                    self.assertEqual((esp_root/'EFI/Microsoft/Boot/BCD').read_bytes(),b'BCD')
+            else:published=(esp_root/'EFI/WinDeploy/menu.bin').exists()
+            return caught,formatted,published,approvals,events
 
     def test_success_all_families_only_after_confirmations(self):
         for family in app.FAMILIES:

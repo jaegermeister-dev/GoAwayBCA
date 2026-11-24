@@ -12,6 +12,7 @@ def uses_backtoseven(model, edition):
 
 
 class UnifiedInstaller(BackToSevenInstaller):
+    require_supported_image=True
     def execute(self):
         # The source is inspected once, with a model confirmation and actual
         # firmware/CPU checks before either engine downloads or writes anything.

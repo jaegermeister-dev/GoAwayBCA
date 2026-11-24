@@ -1534,8 +1534,8 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
     if (busy) return;
     NSMenu *menu=[[[NSMenu alloc] initWithTitle:@"Advanced"] autorelease];
     [menu setAutoenablesItems:NO];
-    NSArray *titles=@[@"Create Windows EFI diagnostic tool…",@"Collect Hardware Report…",@"Mount / Unmount EFI…",@"Delete Boot Menu…"];
-    SEL actions[]={@selector(bootDiagnostics:),@selector(diagnostics:),@selector(efiAccess:),@selector(debugReset:)};
+    NSArray *titles=@[@"Create Windows EFI diagnostic tool…",@"Manage EFI Diagnostic Kits…",@"Collect Hardware Report…",@"Mount / Unmount EFI…",@"Delete Boot Menu…"];
+    SEL actions[]={@selector(bootDiagnostics:),@selector(diagnosticKits:),@selector(diagnostics:),@selector(efiAccess:),@selector(debugReset:)};
     for (NSUInteger i=0;i<[titles count];i++) {
         NSMenuItem *item=[menu addItemWithTitle:[titles objectAtIndex:i] action:actions[i] keyEquivalent:@""];
         [item setTarget:self]; [item setEnabled:profile && startupSucceeded && [[configuration objectForKey:@"management_enabled"] boolValue]];
@@ -1546,6 +1546,12 @@ static NSTextField *Label(NSView *parent, NSString *text, NSRect frame, BOOL bol
 - (void)bootDiagnostics:(id)sender {
     if (SelfTest || DemoMode || busy || !profile || ![[configuration objectForKey:@"management_enabled"] boolValue]) return;
     [workerOperation release]; workerOperation=[@"boot-diagnostics" copy];
+    [self setBusy:YES]; [NSThread detachNewThreadSelector:@selector(beginWorker:) toTarget:self withObject:nil];
+}
+
+- (void)diagnosticKits:(id)sender {
+    if (SelfTest || DemoMode || busy || !profile || ![[configuration objectForKey:@"management_enabled"] boolValue]) return;
+    [workerOperation release]; workerOperation=[@"diagnostic-kits" copy];
     [self setBusy:YES]; [NSThread detachNewThreadSelector:@selector(beginWorker:) toTarget:self withObject:nil];
 }
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.6.0-beta.6 — 24 November 2026
+
+Beta 6 simplifies EFI diagnostic creation: choose the Windows partition from disk information, then create a new target-bound diagnostic kit on that drive’s EFI partition. Windows files do not have to be readable in macOS to create the kit. This addresses the reported “NTFS root identity changed” discovery failure without requiring a Windows reinstall.
+
+The custom Windows boot menu is now optional during installation. It is recommended for multiple Windows installations; a single installation can use the standard Microsoft boot path directly through OpenCore or the Mac’s Option/Alt picker. Choosing the standard path does not change the default startup disk. If other Windows installations already exist, the shared Windows entry will start the new installation; Rebuild Boot Menu can restore selection between them. Existing menu files are retained.
+
+Advanced → Manage EFI Diagnostic Kits lists saved folders, their recorded GoAwayBCA versions and targets, and lets you choose which kits and logs to delete. Unselected kits are kept. Every new kit still gets its own Test-### folder. Unknown versions are labelled as unknown.
+
+The general experimental EFI patch is no longer offered or applied to new supported Windows installations. Existing installations and helper files are not silently changed. Diagnostic tests continue to bypass a recognised old helper and also work with the standard boot path, without requiring a custom menu.
+
+This is not a confirmed solution to the community MacBook5,1 boot failure. Please report what happened with each route and include the new diagnostic logs. Windows 7 and Windows 8 remain unsupported.
+
 ## 0.5.0-beta.5 — 23 November 2026
 
 - Correct all three EFI diagnostic tests to bypass the recognised experimental Fix.efi helper and directly load its hash-verified Original.efi. Direct bootmgfw.efi entries remain direct.

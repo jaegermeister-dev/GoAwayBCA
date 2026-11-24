@@ -1,34 +1,11 @@
 # Windows EFI diagnostics
 
-Use **Advanced → Create Windows EFI diagnostic tool…** and select the Windows installation that fails to boot. Review the destination, then confirm creation. The app saves instructions on your Desktop and creates a new numbered folder such as `EFI/WinDeploy/Diagnostics/Test-002` on that drive's EFI partition.
+Use **Advanced → Create Windows EFI diagnostic tool…**, select the Windows partition by its label, size and drive, and confirm. This list identifies candidate partitions from disk metadata; it does not assert that Windows files are readable or that Windows boots. A new **Test-###** folder is created on the associated EFI partition. Existing kits and logs remain untouched. Reinstalling Windows is not necessary to create another kit.
 
-**Existing diagnostic tools and logs are always preserved.** They are not updated in place. Use the exact new folder named in the latest instructions; an old folder keeps its old behaviour and selected Windows target.
+Read the saved OpenShell instructions. Run **Test1.efi**, **Test2.efi**, and **Test3.efi**, restarting between each attempt. Each collects reports and automatically tries the selected Windows installation. Test1 loads the original Windows loader from memory, Test2 asks firmware to load it by file path, and Test3 tries an experimental EFI-partition context. Test3 can fail even when Tests1/2 work.
 
-The new folder contains three EFI files:
+The tests use an existing matching menu entry when present, bypassing the recognised old experimental helper. Without a matching entry, they check the standard Microsoft BCD for the selected partition, or that partition’s own boot files. Missing or mismatched boot files are logged at runtime. A custom menu is not required. Kits carry their own filesystem readers. Creating a kit never formats Windows or changes normal boot configuration. Running a test can activate a matching menu’s per-Windows BCD; Windows itself may make normal setup/boot writes after handoff.
 
-| File | Boot comparison |
-| --- | --- |
-| `Test1.efi` | Verified original Windows loader bytes with the original loader's device/path. |
-| `Test2.efi` | Ask firmware to load that same verified original Windows file through its full device path. |
-| `Test3.efi` | Load that same verified original Windows file with an experimental EFI-partition boot context; this may fail where Tests 1 and 2 succeed. |
+After testing, return to macOS, mount EFI, and ZIP the entire new Test folder. Include the outcome of each test, your Mac model and whether OpenShell was started through OpenCore. Review logs before sharing. Nothing uploads automatically.
 
-Beta 5 corrects the EFI diagnostic tests to launch the original Windows loader directly. If the selected menu entry uses the recognised experimental Fix.efi helper, each diagnostic test verifies the saved Original.efi against Entry.bin and bypasses the helper. Unknown helpers, missing originals and mismatched hashes stop the attempt; no helper is silently substituted. Logs identify both the configured menu executable and the actual executable launched, including its SHA256.
-
-Tests 1 and 2 use the original Windows loader's device/path through different loading methods. Test 3 uses an experimental EFI-partition context; it can fail even when the same Windows installation boots with Tests 1 and 2. Restart between tests. Each new diagnostic set gets a new short Test-### folder, preserving every previous tool and log.
-
-This is a diagnostic correction, not a confirmed fix for the reported older Mac. Windows installation, drivers, partition management and the normal boot menu are unchanged. If creating diagnostics reports an unreadable Windows partition, save the full app log and diagnostic-scan report; reinstalling Windows is not a required troubleshooting step. This update does not claim to fix that separately reported scan failure.
-
-Each file **automatically collects reports and attempts the selected Windows boot immediately when run**. There are no numbered choices or start prompt. These are diagnostic comparisons, not confirmed fixes for a particular Mac.
-
-1. Restart into OpenShell using your existing boot environment. GoAwayBCA does not install OpenShell or modify OpenCore.
-2. Enter `map -r`, then find the `fsN:` mapping containing the exact diagnostic folder in your saved instructions. Do not assume `fs0:`.
-3. Change to that folder and run `Test1.efi`.
-4. **Restart before every next test**, even if an attempt fails and returns to OpenShell. Return to the same folder and run `Test2.efi`, then repeat for `Test3.efi`.
-5. Record which tests booted, returned an error or hung, and whether you entered OpenShell through OpenCore or another route. Photograph any hang/error screen.
-6. Return to macOS, mount the indicated EFI partition, and ZIP the **entire new Test folder**, including all logs and capture folders. Review it for personal information before sharing.
-
-Each test has separate numbered `test1-*.log`, `test2-*.log` or `test3-*.log` files. Existing logs are not overwritten. PCI/ACPI reports are saved beside them. ACPI inventories record the last table visited and the underlying error if collection stops. PCI reports distinguish unavailable devices from read failures. A collection failure is not by itself proof of the cause of a Windows boot failure.
-
-The tests verify the selected disk, partition and sector size. They use the existing menu's normal per-installation BCD selection, flush logs before handoff, and record returned EFI status and any supplied exit text. They do not replace the menu, patch Windows, change OpenCore, change default boot settings or repartition. Windows itself can perform its normal boot/setup writes after handoff. Missing or ambiguous identities/menu entries stop an attempt rather than guessing.
-
-This is not a Windows kernel debugger. If Windows hangs after handoff, only the last saved stage may be available. Failure reporting cannot guarantee a specific Mac will boot. Restarting between tests prevents temporary EFI state from one attempt contaminating another.
+**Advanced → Manage EFI Diagnostic Kits…** shows kits across connected EFI partitions, their recorded app versions, target names and drives. Select entries to mark/unmark them, then review and confirm deletion. The selected kits’ logs are deleted too. Unknown versions stay explicitly unknown; a folder without a recognised target-bound diagnostic executable cannot be removed by this tool. Unselected kits, Windows, OpenCore and other boot files remain untouched.

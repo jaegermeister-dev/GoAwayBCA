@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce the Beta 5 app from matching source and pinned dependency inputs.
+"""Reproduce the Beta 6 app from matching source and pinned dependency inputs.
 
 This command never installs Windows, mounts EFI, or changes startup settings.
 """
@@ -64,7 +64,7 @@ def run(command, log, timeout=180):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--inputs', required=True, help='GoAwayBCA-Beta-5-Build-Inputs.zip')
+    parser.add_argument('--inputs', required=True, help='GoAwayBCA-Beta-6-Build-Inputs.zip')
     parser.add_argument('--output', required=True, help='A new directory outside this source tree')
     parser.add_argument('--skip-ui-check', action='store_true', help='Rebuild and verify all bytes without opening a UI self-test window')
     args = parser.parse_args()
@@ -79,7 +79,7 @@ def main():
     inputs = Path(args.inputs).expanduser().resolve(strict=True)
     recipe = json.loads((root / 'recipe/assembly.json').read_text())
     expected = json.loads((root / 'recipe/APP-FILE-HASHES.json').read_text())
-    require(recipe['schema'] == 1 and recipe['version'] == '0.5.0-beta.5', 'Unknown build recipe.')
+    require(recipe['schema'] == 1 and recipe['version'] == '0.6.0-beta.6', 'Unknown build recipe.')
     require(inputs.stat().st_size == recipe['input_bytes'] and sha(inputs) == recipe['input_sha256'], 'Dependency input checksum mismatch.')
     toolchain = json.loads((root / 'recipe/toolchain.json').read_text())
     compiler = subprocess.check_output(['/usr/bin/xcrun', 'clang', '--version'], universal_newlines=True)
@@ -133,7 +133,7 @@ from runtime_profiles import validate_payload
 resources=Path(sys.argv[1])
 config=plistlib.loads((resources/'runtime-profiles.plist').read_bytes())
 for profile in config['profiles']:validate_payload(resources,profile)
-suite=unittest.defaultTestLoader.loadTestsFromNames(['test_startup_storage','test_startup_user_automatic','test_gui_session','test_diagnostic_discovery','test_prefix_reader','test_diagnostic_folders','test_diagnostic_variants'])
+suite=unittest.defaultTestLoader.loadTestsFromNames(['test_startup_storage','test_startup_user_automatic','test_gui_session','test_diagnostic_discovery','test_prefix_reader','test_diagnostic_folders','test_diagnostic_variants','test_beta6'])
 result=unittest.TextTestRunner(stream=sys.stdout,verbosity=2).run(suite)
 sys.exit(not result.wasSuccessful())
 '''

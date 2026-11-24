@@ -51,6 +51,10 @@ def efi_policy(model, family):
     """Choose the UI policy from the SELECTED image, never the ISO filename."""
     if family not in ('Windows 7', 'Windows 8', 'Windows 8.1', 'Windows 10', 'Windows 11'):
         raise ValueError('This build targets Windows 7, 8, 8.1, 10 and 11.')
+    if family in ('Windows 8.1', 'Windows 10', 'Windows 11'):
+        return dict(default_enabled=False, mandatory=False, show_choice=False,
+                    status='stock-efi', message=family+' uses the original Microsoft EFI loader. '
+                    'The general experimental EFI patch is disabled.')
     if family == 'Windows 11':
         # Owner policy: inherit Windows 10 boot/driver handling on EVERY model.
         # The separate Windows 11 image/build/CPU checks remain in force.

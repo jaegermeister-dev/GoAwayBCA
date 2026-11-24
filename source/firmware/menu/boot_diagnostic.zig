@@ -195,22 +195,34 @@ fn collect(own: u.Handle,comptime name: []const u8,expected: *const [32]u8) !voi
     if(start_error) |err| return err;
     record("Collector {s}: completed; see its report for coverage and unavailable devices\r\n",.{name});
 }
+pub fn kitPath(name: []const u8) ![256:0]u16 {
+    var path: [256:0]u16=@splat(0);
+    const length=std.mem.sliceTo(&folder_name,0).len;
+    if(length+1+name.len>=path.len) return error.PathTooLong;
+    @memcpy(path[0..length],folder_name[0..length]);path[length]='\\';
+    for(name,0..) |c,i| path[length+1+i]=c;
+    return path;
+}
 fn boot(own: u.Handle) !void {
     const bs=u.system_table.boot_services orelse return error.NoBootServices;
     const fs=(try bs.handleProtocol(u.protocol.SimpleFileSystem,own)) orelse return error.NoEspFilesystem;
     const root=try fs.openVolume();defer root.close() catch {};
-    diagnosticTrace("Reading current Windows menu configuration\r\n");
-    const raw=try u.pool_allocator.dupe(u8,try loader.read(root,utf16("\\EFI\\WinDeploy\\menu.bin"),parse.header_size+parse.max_entries*parse.record_size));
-    defer u.pool_allocator.free(raw);
+    diagnosticTrace("Looking for a matching saved Windows menu entry\r\n");
+    const bytes=loader.read(root,utf16("\\EFI\\WinDeploy\\menu.bin"),parse.header_size+parse.max_entries*parse.record_size) catch |err| switch(err) {
+        error.NotFound => return loader.launchStandard(own,config[56..72],config[72..88],config[88..104]),
+        else => return err,
+    };
+    const raw=try u.pool_allocator.dupe(u8,bytes);defer u.pool_allocator.free(raw);
     const menu=try parse.parse(raw);
     var selected: ?usize=null;
     for(menu.entries[0..menu.count],0..) |item,i| if(std.mem.eql(u8,&item.windows_guid,config[88..104])) {
         if(selected!=null) return error.AmbiguousWindowsMenuEntry;selected=i;
     };
-    const index=selected orelse return error.SelectedWindowsMissingFromMenu;
-    record("Target entry index={d}; available={} ntfs={} hash_locked={}\r\n",.{index,menu.entries[index].available(),menu.entries[index].ntfs(),menu.entries[index].hashLocked()});
-    if(log_failed) return error.LogCouldNotBeFlushed;
-    try loader.launch(false,own,&menu.entries[index],raw,index);
+    if(selected) |index| {
+        record("Target entry index={d}; available={} ntfs={} hash_locked={}\r\n",.{index,menu.entries[index].available(),menu.entries[index].ntfs(),menu.entries[index].hashLocked()});
+        if(log_failed) return error.LogCouldNotBeFlushed;
+        try loader.launch(false,own,&menu.entries[index],raw,index);
+    } else try loader.launchStandard(own,config[56..72],config[72..88],config[88..104]);
     diagnosticTrace("Selected Windows loader returned success to diagnostics.\r\n");
 }
 fn run() !void {

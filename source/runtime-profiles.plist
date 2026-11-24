@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build_id</key>
-	<string>beta-5</string>
+	<string>beta-6</string>
 	<key>idempotent_unmount_revision</key>
 	<integer>1</integer>
 	<key>installation_enabled</key>
@@ -44,9 +44,9 @@
 				<key>BackToSeven.icns</key>
 				<string>a0d3d242b8c90cb6b3b319c2e0f3a03724064dd22e636172daacb8b71fd93915</string>
 				<key>CURRENT-SCOPE.txt</key>
-				<string>4ca34974804ccda868a7297ddec96dcd79243fbeeade89ac6d8c1163ab2f9ab5</string>
+				<string>8d2de2dd0d61244c874b2f498b5b74640e291d62c02e3127fb3fc72b3089a0c4</string>
 				<key>DEPENDENCIES.txt</key>
-				<string>756ebebb0d92577443f6a9f86292035b68251f4b718732a36460cf975764914f</string>
+				<string>e4284c8a7190dba7468a548431146698a7320bed5217f11611b7558b27739fef</string>
 				<key>DRIVER-GUIDANCE.txt</key>
 				<string>8bdf1a14d53c4b496b4a46da9cd7b6377cfa25cd2f9398237a05ff085a70a11c</string>
 				<key>GoAwayBCA.icns</key>
@@ -58,7 +58,7 @@
 				<key>MANUAL-EFI-CLEANUP.txt</key>
 				<string>10df83dd32992c417e75fe24326b924b75ff37e3f0f83694e1e017297c25f039</string>
 				<key>README.txt</key>
-				<string>9e034427f1a84638e19dccc3f8b7ef0938444b75164a03307e1d390796d433ec</string>
+				<string>6dd20e32d6ecb41321e24b046eb8d0c395c2428ea2cbdf089b083acc739f1e91</string>
 				<key>SECURITY-CHIP-MODELS.txt</key>
 				<string>c493a72925abcb81db634ad6aff03e0ee2967da5f6c46aca5e189fcb96047bad</string>
 				<key>ThirdParty/Notices/7zip/7zip-License.txt</key>
@@ -240,7 +240,7 @@
 				<key>boot_diagnostic_binding.py</key>
 				<string>487700a0ea1ed0a55b11be1b6b31dcc8b189c59f40891856c9b8a014b47a77ff</string>
 				<key>boot_diagnostics.py</key>
-				<string>1ab067e1015b4e417aa8e88120f38c4f0562bce392e874e9f6c167d4ddaaf462</string>
+				<string>ba8faf7138070d0ec148443efc920ddeef4cd85572180714da7abc55c0e189bf</string>
 				<key>bootcamp_download.py</key>
 				<string>c67f2e68ea2bcb572b23a6f0d29c64cada9fa1c57d36f7850d6221d7eae8a1e8</string>
 				<key>chooser_config.py</key>
@@ -256,7 +256,7 @@
 				<key>community_payload.py</key>
 				<string>bcf16d013b5743a9ca28ef1fbca84c0ef35bfbc0376cf13569c2ccfd427ffcc0</string>
 				<key>completion_guidance.py</key>
-				<string>783797862e18a42b5f92db6aed0de8af0c0d5fe85ea17a84a1e04803a100d119</string>
+				<string>c6306d4e8ef2e9561ef4d9536bbf2ac480f722b5d9b5e01c41d1ef3dc47bdce0</string>
 				<key>cpu_compatibility.py</key>
 				<string>dad2a45f74ecd5100be081fd29de093bda1c856937d14923fee64369c6369b30</string>
 				<key>deployment_lock.py</key>
@@ -276,11 +276,11 @@
 				<key>diagnostic-efi/PCI.pdb</key>
 				<string>086cf45468cf613d9f400304c648010b2390a5899fa9d9adca94f9fbb140fc26</string>
 				<key>diagnostic-efi/WindowsDiagnostics-esp.template.efi</key>
-				<string>8b349a860112bee95808eaa6a777c93a2d180461b16c6508a9e04b963f1b6928</string>
+				<string>4fbdd53bd91e45a6b6e7128c0dfe2145d4675979a36b3ef5afbf7c6f69411980</string>
 				<key>diagnostic-efi/WindowsDiagnostics-path.template.efi</key>
-				<string>0cdb8fb6eae6b98da4dd5b5212fb7f19691b7e8459614f1e0dc2b17a0005d173</string>
+				<string>fd935579e4fa98af389650d3d26f2310a5f2f82642e6c58ff6d8311c54bec35f</string>
 				<key>diagnostic-efi/WindowsDiagnostics.template.efi</key>
-				<string>0c1ea8ca9bc9b3d65d7241173be87c73c2353b262ed04330668e43d1500cf210</string>
+				<string>89f44a4cbfea94da8022e557a8abf6e1dbaf3eb38d878a03115af22639d2b61c</string>
 				<key>diagnostic-efi/acpi_collector.zig</key>
 				<string>b2a0631eeba29e902d359a4ae1f0f59286f648466a3f213cbcf177813d8a6d8b</string>
 				<key>diagnostic-efi/acpi_parse.zig</key>
@@ -291,6 +291,10 @@
 				<string>0d984fe51174fddf10a3ff48fee74051b04a050230f698e47ba96bb835c6592f</string>
 				<key>diagnostic-efi/pci_collector.zig</key>
 				<string>193b89518c45f0e422412a78220ca6562d8da756ffee81dbfe60a109ed4b41dc</string>
+				<key>diagnostic_candidates.py</key>
+				<string>f031ab7b65efc3586f61f0d1cfb19e262b6a2921276f2bd1c80e75ae402d8cdc</string>
+				<key>diagnostic_kits.py</key>
+				<string>6298fd0fa60dff79f71a4db5d48666571ee67e6b87d751777d5d2338da311cee</string>
 				<key>diagnostics.py</key>
 				<string>edfd8ab8709dd7499614b4218b771751ad8502340aba76517561210599b64dae</string>
 				<key>disk_layout.py</key>
@@ -338,9 +342,9 @@
 				<key>gui_protocol.py</key>
 				<string>3d858982bbbc79354691b116f056894199457845a9922d10ae8988ba9ab703fb</string>
 				<key>gui_session.py</key>
-				<string>e278e884120e2cb2232a4866c74d4f817eab361b6d7532231fbb834e3ad9bd3c</string>
+				<string>8a228d7f33a046d22085dd1b91ead39bc1c87eea7ad01098500018a8e4e99933</string>
 				<key>gui_worker.py</key>
-				<string>efd389416d30e9e2de3ddbe51b4651d61a7fd959f41fb13d5a286f3f930fd170</string>
+				<string>d794a27eb05b6964a4f62096a49e8553abc266938b14b776fe90b2ed59c2d0f9</string>
 				<key>hardware_reports.py</key>
 				<string>0e8e2cbe7bb97aaeda0a2b44cbcfe3d7d9b8f4a39708a39157075fdb12ea46e1</string>
 				<key>install_backtoseven.py</key>
@@ -348,15 +352,15 @@
 				<key>install_coexistence.py</key>
 				<string>c493d861af2a1aefadac23a334e390cc58fa6916ab3c44b78d6a447bd0ccac52</string>
 				<key>install_multiboot.py</key>
-				<string>50c27eefa9e895ceb46d55ba44fff570a549a5ed9df9a7b8b55fe1167e657cf5</string>
+				<string>6bbbedb6fdc09102cb5759f2bc4cdd1be213e16d6b35aaea32dca260469c685c</string>
 				<key>install_unified.py</key>
-				<string>2d779e2253aee3e0a84f982daaf7c78599716181613a04fe27d9886b7bc5f407</string>
+				<string>2cb0ef11b024a9fc9502d9291caa01f808537c3fad7657f3a79884d4e9b049a6</string>
 				<key>install_windows7.py</key>
 				<string>ede0069f8ab3e90d173121a449818c0d292cb7bea5935d22558d86c806e66f88</string>
 				<key>installation_destination.py</key>
 				<string>8d451f88825b8226cbdf5824b9e779c08ba5d7fc8e82d2c1a8d17d994cdf752b</string>
 				<key>installation_policy.py</key>
-				<string>ba0db8dc5cbad3d575b5aad58dece3d685589a39a8489539259478447a05dba8</string>
+				<string>d42df8881f1b2c2af91e67a0cc1c7d68419e4f6d355888d865d7baf414ba129a</string>
 				<key>installation_records.py</key>
 				<string>39a196dc6c5538969681e4c8fd5426aedaeed7b37fc04149c793736114ee23af</string>
 				<key>keyboard_policy.py</key>
@@ -2158,13 +2162,15 @@
 				<key>restore_windows.py</key>
 				<string>a8bc047cafeaa243b0f5ac3133c12d01ae995ba030e2b822c5fb3d73a6fa0d95</string>
 				<key>runtime_profiles.py</key>
-				<string>19bd5a830f04f3c51100f43477de1558675d6a1acf08f7e00a246b145df2ff76</string>
+				<string>162a7cf5b77ab7e9586afa6735ff22e4a946a7457a4704a1e6959a19217a013e</string>
 				<key>saved_file_io.py</key>
 				<string>0114fc05e00c09063725f3ffa9429a57a5ad26722b9f669beee899376e501659</string>
 				<key>sector_guidance.py</key>
 				<string>65e6b679ef5e3ad63d2d46d907ce7da622f5ca7eab810566df4346c1b1d3c871</string>
 				<key>standalone_ownership.py</key>
 				<string>5dffe02509f9ff3a975b13887ed20f6e7fd1887fd388845a223978fd21ba8a0b</string>
+				<key>standard_boot.py</key>
+				<string>74e8f1a441a5b03e3b2264dc4b442519ea22cd762c22819efd7787496bb2febc</string>
 				<key>startup_storage.py</key>
 				<string>38ec2647ac7db0011297ccd1a26db19b52c811cea91c8f415d9fd65efd5c261e</string>
 				<key>storage_cleanup.py</key>
@@ -2186,7 +2192,7 @@
 				<key>test_menu_assets.py</key>
 				<string>9d4b244f68748d4d16552e1f2d925238cc4f031d40dfd2ef26b9f78df58e6aa6</string>
 				<key>test_multiboot_workflow.py</key>
-				<string>349bdbb293ea71b34eade2a6e8963da7c872a4787c3ac169790524388dc6054f</string>
+				<string>61972fcf3e0a50ade52b2aa5f0fa3fabc6d5ad1fd2702f1efe89fed526b350a1</string>
 				<key>test_rebuild_menu.py</key>
 				<string>a3d1c2bffde1923f6daaea8ece7ce51dcc6a6130baefc5ea91ea98c40b41ab1e</string>
 				<key>test_reset_menu.py</key>
@@ -2291,9 +2297,9 @@
 				<key>BackToSeven.icns</key>
 				<string>a0d3d242b8c90cb6b3b319c2e0f3a03724064dd22e636172daacb8b71fd93915</string>
 				<key>CURRENT-SCOPE.txt</key>
-				<string>4ca34974804ccda868a7297ddec96dcd79243fbeeade89ac6d8c1163ab2f9ab5</string>
+				<string>8d2de2dd0d61244c874b2f498b5b74640e291d62c02e3127fb3fc72b3089a0c4</string>
 				<key>DEPENDENCIES.txt</key>
-				<string>756ebebb0d92577443f6a9f86292035b68251f4b718732a36460cf975764914f</string>
+				<string>e4284c8a7190dba7468a548431146698a7320bed5217f11611b7558b27739fef</string>
 				<key>DRIVER-GUIDANCE.txt</key>
 				<string>8bdf1a14d53c4b496b4a46da9cd7b6377cfa25cd2f9398237a05ff085a70a11c</string>
 				<key>GoAwayBCA.icns</key>
@@ -2305,7 +2311,7 @@
 				<key>MANUAL-EFI-CLEANUP.txt</key>
 				<string>10df83dd32992c417e75fe24326b924b75ff37e3f0f83694e1e017297c25f039</string>
 				<key>README.txt</key>
-				<string>9e034427f1a84638e19dccc3f8b7ef0938444b75164a03307e1d390796d433ec</string>
+				<string>6dd20e32d6ecb41321e24b046eb8d0c395c2428ea2cbdf089b083acc739f1e91</string>
 				<key>SECURITY-CHIP-MODELS.txt</key>
 				<string>c493a72925abcb81db634ad6aff03e0ee2967da5f6c46aca5e189fcb96047bad</string>
 				<key>ThirdParty/Notices/7zip/7zip-License.txt</key>
@@ -2487,7 +2493,7 @@
 				<key>boot_diagnostic_binding.py</key>
 				<string>487700a0ea1ed0a55b11be1b6b31dcc8b189c59f40891856c9b8a014b47a77ff</string>
 				<key>boot_diagnostics.py</key>
-				<string>1ab067e1015b4e417aa8e88120f38c4f0562bce392e874e9f6c167d4ddaaf462</string>
+				<string>ba8faf7138070d0ec148443efc920ddeef4cd85572180714da7abc55c0e189bf</string>
 				<key>bootcamp_download.py</key>
 				<string>c67f2e68ea2bcb572b23a6f0d29c64cada9fa1c57d36f7850d6221d7eae8a1e8</string>
 				<key>chooser_config.py</key>
@@ -2503,7 +2509,7 @@
 				<key>community_payload.py</key>
 				<string>bcf16d013b5743a9ca28ef1fbca84c0ef35bfbc0376cf13569c2ccfd427ffcc0</string>
 				<key>completion_guidance.py</key>
-				<string>783797862e18a42b5f92db6aed0de8af0c0d5fe85ea17a84a1e04803a100d119</string>
+				<string>c6306d4e8ef2e9561ef4d9536bbf2ac480f722b5d9b5e01c41d1ef3dc47bdce0</string>
 				<key>cpu_compatibility.py</key>
 				<string>dad2a45f74ecd5100be081fd29de093bda1c856937d14923fee64369c6369b30</string>
 				<key>deployment_lock.py</key>
@@ -2523,11 +2529,11 @@
 				<key>diagnostic-efi/PCI.pdb</key>
 				<string>086cf45468cf613d9f400304c648010b2390a5899fa9d9adca94f9fbb140fc26</string>
 				<key>diagnostic-efi/WindowsDiagnostics-esp.template.efi</key>
-				<string>8b349a860112bee95808eaa6a777c93a2d180461b16c6508a9e04b963f1b6928</string>
+				<string>4fbdd53bd91e45a6b6e7128c0dfe2145d4675979a36b3ef5afbf7c6f69411980</string>
 				<key>diagnostic-efi/WindowsDiagnostics-path.template.efi</key>
-				<string>0cdb8fb6eae6b98da4dd5b5212fb7f19691b7e8459614f1e0dc2b17a0005d173</string>
+				<string>fd935579e4fa98af389650d3d26f2310a5f2f82642e6c58ff6d8311c54bec35f</string>
 				<key>diagnostic-efi/WindowsDiagnostics.template.efi</key>
-				<string>0c1ea8ca9bc9b3d65d7241173be87c73c2353b262ed04330668e43d1500cf210</string>
+				<string>89f44a4cbfea94da8022e557a8abf6e1dbaf3eb38d878a03115af22639d2b61c</string>
 				<key>diagnostic-efi/acpi_collector.zig</key>
 				<string>b2a0631eeba29e902d359a4ae1f0f59286f648466a3f213cbcf177813d8a6d8b</string>
 				<key>diagnostic-efi/acpi_parse.zig</key>
@@ -2538,6 +2544,10 @@
 				<string>0d984fe51174fddf10a3ff48fee74051b04a050230f698e47ba96bb835c6592f</string>
 				<key>diagnostic-efi/pci_collector.zig</key>
 				<string>193b89518c45f0e422412a78220ca6562d8da756ffee81dbfe60a109ed4b41dc</string>
+				<key>diagnostic_candidates.py</key>
+				<string>f031ab7b65efc3586f61f0d1cfb19e262b6a2921276f2bd1c80e75ae402d8cdc</string>
+				<key>diagnostic_kits.py</key>
+				<string>6298fd0fa60dff79f71a4db5d48666571ee67e6b87d751777d5d2338da311cee</string>
 				<key>diagnostics.py</key>
 				<string>edfd8ab8709dd7499614b4218b771751ad8502340aba76517561210599b64dae</string>
 				<key>disk_layout.py</key>
@@ -2585,9 +2595,9 @@
 				<key>gui_protocol.py</key>
 				<string>3d858982bbbc79354691b116f056894199457845a9922d10ae8988ba9ab703fb</string>
 				<key>gui_session.py</key>
-				<string>e278e884120e2cb2232a4866c74d4f817eab361b6d7532231fbb834e3ad9bd3c</string>
+				<string>8a228d7f33a046d22085dd1b91ead39bc1c87eea7ad01098500018a8e4e99933</string>
 				<key>gui_worker.py</key>
-				<string>efd389416d30e9e2de3ddbe51b4651d61a7fd959f41fb13d5a286f3f930fd170</string>
+				<string>d794a27eb05b6964a4f62096a49e8553abc266938b14b776fe90b2ed59c2d0f9</string>
 				<key>hardware_reports.py</key>
 				<string>0e8e2cbe7bb97aaeda0a2b44cbcfe3d7d9b8f4a39708a39157075fdb12ea46e1</string>
 				<key>install_backtoseven.py</key>
@@ -2595,15 +2605,15 @@
 				<key>install_coexistence.py</key>
 				<string>c493d861af2a1aefadac23a334e390cc58fa6916ab3c44b78d6a447bd0ccac52</string>
 				<key>install_multiboot.py</key>
-				<string>50c27eefa9e895ceb46d55ba44fff570a549a5ed9df9a7b8b55fe1167e657cf5</string>
+				<string>6bbbedb6fdc09102cb5759f2bc4cdd1be213e16d6b35aaea32dca260469c685c</string>
 				<key>install_unified.py</key>
-				<string>2d779e2253aee3e0a84f982daaf7c78599716181613a04fe27d9886b7bc5f407</string>
+				<string>2cb0ef11b024a9fc9502d9291caa01f808537c3fad7657f3a79884d4e9b049a6</string>
 				<key>install_windows7.py</key>
 				<string>ede0069f8ab3e90d173121a449818c0d292cb7bea5935d22558d86c806e66f88</string>
 				<key>installation_destination.py</key>
 				<string>8d451f88825b8226cbdf5824b9e779c08ba5d7fc8e82d2c1a8d17d994cdf752b</string>
 				<key>installation_policy.py</key>
-				<string>ba0db8dc5cbad3d575b5aad58dece3d685589a39a8489539259478447a05dba8</string>
+				<string>d42df8881f1b2c2af91e67a0cc1c7d68419e4f6d355888d865d7baf414ba129a</string>
 				<key>installation_records.py</key>
 				<string>39a196dc6c5538969681e4c8fd5426aedaeed7b37fc04149c793736114ee23af</string>
 				<key>keyboard_policy.py</key>
@@ -6793,13 +6803,15 @@
 				<key>restore_windows.py</key>
 				<string>a8bc047cafeaa243b0f5ac3133c12d01ae995ba030e2b822c5fb3d73a6fa0d95</string>
 				<key>runtime_profiles.py</key>
-				<string>19bd5a830f04f3c51100f43477de1558675d6a1acf08f7e00a246b145df2ff76</string>
+				<string>162a7cf5b77ab7e9586afa6735ff22e4a946a7457a4704a1e6959a19217a013e</string>
 				<key>saved_file_io.py</key>
 				<string>0114fc05e00c09063725f3ffa9429a57a5ad26722b9f669beee899376e501659</string>
 				<key>sector_guidance.py</key>
 				<string>65e6b679ef5e3ad63d2d46d907ce7da622f5ca7eab810566df4346c1b1d3c871</string>
 				<key>standalone_ownership.py</key>
 				<string>5dffe02509f9ff3a975b13887ed20f6e7fd1887fd388845a223978fd21ba8a0b</string>
+				<key>standard_boot.py</key>
+				<string>74e8f1a441a5b03e3b2264dc4b442519ea22cd762c22819efd7787496bb2febc</string>
 				<key>startup_storage.py</key>
 				<string>38ec2647ac7db0011297ccd1a26db19b52c811cea91c8f415d9fd65efd5c261e</string>
 				<key>storage_cleanup.py</key>
@@ -6821,7 +6833,7 @@
 				<key>test_menu_assets.py</key>
 				<string>9d4b244f68748d4d16552e1f2d925238cc4f031d40dfd2ef26b9f78df58e6aa6</string>
 				<key>test_multiboot_workflow.py</key>
-				<string>349bdbb293ea71b34eade2a6e8963da7c872a4787c3ac169790524388dc6054f</string>
+				<string>61972fcf3e0a50ade52b2aa5f0fa3fabc6d5ad1fd2702f1efe89fed526b350a1</string>
 				<key>test_rebuild_menu.py</key>
 				<string>a3d1c2bffde1923f6daaea8ece7ce51dcc6a6130baefc5ea91ea98c40b41ab1e</string>
 				<key>test_reset_menu.py</key>

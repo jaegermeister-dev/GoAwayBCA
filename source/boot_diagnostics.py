@@ -13,6 +13,8 @@ from install_windows7 import (ROOT,require,info,run,gpt_for,match_gpt,tree_manif
 from efi_transaction import EFITransaction
 from user_driver_store import Store
 from operation_progress import phase
+from diagnostic_candidates import candidates
+from manage_installations import discovery_inventory
 
 PREFIX='EFI/WinDeploy/Diagnostics/'
 
@@ -44,9 +46,9 @@ def instructions(folder,title,esp_guid):
         'PCI/ACPI reports, and saves a numbered test1-*, test2-* or test3-* log before handing over to Windows. '
         'If a test hangs, photograph the screen and report which test it was. The last saved stage remains useful; '
         'this is not a Windows kernel debugger. Returned EFI status and any exit text are logged.\n\n'
-        'All three explicitly bypass the recognised experimental Fix.efi helper and verify its saved Original.efi against Entry.bin before loading it. A direct bootmgfw.efi entry stays direct. The log identifies the configured entry, actual executable and its SHA256. Missing or changed original files stop the test; it never falls back to running the helper. All three use the normal Windows menu per-Windows BCD selection. They do not replace the boot menu, '
+        'All three explicitly bypass the recognised experimental Fix.efi helper and verify its saved Original.efi against Entry.bin before loading it. A direct bootmgfw.efi entry stays direct. The log identifies the configured entry, actual executable and its SHA256. Missing or changed original files stop the test; it never falls back to running the helper. If a matching custom-menu entry exists, the tests use its per-Windows BCD selection. Otherwise they test the standard Microsoft boot path, checking its BCD points to the selected partition. They do not replace the boot menu, '
         'patch Windows, alter OpenCore, change the default startup disk or repartition. Windows itself may make '
-        'normal boot/setup writes. A missing or ambiguous menu entry stops that attempt.\n\n'
+        'normal boot/setup writes. A custom menu is not required. Missing boot files or a mismatched target are reported in the test log.\n\n'
         '7. Return to macOS and mount the indicated EFI partition. ZIP this entire Test folder, including '
         'all logs and capture folders. Include the outcome of each test and whether OpenShell was started '
         'through OpenCore or another route. Review reports before sharing; nothing uploads automatically.\n\n'
@@ -55,24 +57,21 @@ def instructions(folder,title,esp_guid):
 class BootDiagnostics(InstallationManager):
     def execute(self):
         self.begin();phase(self.note,'Finding Windows partitions for targeted EFI diagnostics')
-        scan=self.discover(verify_filesystem=True);rows=scan['installations']
-        scan_path=self.session/'diagnostic-scan.json'
-        write_receipt(scan_path,scan)
-        for failure in scan.get('scan_failures',[]):
-            self.note('Could not inspect '+failure['partition']+': '+failure['error'])
-        self.note('EFI diagnostic scan: %d Windows installation(s) found; %d partition(s) could not be inspected.' %
-            (len(rows),len(scan.get('scan_failures',[]))))
-        self.note('Diagnostic scan report: '+str(scan_path))
-        require(rows,('Windows partitions could not be read. Check the scan errors in the log and include the saved diagnostic scan report when reporting the problem.'
-            if scan.get('scan_failures') else
-            'No readable Windows installations found. Check that the Windows drive is connected and accessible. If Windows was just installed, include the saved diagnostic scan report when reporting the problem.')+
-            '\nNo diagnostic tool was written.\nScan report: '+str(scan_path))
-        selected=rows[self.choose('Which Windows installation fails to boot? The diagnostic EFI will target '
-            'this partition by its persistent identifier, including if its current disk number changes.',
-            [r['title']+'\n'+r['summary'] for r in rows])]
+        rows=candidates(discovery_inventory())
+        scan=dict(schema=2,partition_candidates=rows,windows_contents_inspected=False,
+                  physical_writes=False,scan_failures=[])
+        scan_path=self.session/'diagnostic-scan.json';write_receipt(scan_path,scan)
+        self.note('EFI diagnostics: %d candidate partition(s); Windows file readability is not required.' % len(rows))
+        require(rows,'No NTFS/exFAT candidate partitions found on connected GPT drives. No diagnostic tool was written.')
+        selected=rows[self.choose('Choose the partition containing the Windows installation that fails to boot. '
+            'This list uses disk information only; Windows files do not need to be readable in macOS. '
+            'Nothing on the Windows partition will be changed.',[r['title']+'\n'+r['summary'] for r in rows])]
         target=selected['target'];layout=gpt_for(target);win,esp=match_gpt(target,layout)
-        require(sum(r['observed']['partition_guid']==win['guid'] for r in rows)==1,
+        require(sum(r['target']['partition'].get('DiskUUID','').lower()==win['guid'] for r in rows)==1,
                 'The Windows partition identity is ambiguous. Resolve duplicate identifiers first.')
+        selected['observed']=dict(disk_guid=layout['guid'],partition_guid=win['guid'],
+            partition_bytes=(win['last']-win['first']+1)*layout['sector_size'],
+            partition_offset=win['first']*layout['sector_size'],windows_verified=False)
         model=run(['/usr/sbin/sysctl','-n','hw.model']).decode().strip()
         if self.esp_owned and self.esp_device!=target['esp']:
             require(not self.close_esp(),'Could not close the previous diagnostic scan mount.')
@@ -99,7 +98,8 @@ class BootDiagnostics(InstallationManager):
         context=('WinDeploy read-only hardware report v1\nsession_id='+session_id+'\nesp_guid='+esp['guid']+
                  '\nfolder_name='+folder_name+'\nmacos_model='+model+'\nwindows_disk_guid='+layout['guid']+'\nwindows_partition_guid='+win['guid']+'\n').encode('ascii')
         guide=instructions(folder,selected['title'],esp['guid'])
-        files=dict(collectors,**dict(programs,**{'context.txt':context,
+        files=dict(collectors,**dict(programs,**{'OpenNtfsDxe.efi':(ROOT/'efi/OpenNtfsDxe.efi').read_bytes(),
+            'Ntfs4Kn.efi':(ROOT/'efi/Ntfs4Kn.efi').read_bytes(),'context.txt':context,
             'ALLOW-ACPI.txt':b'WinDeploy readonly ACPI collection 20261008 v1\n',
             'ALLOW-PCI.txt':b'WinDeploy readonly PCI inventory 20261009 v1\n',
             'OPEN-SHELL-INSTRUCTIONS.txt':guide.encode('utf8'),
@@ -109,7 +109,7 @@ class BootDiagnostics(InstallationManager):
             'Existing diagnostic folders and logs will be kept. Creating a new tool does not update or remove earlier tools; use this new folder for the latest test.\n\n'
             'It does not fix or replace boot files. '
             'The tests bypass the recognised experimental EFI helper and start the verified original Windows loader. Test3 changes the boot context and may fail even when the other two work. Run Test1.efi, Test2.efi and Test3.efi separately in OpenShell, restarting between tests. Each collects reports and '
-            'uses normal Windows BCD selection to attempt this Windows boot. Logs are saved on EFI before handoff. No automatic upload.',
+            'tries the selected Windows boot path, with or without a custom menu. Logs are saved on EFI before handoff. No automatic upload.',
             details=guide),'Diagnostic preparation cancelled.')
         assert_same_target(target,info(target['partition']['DeviceIdentifier']),info(target['disk']['DeviceIdentifier']))
         require(gpt_for(target)['digest']==layout['digest'],'The selected drive layout changed. Start again.')

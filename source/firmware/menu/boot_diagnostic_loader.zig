@@ -189,7 +189,11 @@ fn ensureNtfs(own: u.Handle, target: u.Handle) !void {
     if (ntfs_drivers[index] == null) {
         var expected: [32]u8 = undefined;
         _ = try std.fmt.hexToBytes(&expected,if (index == 0) ntfs_hash else ntfs_4kn_hash);
-        const driver = try load(own,if (index == 0) utf16("\\EFI\\WinDeploy\\OpenNtfsDxe.efi") else utf16("\\EFI\\WinDeploy\\Ntfs4Kn.efi"),&expected);
+        const local_path=try @import("boot_diagnostic.zig").kitPath(if(index==0) "OpenNtfsDxe.efi" else "Ntfs4Kn.efi");
+        const driver = load(own,@ptrCast(&local_path),&expected) catch |err| switch(err) {
+            error.NotFound => try load(own,if (index == 0) utf16("\\EFI\\WinDeploy\\OpenNtfsDxe.efi") else utf16("\\EFI\\WinDeploy\\Ntfs4Kn.efi"),&expected),
+            else => return err,
+        };
         errdefer _ = bs.unloadImage(driver) catch .aborted;
         const result = try bs.startImage(driver);
         try result.code.err();
@@ -212,7 +216,7 @@ pub fn launch(comptime vm: bool, own: u.Handle, item: *const p.Entry,menu_bytes:
     trace(vm,"CHOOSER: finding GPT partition\n");
     const target = try partition(&item.boot_guid);
     trace(vm,"CHOOSER: GPT partition found\n");
-    if (target == own) {
+    if (target == own and menu_bytes.len != 0) {
         var narrow: [256]u8 = undefined;
         var length: usize = 0;
         for (item.path) |c| {
@@ -243,7 +247,7 @@ pub fn launch(comptime vm: bool, own: u.Handle, item: *const p.Entry,menu_bytes:
     };
     const bs = u.system_table.boot_services orelse return error.NoBootServices;
     defer _ = bs.unloadImage(child) catch .aborted;
-    if (activate_stores) {
+    if (activate_stores and menu_bytes.len != 0) {
         trace(vm,"DIAGNOSTIC: opening and validating BCD configuration\n");
         var stores=try @import("store_activation.zig").Context.open(own,menu_bytes);
         defer stores.close();
@@ -259,4 +263,30 @@ pub fn launch(comptime vm: bool, own: u.Handle, item: *const p.Entry,menu_bytes:
     trace(vm,"CHOOSER: selected partition and loader verified; starting Windows\n");
     try @import("root").requireFlushedLog();
     try @import("root").startLogged(child,"Windows");
+}
+
+fn standardBcd(device: u.Handle, disk: *const [16]u8, boot: *const [16]u8, windows: *const [16]u8) !void {
+    const bs=u.system_table.boot_services orelse return error.NoBootServices;
+    const fs=(try bs.handleProtocol(u.protocol.SimpleFileSystem,device)) orelse return error.NoFilesystem;
+    const root=try fs.openVolume();defer root.close() catch {};
+    const data=try read(root,utf16("\\EFI\\Microsoft\\Boot\\BCD"),2*1024*1024);
+    const h=try u.pool_allocator.create(@import("boot_store_parse.zig").Hive);defer u.pool_allocator.destroy(h);
+    try h.initInto(data);
+    try @import("boot_store_identity.zig").validate(h,&.{.esp_disk=disk.*,.esp=boot.*,.windows_disk=disk.*,.windows=windows.*});
+}
+pub fn launchStandard(own: u.Handle, disk: *const [16]u8, esp: *const [16]u8, windows: *const [16]u8) !void {
+    @import("root").diagnosticTrace("No matching custom-menu entry. Trying the standard Microsoft boot path.\r\n");
+    var item: p.Entry=.{.flags=1,.boot_guid=undefined,.windows_guid=windows.*,.digest=@splat(0),.title=@splat(0),.path=@splat(0)};
+    const own_guid=esp.*;
+    item.boot_guid=own_guid;
+    const path="\\EFI\\Microsoft\\Boot\\bootmgfw.efi";
+    for(path,0..) |c,i| item.path[i]=c;
+    standardBcd(own,disk,&own_guid,windows) catch |err| {
+        @import("root").record("Standard EFI-partition BCD does not identify selected Windows: {s}; trying selected partition's own boot files.\r\n",.{@errorName(err)});
+        const target=try partition(windows);try ensureNtfs(own,target);
+        try standardBcd(target,disk,windows,windows);
+        item.boot_guid=windows.*;item.flags=3;
+    };
+    @import("root").diagnosticTrace("Standard BCD target verified; no menu/store activation is needed.\r\n");
+    try launch(false,own,&item,&.{},0);
 }

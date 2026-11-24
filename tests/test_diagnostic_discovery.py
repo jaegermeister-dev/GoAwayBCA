@@ -142,19 +142,14 @@ class DiagnosticDiscoveryTests(unittest.TestCase):
             self.assertEqual(report['scan_failures'][0]['partition'],'disk9s2')
             obj.mount_esp.assert_not_called()
 
-    def test_failed_scan_saved_and_reason_shown_before_no_results(self):
-        for failures in ([],[{'partition':'disk9s2','error':'Read denied'}]):
-            with tempfile.TemporaryDirectory() as tmp:
-                obj=bd.BootDiagnostics(argparse.Namespace());obj.session=Path(tmp)
-                obj.begin=Mock();obj.note=Mock();obj.choose=Mock()
-                report=dict(installations=[],scan_failures=failures)
-                obj.discover=Mock(return_value=report)
-                with self.assertRaises(nt.Refusal) as error:obj.execute()
-                self.assertEqual(json.loads((Path(tmp)/'diagnostic-scan.json').read_text()),report)
-                obj.discover.assert_called_once_with(verify_filesystem=True)
-                obj.choose.assert_not_called()
-                self.assertIn('No diagnostic tool was written',str(error.exception))
-                if failures:self.assertTrue(any('Read denied' in str(c) for c in obj.note.call_args_list))
+    def test_empty_metadata_candidates_saved_without_ntfs_inspection(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            obj=bd.BootDiagnostics(argparse.Namespace());obj.session=Path(tmp)
+            obj.begin=Mock();obj.note=Mock();obj.choose=Mock();obj.discover=Mock(side_effect=AssertionError('must not inspect Windows'))
+            with patch.object(bd,'discovery_inventory',return_value=[]),self.assertRaises(nt.Refusal):obj.execute()
+            report=json.loads((Path(tmp)/'diagnostic-scan.json').read_text())
+            self.assertFalse(report['windows_contents_inspected']);self.assertEqual(report['partition_candidates'],[])
+            obj.discover.assert_not_called();obj.choose.assert_not_called()
 
 
 if __name__=='__main__':unittest.main()

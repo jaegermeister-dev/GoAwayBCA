@@ -171,7 +171,7 @@ class MultiBootInstaller(InstallationManager):
         detected_model=run(['/usr/sbin/sysctl','-n','hw.model']).decode().strip()
         model=mac_compatibility.confirm_model(self.interaction,detected_model)
         self.confirmed_model=model
-        self.note('GoAwayBCA Beta 1: Windows 8.1 / 10 / 11. OpenCore is recommended.')
+        self.note('GoAwayBCA: Windows 8.1 / 10 / 11. OpenCore is recommended.')
         self.note('No partition resizing, default-boot changes, automatic restart or automatic driver installation.')
         initial_scan=None
         if early_scan:
@@ -186,7 +186,9 @@ class MultiBootInstaller(InstallationManager):
         phase(self.note,'Choose the Windows edition from the selected ISO')
         edition=editions[self.choose('Choose the Windows edition:',
             ['%d. %s [%s; WIM index %d]'%(i+1,e['name'],e['family'] or e['refusal'],e['index']) for i,e in enumerate(editions)])]
-        require(edition['family'] in FAMILIES,'This build installs Windows 7, 8, 8.1, 10 and 11')
+        from product_scope import require_family
+        require(edition['family'] in FAMILIES,'Unrecognised Windows image family')
+        if getattr(self,'require_supported_image',False):require_family(edition['family'])
         firmware_evidence=firmware_compatibility.configure(edition,self.interaction)
         model_guidance=mac_compatibility.configure(model,edition,self.interaction)
         cpu_guidance=cpu_compatibility.configure(edition,self.interaction)
@@ -204,7 +206,6 @@ class MultiBootInstaller(InstallationManager):
             ('detected_model','model','iso','wim','edition'))
         firmware_evidence,model_guidance,cpu_guidance=(selection[k] for k in
             ('firmware_evidence','model_guidance','cpu_guidance'))
-        entry_title=prompt_entry_name(self.interaction,edition['family'])
         efi_enabled=choose_efi(self.interaction,model,edition['family'],self.note)
         driver_choice=driver_preparation.configure(self.interaction,model,edition['family'],model_guidance)
         self.driver_delivery=driver_preparation.prepare(driver_choice,ROOT,self.session,self.wim,self.interaction,self.note)
@@ -224,6 +225,9 @@ class MultiBootInstaller(InstallationManager):
         require(targets,'No eligible empty exFAT/NTFS partition. Erase an existing Windows installation through Manage Installations first.')
         from destination_picker import choose as choose_destination
         target=choose_destination(self,targets,edition['family'])
+        import standard_boot
+        custom_menu=standard_boot.choose(self,scan['installations'],target)
+        entry_title=prompt_entry_name(self.interaction,edition['family']) if custom_menu else edition['family']
         from disk_layout import require_windows_sector_support
         import win7_sector
         self.prepared_4kn=win7_sector.prepare_target(self,target,edition,wim,ROOT,model)
@@ -273,13 +277,26 @@ class MultiBootInstaller(InstallationManager):
             overlay['entry']=stock_entry(overlay['record']);overlay['esp_files']={}
             if efi_enabled:experimental_efi.wrap_stock(overlay,ROOT,self.wim,self.session)
         overlay['entry']['title']=entry_title
-        if getattr(self,'unified_menu',False):
-            plan=assemble(self,backup,files,gpt['guid'],esp['guid'],scan['installations'],
-                addition=overlay,preserve_addition_paths=True,confirmed_absent=removed)
-        else:
-            plan=lifecycle.transition(files,before,gpt['guid'],esp['guid'],scan['installations'],
-                addition=overlay['entry'],new_store=overlay['canonical_bcd'],
-                chooser=(ROOT/'efi/Windows.efi').read_bytes(),ntfs_driver=(ROOT/'efi/OpenNtfsDxe.efi').read_bytes(),ntfs_4kn_driver=(ROOT/'efi/Ntfs4Kn.efi').read_bytes(),confirmed_absent=removed)
+        # Preserve an existing private menu when the user switches the public
+        # entry to Microsoft. Do not create any chooser for a fresh standard path.
+        plan=None
+        if custom_menu or old['catalog']['entries']:
+            if getattr(self,'unified_menu',False):
+                plan=assemble(self,backup,files,gpt['guid'],esp['guid'],scan['installations'],
+                    addition=overlay,preserve_addition_paths=True,confirmed_absent=removed)
+            else:
+                plan=lifecycle.transition(files,before,gpt['guid'],esp['guid'],scan['installations'],
+                    addition=overlay['entry'],new_store=overlay['canonical_bcd'],
+                    chooser=(ROOT/'efi/Windows.efi').read_bytes(),ntfs_driver=(ROOT/'efi/OpenNtfsDxe.efi').read_bytes(),
+                    ntfs_4kn_driver=(ROOT/'efi/Ntfs4Kn.efi').read_bytes(),confirmed_absent=removed)
+        if not custom_menu:
+            from ntfs_read import Probe
+            public_hashes=[]
+            for row in scan['installations']:
+                if row['observed']['disk_guid']!=gpt['guid']:continue
+                with Probe(row['target']['partition'],self.ntfscat) as probe:
+                    public_hashes.append(lifecycle.sha(probe.read('/Windows/Boot/EFI/bootmgfw.efi',8*1024**2)))
+            plan=standard_boot.plan(overlay,files,before,old,scan['installations'],plan,public_hashes)
         originals=lifecycle.indexed(before)
         dependencies=boot_dependencies.plan(before,overlay['esp_files'],
             (asset['path'] for asset in overlay['record']['efi_assets']))
@@ -299,7 +316,7 @@ class MultiBootInstaller(InstallationManager):
         require(shutil.disk_usage(mount).free>sum(len(c['data'] or b'') for c in plan['changes'])+8*1024**2,
                 'Insufficient EFI free space; no target formatted')
         receipt=dict(status='preflight-only',edition=edition,target=target,record=overlay['record'],
-            catalog=plan['catalog'],efi_before=before,efi_fix_enabled=efi_enabled,image_verification=image_verification,
+            catalog=plan['catalog'],custom_boot_menu=custom_menu,efi_before=before,efi_fix_enabled=efi_enabled,image_verification=image_verification,
             windows7_fixes=edition['family']=='Windows 7' and model=='MacBookPro11,5',
             keyboard_preparation_enabled=getattr(self,'keyboard_preparation_enabled',None),
             menu_title=entry_title,driver_choice=driver_choice,driver_preparation=self.driver_delivery['receipt'] if self.driver_delivery else None,
@@ -329,7 +346,7 @@ class MultiBootInstaller(InstallationManager):
                 'Selected target now contains Windows or is no longer eligible')
         if getattr(self,'unified_menu',False):
             require(fresh['installations']==scan['installations'],'Existing Windows installations changed; start again')
-            verify_sources(self,plan['windows_sources'])
+            verify_sources(self,plan.get('windows_sources',[]))
         if self.esp_owned and self.esp_device!=target['esp']:require(not self.close_esp(),'Could not detach scan ESP')
         mount=self.mount_esp(target['esp'],readonly=False)
         def guard():
@@ -388,9 +405,9 @@ class MultiBootInstaller(InstallationManager):
         phase(self.note,'Flushing completed writes to disk');run(['/bin/sync'])
         phase(self.note,'Saving deployment receipt and final EFI hashes')
         receipt.update(status='deployed-awaiting-first-boot',efi_after=tree_manifest(mount));write_receipt(receipt_path,receipt)
-        self.note('DEPLOYMENT COMPLETE. The Windows menu was regenerated with this installation.')
-        self.note('Restart when ready. OpenCore > Windows > '+entry_title+'. Complete normal Windows setup.')
+        self.note('DEPLOYMENT COMPLETE. '+('The custom Windows menu was updated.' if custom_menu else 'The standard Microsoft boot path is ready.'))
+        self.note('Restart when ready. Select Windows or EFI Boot'+(' > '+entry_title if custom_menu else '')+'. Complete normal Windows setup.')
         self.note('Other installations and OpenCore were preserved. No automatic restart or default-boot change.')
 
         from completion_guidance import message as completion_message
-        self.interaction.request('notice',completion_message(edition['family'],entry_title,drivers=bool(self.driver_delivery)),button_title='Done')
+        self.interaction.request('notice',completion_message(edition['family'],entry_title,drivers=bool(self.driver_delivery),custom_menu=custom_menu),button_title='Done')

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "product": "GoAwayBCA",
-  "version": "0.5.0-beta.5",
+  "version": "0.6.0-beta.6",
   "copies": {
     "Contents/Info.plist": {
       "mode": 420,
@@ -37610,6 +37610,42 @@
         0
       ],
       "source": "source/diagnostic-efi/WindowsDiagnostics-esp.template.efi"
+    },
+    "Contents/Resources/diagnostic_candidates.py": {
+      "source": "source/diagnostic_candidates.py",
+      "mode": 420,
+      "timestamp": [
+        2026,
+        11,
+        24,
+        0,
+        0,
+        0
+      ]
+    },
+    "Contents/Resources/diagnostic_kits.py": {
+      "source": "source/diagnostic_kits.py",
+      "mode": 420,
+      "timestamp": [
+        2026,
+        11,
+        24,
+        0,
+        0,
+        0
+      ]
+    },
+    "Contents/Resources/standard_boot.py": {
+      "source": "source/standard_boot.py",
+      "mode": 420,
+      "timestamp": [
+        2026,
+        11,
+        24,
+        0,
+        0,
+        0
+      ]
     }
   },
   "links": {

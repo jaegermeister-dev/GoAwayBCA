@@ -1,4 +1,4 @@
-GoAwayBCA Beta 5
+GoAwayBCA Beta 6
 
 Install and manage Windows 8.1, Windows 10 and Windows 11 from Intel macOS, using an existing internal or experimental USB GPT partition and pure EFI booting. A USB installer is not required.
 Windows 7 and Windows 8 are not yet supported. Support is being actively developed for a future update.
@@ -22,10 +22,14 @@ Tools include installation management, Windows boot-menu rebuild/rename, EFI mou
 
 Host range: Intel OS X Lion 10.7 through macOS Tahoe. Testing has included Mavericks, Mojave, Monterey and Tahoe across MacBookPro11,3, 11,4 and 11,5; this does not mean every host/Windows/model combination was tested. Windows 8.1 and 10 installations and menu coexistence have been tested on these Macs, including 4096-byte logical-sector storage on the 11,4. Windows 11 is available with compatibility guidance, but was not part of that installation test matrix. Older hosts and other models may need fixes based on reports.
 
-Beta 5 corrects the EFI diagnostic tests to launch the original Windows loader directly. If the selected menu entry uses the recognised experimental Fix.efi helper, each diagnostic test verifies the saved Original.efi against Entry.bin and bypasses the helper. Unknown helpers, missing originals and mismatched hashes stop the attempt; no helper is silently substituted. Logs identify both the configured menu executable and the actual executable launched, including its SHA256.
+Beta 6 simplifies EFI diagnostic creation: choose the Windows partition from disk information, then create a new target-bound diagnostic kit on that drive’s EFI partition. Windows files do not have to be readable in macOS to create the kit. This addresses the reported “NTFS root identity changed” discovery failure without requiring a Windows reinstall.
 
-Tests 1 and 2 use the original Windows loader's device/path through different loading methods. Test 3 uses an experimental EFI-partition context; it can fail even when the same Windows installation boots with Tests 1 and 2. Restart between tests. Each new diagnostic set gets a new short Test-### folder, preserving every previous tool and log.
+The custom Windows boot menu is now optional during installation. It is recommended for multiple Windows installations; a single installation can use the standard Microsoft boot path directly through OpenCore or the Mac’s Option/Alt picker. Choosing the standard path does not change the default startup disk. If other Windows installations already exist, the shared Windows entry will start the new installation; Rebuild Boot Menu can restore selection between them. Existing menu files are retained.
 
-This is a diagnostic correction, not a confirmed fix for the reported older Mac. Windows installation, drivers, partition management and the normal boot menu are unchanged. If creating diagnostics reports an unreadable Windows partition, save the full app log and diagnostic-scan report; reinstalling Windows is not a required troubleshooting step. This update does not claim to fix that separately reported scan failure.
+Advanced → Manage EFI Diagnostic Kits lists saved folders, their recorded GoAwayBCA versions and targets, and lets you choose which kits and logs to delete. Unselected kits are kept. Every new kit still gets its own Test-### folder. Unknown versions are labelled as unknown.
+
+The general experimental EFI patch is no longer offered or applied to new supported Windows installations. Existing installations and helper files are not silently changed. Diagnostic tests continue to bypass a recognised old helper and also work with the standard boot path, without requiring a custom menu.
+
+This is not a confirmed solution to the community MacBook5,1 boot failure. Please report what happened with each route and include the new diagnostic logs. Windows 7 and Windows 8 remain unsupported.
 
 Experimental USB destinations and Windows partition backup/restore remain available. Leopard support and installation support for 32-bit EFI Macs are not included. Further installation optimisations and Linux/GRUB interaction testing remain future work.
